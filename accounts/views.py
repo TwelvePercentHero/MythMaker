@@ -22,7 +22,8 @@ def new_user(request):
             user = User(username=username, email=email)
             user.set_password(password)
             user.save()
-            return render(request, 'registration/profile.html')
+            context = {'username' : username}
+            return render(request, 'registration/profile.html', context)
     else:
         form = MythMakerForm()
     return render(request, 'registration/register.html')
