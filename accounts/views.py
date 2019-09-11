@@ -12,20 +12,22 @@ def profile(request):
     context = {'username' : username}
     return render(request, 'registration/profile.html', context)
 
-def new_user(request):
+def register(request):
     if request.method == 'POST':
         form = MythMakerForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_date['username']
-            password = form.cleaned_data['password1']
-            email = form.cleaned_data['email']
-            user = User(username=username, email=email)
-            user.set_password(password)
-            user.save()
-            context = {'username' : username}
-            return render(request, 'registration/profile.html', context)
+            form.save()
+
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+
+            user = authenticate(username=username, password=password)
+            login(request, user)
+
+            return redirect('index')
     else:
         form = MythMakerForm()
-    return render(request, 'registration/register.html')
+    context = {'form': form}
+    return render(request, 'registration/register.html', context)
 
 
