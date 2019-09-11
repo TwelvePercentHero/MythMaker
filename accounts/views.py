@@ -1,7 +1,11 @@
 from django.shortcuts import render
 
 def register(request):
-    return render(request, 'accounts/register.html')
+    return render(request, 'registration/register.html')
 
 def profile(request):
-    return render(request, 'accounts/profile.html')
+    username = request.user.username
+    context = {'username' : username}
+    return render(request, 'registration/profile.html', context)
+
+
