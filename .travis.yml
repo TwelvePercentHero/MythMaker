@@ -8,4 +8,4 @@ env:
 install:
   - pip install -r requirements.txt
 script: 
-- SECRET_KEY="MYTHMAKER_SECRET_KEY" python manage.py test
+- SECRET_KEY=os.environ.get("MYTHMAKER_SECRET_KEY") python manage.py test
