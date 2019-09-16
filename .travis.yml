@@ -1,11 +1,17 @@
 language: python
-python:
-- "3.7.4"
-services:
-  - postgresql
-env:
-  - DJANGO=2.2.5
+matrix:
+  include:
+    - python: 3.7.4
+      dist: xenial
+      sudo: true
+      env:
+        - DJANGO=2.2.5
+        - DEVELOPMENT=true
+        - HOSTNAME='0.0.0.0'
+        - IP='0.0.0.0'
+        - PORT='5000'
+        - SECRET_KEY='whatever'
 install:
   - pip install -r requirements.txt
 script: 
-- SECRET_KEY=os.environ.get("MYTHMAKER_SECRET_KEY") python manage.py test
+- python3 manage.py test || python manage.py test
