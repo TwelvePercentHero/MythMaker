@@ -7,4 +7,5 @@ env:
   -DJANGO=2.2.5
 install:
   - pip install -r requirements.txt
-script: "python manage.py test"
+script: 
+  - python manage.py test
