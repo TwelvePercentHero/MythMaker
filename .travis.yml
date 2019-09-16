@@ -10,7 +10,7 @@ matrix:
         - HOSTNAME='0.0.0.0'
         - IP='0.0.0.0'
         - PORT='5000'
-        - SECRET_KEY='whatever'
+        - MYTHMAKER_SECRET_KEY='whatever'
 install:
   - pip install -r requirements.txt
 script: 
