@@ -126,3 +126,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/profile/'
+
+# Email Configuration
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'philboothman90@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get('MYTHMAKER_EMAIL_PASS')
+EMAIL_PORT = 587

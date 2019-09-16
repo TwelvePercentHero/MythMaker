@@ -1,3 +1,32 @@
 body {
     font-family: 'Questrial', sans-serif;
 }
+
+nav {
+    background-color: #18121E;
+    color: #fff;
+}
+
+.navbar-brand {
+    color: #EAC67A;
+}
+
+.navbar-brand:hover {
+    color: #EDB234;
+}
+
+.nav-link {
+    color: #EAC67A;
+}
+
+.nav-link:hover {
+    color: #EDB234;
+}
+
+.btn-outline-success {
+    color: #EAC67A;
+}
+
+.btn-outline-success:hover {
+    color: #EAC67A;
+}
