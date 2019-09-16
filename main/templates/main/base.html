@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>{% block title %}{% endblock %}</title>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
@@ -24,21 +24,21 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'index' %}">Home</a>
+                  <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-scroll"></i>  Home</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user-edit"></i>  Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>  Logout</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+                  <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i>  Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user-plus"></i>  Register</a>
                 </li>
                 {% endif %}
               </ul>
