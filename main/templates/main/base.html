@@ -37,7 +37,7 @@
         {% if user.is_authenticated %}
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{ user.username }}
+              <i class="fas fa-user-circle"></i>  {{ user.username }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="nav-link" href="{% url 'profile' %}">Profile</a>
@@ -47,7 +47,7 @@
         {% else %}
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Options
+              <i class="fas fa-user-circle"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="nav-link" href="{% url 'login' %}">Login</a>

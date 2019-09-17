@@ -135,3 +135,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'philboothman90@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('MYTHMAKER_EMAIL_PASS')
 EMAIL_PORT = 587
+
+# Stripe Configuration
+
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+
+SUBSCRIPTION_PRICE = 1500

@@ -51,6 +51,10 @@ footer ul li {
     color: #EAC67A;
 }
 
+.navbar-right {
+    padding-right: 50px;
+}
+
 .dropdown-menu {
     background-color: #18121E;
 }
