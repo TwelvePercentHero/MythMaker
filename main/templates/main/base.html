@@ -24,28 +24,38 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-scroll"></i>  Home</a>
+          <a class="nav-link" href="#">Prose</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Video</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Audio</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user-edit"></i>  Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>  Logout</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ user.username }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </div>
         </li>
         {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i>  Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user-plus"></i>  Register</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Options
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </div>
         </li>
         {% endif %}
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
     </div>
   </nav>
 

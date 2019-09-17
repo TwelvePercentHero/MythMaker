@@ -6,7 +6,30 @@
 
 <section class="container-fluid">
     <div class="row">
-        <h1>Welcome to MythMakers, {{ username }}</h1>
+        <div class="col-md-12 header-img">
+        </div>
+    </div>
+</section>
+
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 offset-md-1 col-md-2 user-details">
+            <img class="img-fluid" src="https://dummyimage.com/250x250/233237/fff.png&text=Profile+Image">
+            <h3>{{ username }}</h3>
+            <p>Joined {{ user.date_joined }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+
+        <div class="col-xs-12 col-md-8 activity-pane">
+            <h3>Activity</h3>
+            <hr>
+        </div>
+    </div>
+</section>
+
+<section class="container-fluid dark-section">
+    <div class="row text-center">
+        <h4>Upgrade to Premium</h4>
     </div>
 </section>
 
