@@ -4,10 +4,15 @@
 
 {% block content %}
 
-<h1>Account Activated</h1>
+<section class="container-fluid main-bg">
 
-<p>Thank you for activating your account, and welcome to the MythMakers family.</p>
+<div class="jumbotron text-center">
+    <h1>Thank you for activating your account</h1>
+    <hr class="my-4">
+    <p class="lead">Welcome to the MythMakers community</p>
+    <a class="btn btn-outline-success btn-lg" href="{% url 'profile' %}" role="button">Your Profile</a>
+</div>
 
-<p><a href="{% url 'login' %}">Click here</a> to login.</p>
+</section>
 
 {% endblock %}

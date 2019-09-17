@@ -139,6 +139,13 @@ footer ul li {
     padding-top: 10px;
   }
 
+  /* Registration Page */
+
+  .errorlist {
+      list-style: none;
+      font-weight: bold;
+  }
+
 
 /* Media Queries */
 
