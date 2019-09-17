@@ -2,6 +2,37 @@ body {
     font-family: 'Questrial', sans-serif;
 }
 
+.main-bg {
+    height: 100vh;
+    background: url('../images/home-image.png');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alt-section {
+    background-color: #18121E;
+    color: #FFF;
+}
+
+.alt-section h4 {
+    color: #EAC67A;
+}
+
+.latest-col {
+    padding: 20px;
+}
+
+.jumbotron {
+    background-color: rgb(152, 75, 67, 0.8)
+}
+
 .navbar-dark {
     background-color: #18121E;
     color: #fff;
