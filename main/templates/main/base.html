@@ -15,7 +15,7 @@
 
 </head>
 <body>
-  <nav class="navbar navbar-dark navbar-expand-lg">
+  <nav class="navbar sticky-top navbar-dark navbar-expand-lg">
     <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/mythmakers.png' %}" alt="MythMakers Logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
@@ -50,6 +50,12 @@
   </nav>
 
 {% block content %}{% endblock %}
+
+<footer>
+    <div class="row">
+        <h4>MythMakers is an online storytelling community.</h4>
+    </div>
+</footer>
     
 </body>
 

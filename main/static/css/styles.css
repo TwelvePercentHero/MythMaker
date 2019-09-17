@@ -2,6 +2,11 @@ body {
     font-family: 'Questrial', sans-serif;
 }
 
+footer {
+    background-color: #18121E;
+    color: #EAC67A;
+}
+
 .main-bg {
     height: 100vh;
     background: url('../images/home-image.png');
@@ -16,12 +21,21 @@ body {
     justify-content: center;
 }
 
-.alt-section {
+.jumbotron {
+    background-color: rgb(152, 75, 67, 0.8)
+}
+
+.dark-section {
     background-color: #18121E;
     color: #FFF;
 }
 
-.alt-section h4 {
+.light-section {
+    background-color: #C2C4C4;
+    color: #18121E;
+}
+
+.dark-section h4 {
     color: #EAC67A;
 }
 
@@ -29,8 +43,8 @@ body {
     padding: 20px;
 }
 
-.jumbotron {
-    background-color: rgb(152, 75, 67, 0.8)
+.premium-div {
+    padding: 20px;
 }
 
 .navbar-dark {
