@@ -96,22 +96,12 @@ footer ul li {
     padding: 20px;
 }
 
-/* Buttons */
+  /* Registration Page */
 
-.btn-outline-success {
-    color: #EAC67A;
-    border-color: #EAC67A;
+  .errorlist {
+    list-style: none;
+    font-weight: bold;
 }
-
-.btn-outline-success:hover {
-    color: #FFF;
-    background-color: #EAC67A;
-    border-color: #FFF;
-}
-
-.fas {
-    color:#EAC67A;
-  }
 
   /* Profile Page */
 
@@ -139,13 +129,22 @@ footer ul li {
     padding-top: 10px;
   }
 
-  /* Registration Page */
+/* Buttons */
 
-  .errorlist {
-      list-style: none;
-      font-weight: bold;
+.btn-outline-success {
+    color: #EAC67A;
+    border-color: #EAC67A;
+}
+
+.btn-outline-success:hover {
+    color: #FFF;
+    background-color: #EAC67A;
+    border-color: #FFF;
+}
+
+.fas {
+    color:#EAC67A;
   }
-
 
 /* Media Queries */
 
