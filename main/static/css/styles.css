@@ -7,6 +7,20 @@ footer {
     color: #EAC67A;
 }
 
+footer i {
+    padding: 5px;
+}
+
+footer ul {
+    padding: 5px;
+}
+
+footer ul li {
+    display: inline;
+    list-style: none;
+    padding: 5px;
+}
+
 .main-bg {
     height: 100vh;
     background: url('../images/home-image.png');
