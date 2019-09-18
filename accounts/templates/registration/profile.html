@@ -16,8 +16,10 @@
         <div class="col-xs-12 offset-md-1 col-md-2 user-details">
             <img class="img-fluid" src="https://dummyimage.com/250x250/233237/fff.png&text=Profile+Image">
             <h3>{{ username }}</h3>
+            <p><em>{{ user.mythmaker.tagline }}</em></p>
             <p>Joined {{ user.date_joined }}</p>
             <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Bio</strong><br/>{{ user.mythmaker.bio }}</p>
         </div>
 
         <div class="col-xs-12 col-md-8 activity-pane">
