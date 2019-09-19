@@ -1,0 +1,15 @@
+{% autoescape off %}
+
+<h1>Hi {{ user.username }}</h1>
+
+<p>You're receiving this email because you requested a password reset for your user account at MythMakers.</p>
+
+<p>Please go to the following page to choose a new password:</p>
+
+http://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+
+<p>If you did not request this password reset, please ignore this email.</p>
+
+<p>Thanks for your continued support of MythMakers!</p>
+
+{% endautoescape %}
