@@ -8,6 +8,7 @@
 
     <div class="jumbotron text-center">
         <h1>Reset Your Password</h1>
+        {% if validlink %}
         <hr class="my-4">
         <p class="lead">Choose a new password and confirm it below</p>
         <hr class="my-4">
@@ -16,6 +17,10 @@
             {{ form }}
             <button type="submit" class="btn btn-outline-success">Reset</button>
         </form>
+        {% else %}
+        <p>Invalid token.</p>
+        <p><a href="{% url 'password_reset' %}">Click here</a> to request a new reset token.</p>
+        {% endif %}
     </div>
         
 </section>

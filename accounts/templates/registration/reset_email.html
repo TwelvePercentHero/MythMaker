@@ -6,7 +6,7 @@
 
 <p>Please go to the following page to choose a new password:</p>
 
-http://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+http://{{ domain }}{% url 'reset_confirm' uidb64=uid token=token %}
 
 <p>If you did not request this password reset, please ignore this email.</p>
 
