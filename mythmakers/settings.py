@@ -133,7 +133,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'philboothman90@gmail.com'
+EMAIL_HOST_USER = 'mythmakerinchief@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('MYTHMAKER_EMAIL_PASS')
 EMAIL_PORT = 587
 
