@@ -84,11 +84,11 @@ footer ul li {
     color: #FFF;
 }
 
-.dark-section h4 {
+.dark-section h1, h4 {
     color: #EAC67A;
 }
 
-.latest-col {
+.latest-col, .benefits-col {
     padding: 20px;
 }
 
