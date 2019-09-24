@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Subscription
+from .models import Subscriber
 
 class SubscriptionAdminStacked(admin.StackedInline):
-    model = Subscription
+    model = Subscriber
 
-admin.site.register(Subscription)
+admin.site.register(Subscriber)

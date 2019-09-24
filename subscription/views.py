@@ -5,10 +5,11 @@ from django.conf import settings
 from django.utils import timezone
 import stripe
 
+@login_required
 def benefits(request):
     return render(request, 'subscription/benefits.html')
 
-@login_required()
+@login_required
 def subscribe(request):
     if request.method == 'POST':
         subscription_form = MakePaymentForm(request.POST)

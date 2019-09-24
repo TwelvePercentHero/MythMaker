@@ -1,15 +1,41 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.conf import settings
 
-class Subscription(models.Model):
-    full_name = models.CharField(max_length=50, blank=False)
-    country = models.CharField(max_length=40, blank=False)
-    postcode = models.CharField(max_length=20, blank=True)
-    town_or_city = models.CharField(max_length=40, blank=False)
-    street_address1 = models.CharField(max_length=40, blank=False)
-    street_address2 = models.CharField(max_length=40, blank=False)
-    county = models.CharField(max_length=40, blank=False)
-    date = models.DateField()
+import stripe
+
+class Subscriber(models.Model):
+    user_rec = models.ForeignKey(User, on_delete='CASCADE')
+    address_one = models.CharField(max_length=50, blank=False)
+    address_two = models.CharField(max_length=50, blank=True)
+    city = models.CharField(max_length=50, blank=False)
+    county = models.CharField(max_length=50, blank=False)
+    postcode = models.CharField(max_length=10, blank=True)
+    stripe_id = models.CharField(max_length=30, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'subscribers'
 
     def __str__(self):
-        return "{0}-{1}-{2}".format(self.id, self.date, self.full_name)
+        return u"%s's Subscription Info" % self.user_rec
+
+    def charge(self, request, email, fee):
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        token = request.POST['stripeToken']
+
+        stripe_customer = stripe.Customer.create(
+            card = token,
+            description = email
+        )
+
+        self.stripe_id = stripe_customer.index
+        self.save()
+
+        stripe.Charge.create(
+            amount = fee,
+            currency = 'usd',
+            customer = stripe_customer.id
+        )
+
+        return stripe_customer
 

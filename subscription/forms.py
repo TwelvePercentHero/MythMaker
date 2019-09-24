@@ -1,5 +1,5 @@
 from django import forms
-from .models import Subscription
+from .models import Subscriber
 
 class MakePaymentForm(forms.Form):
 
