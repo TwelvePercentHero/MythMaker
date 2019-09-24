@@ -11,9 +11,6 @@ from django.core.mail import EmailMessage
 from .forms import MythMakerForm
 from .tokens import account_activation_token
 
-def register(request):
-    return render(request, 'registration/register.html')
-
 @login_required
 def profile(request):
     username = request.user.username

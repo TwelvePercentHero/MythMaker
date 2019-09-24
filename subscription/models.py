@@ -19,23 +19,3 @@ class Subscriber(models.Model):
     def __str__(self):
         return u"%s's Subscription Info" % self.user_rec
 
-    def charge(self, request, email, fee):
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        token = request.POST['stripeToken']
-
-        stripe_customer = stripe.Customer.create(
-            card = token,
-            description = email
-        )
-
-        self.stripe_id = stripe_customer.index
-        self.save()
-
-        stripe.Charge.create(
-            amount = fee,
-            currency = 'usd',
-            customer = stripe_customer.id
-        )
-
-        return stripe_customer
-

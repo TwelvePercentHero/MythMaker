@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}Upgrade your membership | MythMakers{% endblock %}
+
+{% block head_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript" src="">
+    //<![CDATA[
+        Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<section class="container-fluid main-bg">
+
+        <div class="jumbotron text-center">
+            <h1>Upgrade your membership</h1>
+            <hr class="my-4">
+            <form id="upgrade-form" action="{% url 'upgrade' %}" method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="card_number">Card Number</label>
+                        {{ form.card_number }}
+                </div>
+                <div class="form-group">
+                    <label for="cvc">Security Code (CVV)</label>
+                        {{ form.cvc }}
+                </div>
+                <div class="form-group">
+                    <label for="expiry_month">Expiry Month</label>
+                        {{ form.expiry_month }}
+                </div>
+                <div class="form-group">
+                    <label for="expiry_year">Expiry Year</label>
+                        {{ form.expiry_year }}
+                </div>
+                <div class="form-group">
+                    {{ form.errors }}
+                </div>
+                <button type="submit" class="btn btn-outline-success">Upgrade</button>
+            </form>
+        </div>
+    
+    </section>
+
+{% endblock %}
