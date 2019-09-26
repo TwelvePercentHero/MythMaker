@@ -19,6 +19,10 @@ class MythMaker(models.Model):
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
 
+    class Meta:
+        verbose_name = 'MythMaker'
+        verbose_name_plural = 'MythMakers'
+
 class Membership(models.Model):
     membership_type = models.CharField(choices=MEMBERSHIP_CHOICES, max_length=7)
     price = models.IntegerField(default=0)
