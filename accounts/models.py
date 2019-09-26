@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals import post_save
 from django import forms
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -41,6 +42,19 @@ class MythMakerMembership(models.Model):
 
     def __str__(self):
         return self.user.username
+
+def post_save_mythmaker_membership_create(sender, instance, created, *args, **kwargs):
+    if created:
+        MythMakerMembership.objects.get_or_create(user=instance)
+
+    mythmaker_membership, created = MythMakerMembership.objects.get_or_create(user=instance)
+
+    if mythmaker_membership.stripe_customer_id is None or mythmaker_membership.stripe_customer_id == '':
+        new_customer_id = stripe.Customer.create(email=instance.email)
+        mythmaker_membership.stripe_customer_id = new_customer_id['id']
+        mythmaker_membership.save()
+
+post_save.connect(post_save_mythmaker_membership_create, sender=settings.AUTH_USER_MODEL)
 
 class Subscription(models.Model):
     mythmaker_membership = models.ForeignKey(MythMakerMembership, on_delete=models.CASCADE)
