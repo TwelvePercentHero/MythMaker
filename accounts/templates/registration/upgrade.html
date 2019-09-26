@@ -5,11 +5,9 @@
 {% block title %}Upgrade your membership | MythMakers{% endblock %}
 
 {% block head_js %}
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript" src="">
-    //<![CDATA[
-        Stripe.publishableKey = '{{ publishable }}';
-    //]]>
+    var stripe = Stripe(settings.STRIPE_PUBLISHABLE_KEY);
+    var elements = stripe.elements();
 </script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
@@ -44,7 +42,7 @@
                     <label for="expiry_year">Expiry Year</label>
                         {{ form.expiry_year }}
                 </div>
-                <button type="submit" class="btn btn-outline-success">Upgrade</button>
+                <input id="payment-submit" type="submit" value="Upgrade" class="btn btn-outline-success">
             </form>
         </div>
     
