@@ -25,7 +25,7 @@ class Membership(models.Model):
         (FREE, 'Free'),
         (PREMIUM, 'Premium'),
     ]
-    membership_type = models.CharField(choices=MEMBERSHIP_CHOICES, blank=False, default='FR', max_length=2)
+    membership_type = models.CharField(choices=MEMBERSHIP_CHOICES, blank=False, max_length=2)
     price = models.IntegerField(default=0)
     stripe_plan_id = models.CharField(max_length=40)
 
