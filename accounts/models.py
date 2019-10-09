@@ -7,11 +7,6 @@ from django.conf import settings
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-MEMBERSHIP_CHOICES = (
-    ('Free', 'free'),
-    ('Premium', 'prem')
-)
-
 class MythMaker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     tagline = models.TextField(max_length=100, blank=True)
@@ -24,7 +19,13 @@ class MythMaker(models.Model):
         verbose_name_plural = 'MythMakers'
 
 class Membership(models.Model):
-    membership_type = models.CharField(choices=MEMBERSHIP_CHOICES, max_length=7)
+    FREE = 'FR'
+    PREMIUM = 'PR'
+    MEMBERSHIP_CHOICES = [
+        (FREE, 'Free'),
+        (PREMIUM, 'Premium'),
+    ]
+    membership_type = models.CharField(choices=MEMBERSHIP_CHOICES, blank=False, default='FR', max_length=2)
     price = models.IntegerField(default=0)
     stripe_plan_id = models.CharField(max_length=40)
 

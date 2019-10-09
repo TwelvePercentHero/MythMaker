@@ -9,10 +9,14 @@
 <div class="jumbotron text-center">
     <h1>Upgrade your membership</h1>
     <hr class="my-4">
-    <p class="lead">There are so many benefits to upgrading your MythMakers membership for just $4.99 a month.<br>Read just a few of them below.</p>
+    <p class="lead">There are so many benefits to upgrading your MythMakers membership for just £5 a month.<br>Read just a few of them below.</p>
     <hr class="my-4">
     <p>Already decided?</p>
-    <a class="btn btn-outline-success btn-lg" href="#" role="button">Upgrade Now</a>
+    <form method="POST" action="#">
+        {% csrf_token %}
+        <button class="btn btn-outline-success btn-lg">Upgrade Now</button>
+        <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
+    </form>
 </div>
 
 </section>

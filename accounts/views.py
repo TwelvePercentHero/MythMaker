@@ -10,8 +10,10 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
+from django.views.generic import ListView
 from .forms import MythMakerForm, SubscriberForm
 from .tokens import account_activation_token
+from .models import Membership
 
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -62,5 +64,7 @@ def activate(request, uidb64, token):
 @login_required
 def benefits(request):
     return render(request, 'registration/benefits.html')
+
+
 
 
