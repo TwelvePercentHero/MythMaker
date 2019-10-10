@@ -15,8 +15,6 @@
 
     <!-- Add Stripe js script to head of all pages -->
     <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
-    <!-- Add js tags for upgrade.html -->
-    {% block head_js %}{% endblock %}
 
 </head>
 <body>
@@ -83,6 +81,8 @@
       </div>
     </div>
 </footer>
+
+{% block stripe_js %}{% endblock %}
     
 </body>
 
