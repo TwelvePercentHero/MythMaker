@@ -13,15 +13,23 @@ from django.core.mail import EmailMessage
 from django.views.generic import ListView
 from .forms import MythMakerForm, SubscriberForm
 from .tokens import account_activation_token
-from .models import Membership
+from .models import Membership, MythMakerMembership
 
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+# Convenience method to get user membership
+def get_user_membership(request):
+    user_membership_qs = MythMakerMembership.objects.filter(user = request.user)
+    if user_membership_qs.exists():
+        return user_membership_qs.first()
+    return None
+
 @login_required
 def profile(request):
     username = request.user.username
-    context = {'username' : username}
+    user_membership = get_user_membership(request)
+    context = {'username' : username, 'user_membership' : user_membership}
     return render(request, 'registration/profile.html', context)
 
 def register(request):
@@ -63,7 +71,23 @@ def activate(request, uidb64, token):
 
 @login_required
 def benefits(request):
-    return render(request, 'registration/benefits.html')
+    username = request.user.username
+    user_membership = get_user_membership(request)
+    context = {'username' : username, 'user_membership' : user_membership}
+    return render(request, 'registration/benefits.html', context)
+
+@login_required
+def upgrade(request):
+    username = request.user.username
+    user_membership = get_user_membership(request)
+    publishKey = settings.STRIPE_PUBLISHABLE_KEY
+    context = {'username' : username, 'publishKey' : publishKey, 'user_membership' : user_membership}
+
+    return render(request, 'registration/upgrade.html', context)
+
+
+
+
 
 
 

@@ -7,16 +7,13 @@
 <section class="container-fluid main-bg">
 
 <div class="jumbotron text-center">
-    <h1>Upgrade your membership</h1>
+    <h1>Upgrade your membership, {{ username }}</h1>
     <hr class="my-4">
-    <p class="lead">There are so many benefits to upgrading your MythMakers membership for just £5 a month.<br>Read just a few of them below.</p>
+    <p class="lead">There are so many benefits to upgrading your MythMakers membership for just <strong>£5 a month</strong>.</p>
+    <p class="lead">Read just a few of them below.</p>
     <hr class="my-4">
-    <p>Already decided?</p>
-    <form method="POST" action="#">
-        {% csrf_token %}
-        <button class="btn btn-outline-success btn-lg">Upgrade Now</button>
-        <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
-    </form>
+    <p class="lead">Already decided?</p>
+    <a class="btn btn-outline-success btn-lg" href="{% url 'upgrade' %}" role="button">Upgrade Now</a>
 </div>
 
 </section>
@@ -49,24 +46,33 @@
     </div>
 
     <div class="row">
-            <div class="col-xs-12 offset-md-1 col-md-10 benefits-col">
-                <h1>Hear from premium MythMakers</h1>
-                <blockquote class="blockquote">
-                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                </blockquote>
-                <hr>
-                <blockquote class="blockquote">
-                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                </blockquote>
-                <hr>
-                <blockquote class="blockquote">
-                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                </blockquote>
-            </div>
+        <div class="col-xs-12 offset-md-1 col-md-10 benefits-col">
+            <h1>Hear from premium MythMakers</h1>
+            <blockquote class="blockquote">
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+            </blockquote>
+            <hr>
+            <blockquote class="blockquote">
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+            </blockquote>
+            <hr>
+            <blockquote class="blockquote">
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+            </blockquote>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 offset-md-1 col-md-10 benefits-col">
+            <h1>Sound good?</h1>
+            <p>Upgrade now for all these benefits, plus you can be the first to know about new MythMaker Premium features.</p>
+            <a class="btn btn-outline-success btn-lg" href="{% url 'upgrade' %}" role="button">Upgrade Now</a>
+        </div>
+    </div>
+
 </section>
 
 {% endblock %}

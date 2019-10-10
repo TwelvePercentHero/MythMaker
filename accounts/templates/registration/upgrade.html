@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}Upgrade your membership | MythMakers{% endblock %}
+
+{% block head_js %}<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>{% endblock %}
+
+{% block content %}
+
+<section class="container-fluid main-bg">
+
+    <div class="jumbotron text-center">
+        <h1>Upgrade your membership</h1>
+        <hr class="my-4">
+        <p class="lead">Hey, {{ username }}, we're so glad you've decided to upgrade to MythMakers Premium.</p>
+        <p class="lead">We'll just need some payment information which you can enter into the fields below.</p>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
