@@ -81,9 +81,30 @@ def upgrade(request):
     username = request.user.username
     user_membership = get_user_membership(request)
     publishKey = settings.STRIPE_PUBLISHABLE_KEY
+
     context = {'username' : username, 'publishKey' : publishKey, 'user_membership' : user_membership}
 
+    if request.method == 'POST':
+        try:
+            token = request.POST['stripeToken']
+            customer = stripe.Customer.retrieve(user_membership.stripe_customer_id)
+            customer.source = token
+            customer.save()
+            subscription = stripe.Subscription.create(
+                customer = user_membership.stripe_customer_id,
+                items=[
+                    {'plan': 'plan_Fxgr7BZfN3p3YR'},
+                ]
+            )
+            return render(request, 'registration/success.html', context)
+        except:
+            messages.info(request, 'Your card has been declined')
+
     return render(request, 'registration/upgrade.html', context)
+
+    
+
+
 
 
 

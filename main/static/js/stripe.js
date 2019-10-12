@@ -58,5 +58,5 @@ function stripeTokenHandler(token) {
     form.appendChild(hiddenInput);
 
     // Submit the form
-    form.onsubmit();
+    form.submit();
 }
