@@ -67,7 +67,7 @@ def activate(request, uidb64, token):
         login(request, user)
         return render(request, 'registration/confirmation.html')
     else:
-        return HttpResponse('Activation link is invalid!')
+        return render(request, 'registration/invalid_code.html')
 
 @login_required
 def benefits(request):

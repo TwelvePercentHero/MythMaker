@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Invalid activation link | MythMakers{% endblock %}
+
+{% block content %}
+
+<section class="container-fluid main-bg">
+
+    <div class="jumbotron text-center">
+        <h1>Sorry...</h1>
+        <p>The link you used was invalid. This suggests that it has expired or has been used before.</p>
+        <p>If you have already registered, <a href="{% url 'login' %}">log in here</a>.</p>
+        <p>If you have not registered, <a href="{% url 'register' %}">join us here</a>.</p>
+
+    </div>
+
+</section>
+
+{% endblock %}
