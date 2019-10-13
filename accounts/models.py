@@ -36,10 +36,12 @@ class Membership(models.Model):
     def __str__(self):
         return self.membership_type
 
+DEFAULT_MEMBERSHIP_ID = 1
+
 class MythMakerMembership(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     stripe_customer_id = models.CharField(max_length=40)
-    membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True)
+    membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True, default=DEFAULT_MEMBERSHIP_ID)
 
     class Meta:
         verbose_name = 'MythMaker Membership'

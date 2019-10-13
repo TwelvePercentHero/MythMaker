@@ -30,11 +30,17 @@
 </section>
 
 <section class="container-fluid dark-section">
-    
+    {% if user_membership.membership.pk == 2 %}
+    <div class="row text-center">
+        <h4>Your Premium Membership</h4>
+        <p>You are a Premium MythMaker</p>
+    </div>
+    {% else %}
     <div class="row text-center">
         <h4>Upgrade to Premium</h4>
         <a class="btn btn-outline-success btn-lg" href="{% url 'benefits' %}" role="button">Upgrade Now</a>
     </div>
+    {% endif %}
 </section>
 
 {% endblock %}

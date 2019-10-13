@@ -115,7 +115,6 @@ def updateMembership(request, subscription_id):
 
     context = {'username' : username, 'user_membership' : user_membership}
 
-    messages.info(request, 'Successfully upgraded to Premium!')
     return render(request, 'registration/profile.html', context)
 
     
