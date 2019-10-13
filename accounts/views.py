@@ -25,6 +25,14 @@ def get_user_membership(request):
         return user_membership_qs.first()
     return None
 
+# Convenience method to get user subscription
+def get_user_subscription(request):
+    user_subscription_qs = Subscription.objects.filter(mythmaker_membership = get_user_membership(request))
+    if user_subscription_qs.exists():
+        user_subscription = user_subscription_qs.first()
+        return user_subscription
+    return None
+
 @login_required
 def profile(request):
     username = request.user.username
@@ -117,6 +125,26 @@ def updateMembership(request, subscription_id):
 
     return render(request, 'registration/profile.html', context)
 
+@login_required
+def cancel(request):
+    username = request.user.username
+    user_membership = get_user_membership(request)
+    user_sub = get_user_subscription(request)
+
+    sub = stripe.Subscription.retrieve(user_sub.stripe_subscription_id)
+    sub.delete()
+
+    user_sub.active = False
+    user_sub.save()
+
+    revert_membership = Membership.objects.get(pk=1)
+    user_membership.membership = revert_membership
+    user_membership.save()
+
+    context = {'username' : username, 'user_membership' : user_membership}
+
+    return render(request, 'registration/profile.html', context)
+    
     
 
 

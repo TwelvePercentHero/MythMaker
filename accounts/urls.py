@@ -25,4 +25,5 @@ urlpatterns = [
     path('benefits/', views.benefits, name='benefits'),
     path('upgrade/', views.upgrade, name='upgrade'),
     path('update_membership/<subscription_id>/', views.updateMembership, name='update_membership'),
+    path('cancel/', views.cancel, name='cancel'),
 ]
