@@ -96,7 +96,7 @@ def upgrade(request):
             )
             return redirect(reverse('update_membership', kwargs={ 'subscription_id' : subscription.id }))
         except:
-            messages.info(request, 'Your card has been declined')
+            return render(request, 'registration/card_declined.html')
 
     context = {'username' : username, 'publishKey' : publishKey, 'user_membership' : user_membership}
     return render(request, 'registration/upgrade.html', context)

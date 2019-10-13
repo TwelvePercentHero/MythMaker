@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Card declined | MythMakers{% endblock %}
+
+{% block content %}
+
+<section class="container-fluid main-bg">
+
+    <div class="jumbotron text-center">
+        <h1>Sorry...</h1>
+        <p>Your card has been declined. You have not been charged for this transaction.</p>
+        <p>Please <a href="{% url 'upgrade' %}">go back</a> and try again.</p>
+        <p>If your payment is still declined, please contact your bank as there may be an issue with your account.</p>
+
+    </div>
+
+</section>
+
+{% endblock %}
