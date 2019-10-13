@@ -71,4 +71,4 @@ class Subscription(models.Model):
         verbose_name_plural = 'Subscriptions'
 
     def __str__(self):
-        return self.user_membership.user.username
+        return self.mythmaker_membership.user.username

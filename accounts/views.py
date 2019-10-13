@@ -13,7 +13,7 @@ from django.core.mail import EmailMessage
 from django.views.generic import ListView
 from .forms import MythMakerForm, SubscriberForm
 from .tokens import account_activation_token
-from .models import Membership, MythMakerMembership
+from .models import Membership, MythMakerMembership, Subscription
 
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -82,8 +82,6 @@ def upgrade(request):
     user_membership = get_user_membership(request)
     publishKey = settings.STRIPE_PUBLISHABLE_KEY
 
-    context = {'username' : username, 'publishKey' : publishKey, 'user_membership' : user_membership}
-
     if request.method == 'POST':
         try:
             token = request.POST['stripeToken']
@@ -96,11 +94,29 @@ def upgrade(request):
                     {'plan': 'plan_Fxgr7BZfN3p3YR'},
                 ]
             )
-            return render(request, 'registration/success.html', context)
+            return redirect(reverse('update_membership', kwargs={ 'subscription_id' : subscription.id }))
         except:
             messages.info(request, 'Your card has been declined')
 
+    context = {'username' : username, 'publishKey' : publishKey, 'user_membership' : user_membership}
     return render(request, 'registration/upgrade.html', context)
+
+@login_required
+def updateMembership(request, subscription_id):
+    username = request.user.username
+    user_membership = get_user_membership(request)
+    new_membership = Membership.objects.get(pk=2)
+    user_membership.membership = new_membership
+    user_membership.save()
+
+    sub = Subscription.objects.get_or_create(mythmaker_membership = user_membership,
+                                            stripe_subscription_id = subscription_id,
+                                            active = True)
+
+    context = {'username' : username, 'user_membership' : user_membership}
+
+    messages.info(request, 'Successfully upgraded to Premium!')
+    return render(request, 'registration/profile.html', context)
 
     
 
