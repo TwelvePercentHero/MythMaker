@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Subscription cancelled | MythMakers{% endblock %}
+
+{% block content %}
+
+<section class="container-fluid main-bg">
+
+    <div class="jumbotron text-center">
+        <h1>We're sorry to see you go...</h1>
+        <hr class="my-4">
+        <p class="lead">But we're glad you're still part of the community.</p>
+        <p>Don't forget, if you change your mind you can re-subscribe at any point in the future from your profile page.</p>
+        <a class="btn btn-outline-success btn-lg" href="{% url 'profile' %}" role="button">Your Profile</a>
+        
+
+    </div>
+
+</section>
+
+{% endblock %}

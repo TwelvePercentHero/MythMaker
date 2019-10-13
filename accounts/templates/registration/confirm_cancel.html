@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Confirm cancellation | MythMakers{% endblock %}
+
+{% block content %}
+
+<section class="container-fluid main-bg">
+
+    <div class="jumbotron text-center">
+        <h1>We'll be sorry to see you go...</h1>
+        <hr class="my-4">
+        <p class="lead">Are you sure you want to cancel your MythMaker Premium membership?</p>
+        <p>You'll no longer be able to upload stories in audio and video format if you do.</p>
+        <hr class="my-4">
+        <p>Don't worry, you'll still be able to view any audio or video stories you've already uploaded.</p>
+        <a class="btn btn-outline-success btn-lg" href="{% url 'cancel' %}" role="button">Cancel my Subscription</a>
+
+    </div>
+
+</section>
+
+{% endblock %}

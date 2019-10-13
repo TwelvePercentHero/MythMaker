@@ -110,7 +110,7 @@ def upgrade(request):
     return render(request, 'registration/upgrade.html', context)
 
 @login_required
-def updateMembership(request, subscription_id):
+def update(request, subscription_id):
     username = request.user.username
     user_membership = get_user_membership(request)
     new_membership = Membership.objects.get(pk=2)
@@ -123,7 +123,11 @@ def updateMembership(request, subscription_id):
 
     context = {'username' : username, 'user_membership' : user_membership}
 
-    return render(request, 'registration/profile.html', context)
+    return render(request, 'registration/success.html', context)
+
+@login_required
+def confirm_cancel(request):
+    return render(request, 'registration/confirm_cancel.html')
 
 @login_required
 def cancel(request):
@@ -143,7 +147,7 @@ def cancel(request):
 
     context = {'username' : username, 'user_membership' : user_membership}
 
-    return render(request, 'registration/profile.html', context)
+    return render(request, 'registration/sorry.html', context)
     
     
 
