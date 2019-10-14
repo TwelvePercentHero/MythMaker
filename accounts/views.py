@@ -57,9 +57,10 @@ def register(request):
                 'uid' : urlsafe_base64_encode(force_bytes(user.pk)),
                 'token' : account_activation_token.make_token(user),
             })
-            plain_message: strip_tags(html_message)
+            plain_message = strip_tags(html_message)
+            from_email = settings.EMAIL_HOST_USER
             to_email = form.cleaned_data.get('email')
-            mail.send_mail(mail_subject, plain_message, to_email, html_message=html_message)
+            mail.send_mail(mail_subject, plain_message, from_email, [to_email], html_message=html_message)
             return render(request, 'registration/activate.html')
     else:
         form = MythMakerForm()
