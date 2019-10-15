@@ -124,6 +124,14 @@ footer ul li {
     padding-top: 10px;
   }
 
+  .upgrade-div {
+    padding-top: 20px;
+  }
+
+  .upgrade-div p {
+      font-size: 18px;
+  }
+
   /* Stripe Elements - code adapted from Stripe Elements tutorial found at `https://stripe.com/docs/stripe-js` */
 
   .StripeElement {

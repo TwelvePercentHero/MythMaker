@@ -21,6 +21,10 @@
             <p><em>{{ user.mythmaker.tagline }}</em></p>
             <p>Joined {{ user.date_joined }}</p>
             <p><strong>Bio</strong><br/>{{ user.mythmaker.bio }}</p>
+
+            <div>
+                <a class="btn btn-outline-success btn-lg" href="#" role="button">Edit Profile</a>
+            </div>
         </div>
 
         <div class="col-xs-12 col-md-8 activity-pane">
@@ -30,17 +34,24 @@
     </div>
 </section>
 
-<section class="container-fluid dark-section">
+<section class="container-fluid dark-section text-center">
+    <!-- If user has a Premium membership -->
     {% if user_membership.membership.pk == 2 %}
     <div class="row text-center">
-        <h4>Your Premium Membership</h4>
-        <p>You are a Premium MythMaker</p>
-        <a class="btn btn-outline-success btn-lg" href="{% url 'confirm_cancel' %}" role="button">Cancel Subscription</a>
+        <div class="col-xs-12 offset-md-1 col-md-10"></div>
+            <h4>Your Premium Membership</h4>
+            <p>You are a Premium MythMaker</p>
+            <a class="btn btn-outline-success btn-lg" href="{% url 'confirm_cancel' %}" role="button">Cancel Subscription</a>
+        </div>
     </div>
+    <!-- If user is not yet a Premium member -->
     {% else %}
-    <div class="row text-center">
-        <h4>Upgrade to Premium</h4>
-        <a class="btn btn-outline-success btn-lg" href="{% url 'benefits' %}" role="button">Upgrade Now</a>
+    <div class="row">
+        <div class="col-xs-12 offset-md-1 col-md-10 upgrade-div">
+            <h4>Upgrade to Premium</h4>
+            <p>There's a world of new storytelling opportunities waiting for you. All you need to do is become a Premium MythMaker for just £5 per month.</p>
+            <a class="btn btn-outline-success btn-lg" href="{% url 'benefits' %}" role="button">Upgrade Now</a>
+        </div>
     </div>
     {% endif %}
 </section>
