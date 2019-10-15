@@ -14,7 +14,7 @@
 <section class="container-fluid">
     <div class="row">
         <div class="col-xs-12 offset-md-1 col-md-2 user-details">
-            <img class="img-fluid" src="https://dummyimage.com/250x250/233237/fff.png&text=Profile+Image">
+            <img class="img-fluid" src="{{ user.mythmaker.profile_image.url }}">
             <h3>{{ username }}</h3>
             <p>{{ user_membership.membership.get_membership_type_display }} Member</p>
             <p><em>{{ user.mythmaker.tagline }}</em></p>
