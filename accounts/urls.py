@@ -8,6 +8,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('activate/(<uidb64>/(<token>/', views.activate, name='activate'),
     path('profile/', views.profile, name='profile'),
+    path('edit/', views.edit, name='edit'),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html',
                                                 authentication_form=ExtendedAuthForm)),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),

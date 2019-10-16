@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load static %}
 
 {% block title %}Profile for {{ username }} | MythMakers{% endblock %}
 
@@ -7,7 +8,11 @@
 <section class="container-fluid">
     <div class="row">
         <div class="col-md-12 header-container">
+            {% if user.mythmaker.profile_header == '' %}
+            <img class="img fluid profile-header" src="{% static 'images/default-header.png' %}">
+            {% else %}
             <img class="img-fluid profile-header" src="{{ user.mythmaker.profile_header.url }}">
+            {% endif %}
         </div>
     </div>
 </section>
@@ -15,7 +20,11 @@
 <section class="container-fluid">
     <div class="row">
         <div class="col-xs-12 offset-md-1 col-md-2 user-details">
+            {% if user.mythmaker.profile_image == '' %}
+            <img class="img-fluid" src="{% static 'images/default-profile.png' %}">
+            {% else %}
             <img class="img-fluid" src="{{ user.mythmaker.profile_image.url }}">
+            {% endif %}
             <h3>{{ username }}</h3>
             <p>{{ user_membership.membership.get_membership_type_display }} Member</p>
             <p><em>{{ user.mythmaker.tagline }}</em></p>
@@ -23,7 +32,7 @@
             <p><strong>Bio</strong><br/>{{ user.mythmaker.bio }}</p>
 
             <div>
-                <a class="btn btn-outline-success btn-lg" href="#" role="button">Edit Profile</a>
+                <a class="btn btn-outline-success btn-lg" href="{% url 'edit' %}" role="button">Edit Profile</a>
             </div>
         </div>
 
@@ -38,7 +47,7 @@
     <!-- If user has a Premium membership -->
     {% if user_membership.membership.pk == 2 %}
     <div class="row text-center">
-        <div class="col-xs-12 offset-md-1 col-md-10"></div>
+        <div class="col-xs-12 offset-md-1 col-md-10 upgrade-div">
             <h4>Your Premium Membership</h4>
             <p>You are a Premium MythMaker</p>
             <a class="btn btn-outline-success btn-lg" href="{% url 'confirm_cancel' %}" role="button">Cancel Subscription</a>

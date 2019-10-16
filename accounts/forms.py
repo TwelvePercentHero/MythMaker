@@ -1,6 +1,8 @@
 from django import forms
+from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm
+from .models import MythMaker
 
 class MythMakerForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -32,12 +34,14 @@ class ExtendedAuthForm(AuthenticationForm):
         self.fields['username'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter username'})
         self.fields['password'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter password'})
 
-class SubscriberForm(forms.Form):
-    MONTH_CHOICES = [(i, i) for i in range (1, 13)]
-    YEAR_CHOICES = [(i, i) for i in range(2019, 2039)]
+class UpdateProfile(ModelForm):
+    class Meta:
+        model = MythMaker
+        fields = ('tagline', 'bio', 'profile_image', 'profile_header')
 
-    card_number = forms.CharField(required=False)
-    cvc = forms.CharField(required=False)
-    expiry_month = forms.ChoiceField(choices=MONTH_CHOICES, required=False)
-    expiry_year = forms.ChoiceField(choices=YEAR_CHOICES, required=False)
-    stripe_id = forms.CharField(widget=forms.HiddenInput)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['tagline'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Update tagline', 'tabindex': '1'})
+        self.fields['bio'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Update bio', 'tabindex': '2'})
+        self.fields['profile_image'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Add image', 'tabindex': '3'})
+        self.fields['profile_header'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Add header', 'tabindex': '4'})

@@ -13,9 +13,9 @@ from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.views.generic import ListView
-from .forms import MythMakerForm, SubscriberForm
+from .forms import MythMakerForm, UpdateProfile
 from .tokens import account_activation_token
-from .models import Membership, MythMakerMembership, Subscription
+from .models import MythMaker, Membership, MythMakerMembership, Subscription
 
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -79,6 +79,17 @@ def activate(request, uidb64, token):
         return render(request, 'registration/confirmation.html')
     else:
         return render(request, 'registration/invalid_code.html')
+
+@login_required
+def edit(request):
+    if request.method == 'POST':
+        form = UpdateProfile(request.POST)
+        if form.is_valid():
+            user.save()
+            return render(request, 'registration/profile.html')
+    else:
+        form = UpdateProfile()
+    return render(request, 'registration/edit.html')
 
 @login_required
 def benefits(request):
