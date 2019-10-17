@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm, UserChangeForm
 from .models import MythMaker
 
 class MythMakerForm(UserCreationForm):
@@ -35,6 +35,11 @@ class ExtendedAuthForm(AuthenticationForm):
         self.fields['password'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter password'})
 
 class UpdateProfile(ModelForm):
+    tagline = forms.CharField(required=False)
+    bio = forms.CharField(required=False)
+    profile_image = forms.ImageField(required=False)
+    profile_header = forms.ImageField(required=False)
+
     class Meta:
         model = MythMaker
         fields = ('tagline', 'bio', 'profile_image', 'profile_header')
@@ -45,3 +50,11 @@ class UpdateProfile(ModelForm):
         self.fields['bio'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Update bio', 'tabindex': '2'})
         self.fields['profile_image'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Add image', 'tabindex': '3'})
         self.fields['profile_header'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Add header', 'tabindex': '4'})
+
+    def clean_edit(self):
+        tagline = self.cleaned_data['tagline']
+        bio = self.cleaned_data['bio']
+        profile_image = self.cleaned_data['profile_image']
+        profile_header = self.cleaned_data['profile_header']
+
+        return clean_edit

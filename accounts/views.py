@@ -83,13 +83,14 @@ def activate(request, uidb64, token):
 @login_required
 def edit(request):
     if request.method == 'POST':
-        form = UpdateProfile(request.POST)
+        form = UpdateProfile(request.POST, instance=request.user)
         if form.is_valid():
-            user.save()
-            return render(request, 'registration/profile.html')
+            form.save()
+            return redirect(reverse('profile'))
     else:
-        form = UpdateProfile()
-    return render(request, 'registration/edit.html')
+        form = UpdateProfile(instance=request.user)
+        args = {'form' : form}
+    return render(request, 'registration/edit.html', args)
 
 @login_required
 def benefits(request):

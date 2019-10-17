@@ -6,7 +6,7 @@ from .forms import ExtendedAuthForm
 
 urlpatterns = [
     path('register/', views.register, name='register'),
-    path('activate/(<uidb64>/(<token>/', views.activate, name='activate'),
+    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('profile/', views.profile, name='profile'),
     path('edit/', views.edit, name='edit'),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html',
