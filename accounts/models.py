@@ -20,6 +20,9 @@ class MythMaker(models.Model):
         verbose_name = 'MythMaker'
         verbose_name_plural = 'MythMakers'
 
+    def __str__(self):
+        return 'MythMaker(models)'
+
 class Membership(models.Model):
     FREE = 'FR'
     PREMIUM = 'PR'

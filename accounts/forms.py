@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, inlineformset_factory
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm, UserChangeForm
 from .models import MythMaker
@@ -58,3 +58,5 @@ class UpdateProfile(ModelForm):
         profile_header = self.cleaned_data['profile_header']
 
         return clean_edit
+
+MythMakerFormSet = inlineformset_factory(User, MythMaker, fields=('tagline', 'bio', 'profile_image', 'profile_header',))

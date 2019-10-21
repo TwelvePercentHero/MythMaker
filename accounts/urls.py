@@ -5,6 +5,7 @@ from . import views
 from .forms import ExtendedAuthForm
 
 urlpatterns = [
+    path('userlist/', views.userlist, name='userlist'),
     path('register/', views.register, name='register'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('profile/', views.profile, name='profile'),

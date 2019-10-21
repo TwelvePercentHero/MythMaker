@@ -9,11 +9,13 @@ from django.contrib.auth.decorators import login_required
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.core import mail
+from django.core.paginator import Paginator
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.views.generic import ListView
-from .forms import MythMakerForm, UpdateProfile
+from django.forms import inlineformset_factory
+from .forms import MythMakerForm, UpdateProfile, MythMakerFormSet
 from .tokens import account_activation_token
 from .models import MythMaker, Membership, MythMakerMembership, Subscription
 
@@ -34,6 +36,24 @@ def get_user_subscription(request):
         user_subscription = user_subscription_qs.first()
         return user_subscription
     return None
+
+def userlist(request):
+    mythmaker_list = User.objects.all().order_by('date_joined')
+    print('USER LIST')
+    print(mythmaker_list)
+
+    mythmakers = Paginator(mythmaker_list, 3)
+    print('PAGINATED LIST')
+    print(mythmakers)
+    grouped_mythmakers = []
+    for page in mythmakers.page_range:
+        page_objects = mythmakers.page(page).object_list
+        grouped_mythmakers.append(page_objects)
+
+    print('GROUPED MYTHMAKERS')
+    print(grouped_mythmakers)
+    context = {'mythmakers' : mythmakers, 'grouped_mythmakers' : grouped_mythmakers}
+    return render(request, 'registration/userlist.html', context)
 
 @login_required
 def profile(request):
@@ -82,15 +102,16 @@ def activate(request, uidb64, token):
 
 @login_required
 def edit(request):
+    user = request.user
+    MythMakerFormSet = inlineformset_factory(User, MythMaker, fields=('tagline', 'bio', 'profile_image', 'profile_header',))
     if request.method == 'POST':
-        form = UpdateProfile(request.POST, instance=request.user)
+        form = MythMakerFormSet(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect(reverse('profile'))
     else:
-        form = UpdateProfile(instance=request.user)
-        args = {'form' : form}
-    return render(request, 'registration/edit.html', args)
+        form = MythMakerFormSet(instance=request.user)
+    return render(request, 'registration/edit.html', {'form' : form})
 
 @login_required
 def benefits(request):
