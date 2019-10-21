@@ -1,20 +1,36 @@
 {% extends 'main/base.html' %}
+{% load static %}
 
 {% block title %}MythMakers | MythMakers{% endblock %}
 
 {% block content %}
 
 <section class="container-fluid main-bg">
+    <div class="col-xs-12 offset-md-2 col-md-9">
 
     {% for maker in grouped_mythmakers %}
+    <div class="row">
 
-    {% for mythmaker in maker %}
+    {% for m in maker %}
 
-    {{ mythmaker.username }}
+    <div class="card" style="width: 18rem;">
+      {% if m.mythmaker.profile_image == '' %}
+        <img src="{% static 'images/default-profile.png' %}" class="card-img-top">
+      {% else %}
+        <img src="{{ m.mythmaker.profile_image.url }}" class="card-img-top" alt="...">
+      {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ m.username }}</h5>
+          <p class="card-text">{{ m.mythmaker.tagline }}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
 
     {% endfor %}
+    </div>
 
     {% endfor %}
+    </div>
 
 </section>
 
