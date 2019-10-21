@@ -39,19 +39,11 @@ def get_user_subscription(request):
 
 def userlist(request):
     mythmaker_list = User.objects.all().order_by('date_joined')
-    print('USER LIST')
-    print(mythmaker_list)
-
     mythmakers = Paginator(mythmaker_list, 3)
-    print('PAGINATED LIST')
-    print(mythmakers)
     grouped_mythmakers = []
     for page in mythmakers.page_range:
         page_objects = mythmakers.page(page).object_list
         grouped_mythmakers.append(page_objects)
-
-    print('GROUPED MYTHMAKERS')
-    print(grouped_mythmakers)
     context = {'mythmakers' : mythmakers, 'grouped_mythmakers' : grouped_mythmakers}
     return render(request, 'registration/userlist.html', context)
 
