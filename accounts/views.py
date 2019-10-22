@@ -47,6 +47,11 @@ def userlist(request):
     context = {'mythmakers' : mythmakers, 'grouped_mythmakers' : grouped_mythmakers}
     return render(request, 'registration/userlist.html', context)
 
+def publicprofile(request, user_id):
+    mythmaker_user = User.objects.get(pk = user_id)
+    context = {'mythmaker_user' : mythmaker_user }
+    return render(request, 'registration/publicprofile.html', context)
+
 @login_required
 def profile(request):
     username = request.user.username

@@ -13,7 +13,7 @@
 
     {% for m in maker %}
 
-    <div class="card" style="width: 18rem;">
+    <div class="card user-card" style="width: 18rem;">
       {% if m.mythmaker.profile_image == '' %}
         <img src="{% static 'images/default-profile.png' %}" class="card-img-top">
       {% else %}
@@ -22,7 +22,8 @@
         <div class="card-body">
           <h5 class="card-title">{{ m.username }}</h5>
           <p class="card-text">{{ m.mythmaker.tagline }}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a href="{% url 'publicprofile' m.id %}" class="btn btn-primary">View Profile</a>
+          <a href="#" class="btn btn-primary">Follow</a>
         </div>
     </div>
 

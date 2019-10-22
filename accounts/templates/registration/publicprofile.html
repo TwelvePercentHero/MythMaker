@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Profile for {{ mythmaker_user.username }} | MythMakers{% endblock %}
+
+{% block content %}
+
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 header-container">
+            {% if mythmaker_user.mythmaker.profile_header == '' %}
+            <img class="img fluid profile-header" src="{% static 'images/default-header.png' %}">
+            {% else %}
+            <img class="img-fluid profile-header" src="{{ mythmaker_user.mythmaker.profile_header.url }}">
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 offset-md-1 col-md-2 user-details">
+            {% if mythmaker_user.mythmaker.profile_image == '' %}
+            <img class="img-fluid" src="{% static 'images/default-profile.png' %}">
+            {% else %}
+            <img class="img-fluid" src="{{ user.mythmaker.profile_image.url }}">
+            {% endif %}
+            <h3>{{ mythmaker_user.username }}</h3>
+            <p> Member</p>
+            <p><em>{{ mythmaker_user.mythmaker.tagline }}</em></p>
+            <p>Joined {{ mythmaker_user.date_joined }}</p>
+            <p><strong>Bio</strong><br/>{{ mythmaker_user.mythmaker.bio }}</p>
+        </div>
+
+        <div class="col-xs-12 col-md-8 activity-pane">
+            <h3>Activity</h3>
+            <hr>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
