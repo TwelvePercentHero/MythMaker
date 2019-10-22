@@ -44,13 +44,6 @@ class UpdateProfile(ModelForm):
         model = MythMaker
         fields = ('tagline', 'bio', 'profile_image', 'profile_header')
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['tagline'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Update tagline', 'tabindex': '1'})
-        self.fields['bio'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Update bio', 'tabindex': '2'})
-        self.fields['profile_image'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Add image', 'tabindex': '3'})
-        self.fields['profile_header'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Add header', 'tabindex': '4'})
-
     def clean_edit(self):
         tagline = self.cleaned_data['tagline']
         bio = self.cleaned_data['bio']
@@ -58,5 +51,3 @@ class UpdateProfile(ModelForm):
         profile_header = self.cleaned_data['profile_header']
 
         return clean_edit
-
-MythMakerFormSet = inlineformset_factory(User, MythMaker, fields=('tagline', 'bio', 'profile_image', 'profile_header',))

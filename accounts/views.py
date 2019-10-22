@@ -15,7 +15,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.views.generic import ListView
 from django.forms import inlineformset_factory
-from .forms import MythMakerForm, UpdateProfile, MythMakerFormSet
+from .forms import MythMakerForm, UpdateProfile
 from .tokens import account_activation_token
 from .models import MythMaker, Membership, MythMakerMembership, Subscription
 
@@ -99,16 +99,19 @@ def activate(request, uidb64, token):
 
 @login_required
 def edit(request):
-    user = request.user
-    MythMakerFormSet = inlineformset_factory(User, MythMaker, fields=('tagline', 'bio', 'profile_image', 'profile_header',))
+    args = {}
+
     if request.method == 'POST':
-        form = MythMakerFormSet(request.POST, request.FILES, instance=request.user)
+        form = UpdateProfile(request.POST, instance = request.user)
+        form.actual_user = request.user
         if form.is_valid():
             form.save()
             return redirect(reverse('profile'))
     else:
-        form = MythMakerFormSet(instance=request.user)
-    return render(request, 'registration/edit.html', {'form' : form})
+        form = UpdateProfile()
+
+    args['form'] = form
+    return render(request, 'registration/edit.html', args)
 
 @login_required
 def benefits(request):
