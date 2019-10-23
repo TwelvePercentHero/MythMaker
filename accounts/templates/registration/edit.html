@@ -1,43 +1,46 @@
 {% extends 'main/base.html' %}
+{% load static %}
 
-{% block title %}Edit Profile | MythMakers{% endblock %}
+{% block title %}Edit Profile for {{ username }} | MythMakers{% endblock %}
 
 {% block content %}
 
-<section class="container-fluid main-bg">
-
-    <div class="jumbotron text-center">
-        <h1>Edit your profile</h1>
-        <hr class="my-4">
-        <form method="POST" action="">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="tagline">Tagline</label>
-                    {{ form.tagline }}
-            </div>
-            <div class="form-group">
-                <label for="bio">Bio</label>
-                    {{ form.bio }}
-            </div>
-            <div class="form-group">
-                <label for="profile_image">Profile Image</label>
-                    {{ form.profile_image }}
-            </div>
-            <div class="form-group">
-                <label for="profile_header">Profile Header</label>
-                    {{ form.profile_header }}
-            </div>
-            <div class="form-group">
-                {{ form.errors }}
-            </div>
-            <button type="submit" class="btn btn-outline-success">Submit</button>
-        </form>
-
-        <div class="form-group">
-            <p>Want to change your password? <a href="{% url 'password_reset' %}">Click here</a> to reset</p>
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 header-container">
+            {% if user.mythmaker.profile_header == '' %}
+            <img class="img fluid profile-header" src="{% static 'images/default-header.png' %}">
+            {% else %}
+            <img class="img-fluid profile-header" src="{{ user.mythmaker.profile_header.url }}">
+            {% endif %}
         </div>
     </div>
+</section>
 
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 offset-md-1 col-md-2 user-details">
+            {% if user.mythmaker.profile_image == '' %}
+            <img class="img-fluid" src="{% static 'images/default-profile.png' %}">
+            {% else %}
+            <img class="img-fluid" src="{{ user.mythmaker.profile_image.url }}">
+            {% endif %}
+            <h3>{{ username }}</h3>
+            <p>{{ user_membership.membership.get_membership_type_display }} Member</p>
+            <p><em>{{ user.mythmaker.tagline }}</em></p>
+            <p>Joined {{ user.date_joined }}</p>
+            <p><strong>Bio</strong><br/>{{ user.mythmaker.bio }}</p>
+
+            <div>
+                <a class="btn btn-outline-success btn-lg edit-btn" href="{% url 'edit' %}" role="button"><i class="fas fa-edit"></i></a>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-8 activity-pane">
+            <h3>Activity</h3>
+            <hr>
+        </div>
+    </div>
 </section>
 
 {% endblock %}

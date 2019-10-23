@@ -182,6 +182,15 @@ footer ul li {
     border-color: #FFF;
 }
 
+.edit-btn {
+    background-color: #18121E;
+    margin-bottom: 10px;
+}
+
+.edit-btn:hover {
+    background-color: #291f33
+}
+
 .fas {
     color:#EAC67A;
   }
