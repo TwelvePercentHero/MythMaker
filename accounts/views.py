@@ -99,19 +99,18 @@ def activate(request, uidb64, token):
 
 @login_required
 def edit(request):
-    args = {}
-
+    current_user = request.user
+    edit_profile = MythMaker.objects.get(user = current_user)
     if request.method == 'POST':
-        form = UpdateProfile(request.POST, instance = request.user)
-        form.actual_user = request.user
+        form = UpdateProfile(request.POST, instance = edit_profile)
+        form.actual_user = edit_profile
         if form.is_valid():
-            form.save()
+            form.save(commit=True)
             return redirect(reverse('profile'))
     else:
-        form = UpdateProfile()
-
-    args['form'] = form
-    return render(request, 'registration/edit.html', args)
+        form = UpdateProfile(instance = edit_profile)
+    context = {'form' : form, 'edit_profile': edit_profile}
+    return render(request, 'registration/edit.html', context)
 
 @login_required
 def benefits(request):

@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
-{% block title %}Edit Profile for {{ username }} | MythMakers{% endblock %}
+{% block title %}Edit Profile for {{ user.username }} | MythMakers{% endblock %}
 
 {% block content %}
 
@@ -25,15 +25,16 @@
             {% else %}
             <img class="img-fluid" src="{{ user.mythmaker.profile_image.url }}">
             {% endif %}
-            <h3>{{ username }}</h3>
-            <p>{{ user_membership.membership.get_membership_type_display }} Member</p>
-            <p><em>{{ user.mythmaker.tagline }}</em></p>
-            <p>Joined {{ user.date_joined }}</p>
-            <p><strong>Bio</strong><br/>{{ user.mythmaker.bio }}</p>
-
-            <div>
-                <a class="btn btn-outline-success btn-lg edit-btn" href="{% url 'edit' %}" role="button"><i class="fas fa-edit"></i></a>
-            </div>
+            <form method="POST" action=''>
+                {% csrf_token %}
+                <h3>{{ user.username }}</h3>
+                <p>{{ user_membership.membership.get_membership_type_display }} Member</p>
+                <p><strong>Tagline</strong><br/>{{ form.tagline }}</p>
+                <p><strong>Bio</strong><br/>{{ form.bio }}</p>
+                <div>
+                    <button type="submit" class="btn btn-outline-success edit-btn">Submit</button>
+                </div>
+            </form>
         </div>
 
         <div class="col-xs-12 col-md-8 activity-pane">

@@ -138,6 +138,12 @@ footer ul li {
     font-size: 18px;
 }
 
+/* Edit Page */
+
+.edit-field {
+    width: 100%;
+}
+
 /* Stripe Elements - code adapted from Stripe Elements tutorial found at `https://stripe.com/docs/stripe-js` */
 
 .StripeElement {
