@@ -49,7 +49,8 @@ def userlist(request):
 
 def publicprofile(request, user_id):
     mythmaker_user = User.objects.get(pk = user_id)
-    context = {'mythmaker_user' : mythmaker_user }
+    mythmaker_membership = MythMakerMembership.objects.get(user = mythmaker_user)
+    context = {'mythmaker_user' : mythmaker_user, 'mythmaker_membership' : mythmaker_membership }
     return render(request, 'registration/publicprofile.html', context)
 
 @login_required
@@ -100,6 +101,7 @@ def activate(request, uidb64, token):
 @login_required
 def edit(request):
     current_user = request.user
+    user_membership = get_user_membership(request)
     edit_profile = MythMaker.objects.get(user = current_user)
     if request.method == 'POST':
         form = UpdateProfile(request.POST, instance = edit_profile)
@@ -109,7 +111,7 @@ def edit(request):
             return redirect(reverse('profile'))
     else:
         form = UpdateProfile(instance = edit_profile)
-    context = {'form' : form, 'edit_profile': edit_profile}
+    context = {'form' : form, 'user_membership' : user_membership, 'edit_profile': edit_profile}
     return render(request, 'registration/edit.html', context)
 
 @login_required
