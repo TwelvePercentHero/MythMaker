@@ -47,8 +47,8 @@ class UpdateProfile(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['tagline'].widget.attrs.update({'class' : 'edit-field'})
-        self.fields['bio'].widget.attrs.update({'class' : 'edit-field'})
-        self.fields['profile_image'].widget.attrs.update({'class' : 'edit-field'})
+        self.fields['bio'].widget.attrs.update({'class' : 'edit-field', 'size' : 40})
+        self.fields['profile_image'].widget.attrs.update({'class' : 'upload-field'})
 
     def clean_edit(self):
         tagline = self.cleaned_data['tagline']

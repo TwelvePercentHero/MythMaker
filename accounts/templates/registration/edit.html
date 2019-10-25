@@ -20,18 +20,21 @@
 <section class="container-fluid">
     <div class="row">
         <div class="col-xs-12 offset-md-1 col-md-2 user-details">
-            {% if user.mythmaker.profile_image == '' %}
-            <img class="img-fluid" src="{% static 'images/default-profile.png' %}">
-            {% else %}
-            <img class="img-fluid" src="{{ user.mythmaker.profile_image.url }}">
-            {% endif %}
             <form method="POST" enctype="multipart/form-data" action=''>
-                {% csrf_token %}
+            {% csrf_token %}
+            {{ form.profile_header }}
+
+                {% if user.mythmaker.profile_image == '' %}
+                <img class="img-fluid" src="{% static 'images/default-profile.png' %}">
+                {% else %}
+                <img class="img-fluid" src="{{ user.mythmaker.profile_image.url }}">
+                {% endif %}
+
                 {{ form.profile_image }}
                 <h3>{{ user.username }}</h3>
-                <p>{{ user_membership.membership.get_membership_type_display }} Member</p>
-                <p><strong>Tagline</strong><br/>{{ form.tagline }}</p>
-                <p><strong>Bio</strong><br/>{{ form.bio }}</p>
+                    <p>{{ user_membership.membership.get_membership_type_display }} Member</p>
+                    <p><strong>Tagline</strong><br/>{{ form.tagline }}</p>
+                    <p><strong>Bio</strong><br/>{{ form.bio }}</p>
                 <div>
                     <button type="submit" class="btn btn-outline-success edit-btn">Submit</button>
                 </div>
