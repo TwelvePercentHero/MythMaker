@@ -25,8 +25,9 @@
             {% else %}
             <img class="img-fluid" src="{{ user.mythmaker.profile_image.url }}">
             {% endif %}
-            <form method="POST" action=''>
+            <form method="POST" enctype="multipart/form-data" action=''>
                 {% csrf_token %}
+                {{ form.profile_image }}
                 <h3>{{ user.username }}</h3>
                 <p>{{ user_membership.membership.get_membership_type_display }} Member</p>
                 <p><strong>Tagline</strong><br/>{{ form.tagline }}</p>

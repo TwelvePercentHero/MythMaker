@@ -48,6 +48,7 @@ class UpdateProfile(ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['tagline'].widget.attrs.update({'class' : 'edit-field'})
         self.fields['bio'].widget.attrs.update({'class' : 'edit-field'})
+        self.fields['profile_image'].widget.attrs.update({'class' : 'edit-field'})
 
     def clean_edit(self):
         tagline = self.cleaned_data['tagline']
