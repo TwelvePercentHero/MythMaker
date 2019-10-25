@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django import forms
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -12,14 +13,20 @@ class MythMaker(models.Model):
     tagline = models.TextField(max_length=100, blank=True)
     bio = models.TextField(max_length=500, blank=True)
     profile_image = models.ImageField(upload_to='profile_images', blank=True)
-    profile_header = models.ImageField(upload_to='profile_headers', max_length=100, default='No image selected')
+    profile_header = models.ImageField(upload_to='profile_headers', blank=True)
 
     class Meta:
         verbose_name = 'MythMaker'
         verbose_name_plural = 'MythMakers'
 
     def __str__(self):
-        return 'MythMaker(models)'
+        return 'MythMaker'
+
+def create_mythmaker(sender, instance, created, *args, **kwargs):
+    if created:
+        MythMaker.objects.create(user = instance)
+
+post_save.connect(create_mythmaker, sender = User)
 
 class Membership(models.Model):
     FREE = 'FR'
