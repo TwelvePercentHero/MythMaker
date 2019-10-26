@@ -15,7 +15,6 @@ class MythMaker(models.Model):
     bio = models.TextField(max_length = 500, blank = True)
     profile_image = models.ImageField(upload_to = 'profile_images', blank = True)
     profile_header = models.ImageField(upload_to = 'profile_headers', blank = True)
-    uploaded_videos = models.ForeignKey(Video, on_delete = models.CASCADE, blank = True, null = True)
 
     class Meta:
         verbose_name = 'MythMaker'

@@ -17,7 +17,7 @@
             <img src="{{ v.thumbnail.url }}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{ v.title }}</h5>
-              <p class="card-text">{{ v.uploaded_by }}</p>
+              <p class="card-text">Uploaded by <strong>{{ v.uploaded_by }}</strong></p>
               <a href="{% url 'video' v.id %}" class="btn btn-primary">Watch</a>
               <a href="#" class="btn btn-primary">Like</a>
             </div>

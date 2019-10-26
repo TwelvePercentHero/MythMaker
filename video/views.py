@@ -28,7 +28,7 @@ def videolist(request):
 @login_required
 def uploadvideo(request):
     user = request.user
-    user_membership = get_user_membership(request)
+    mythmaker_membership = MythMakerMembership.objects.get(user = user)
     if request.method == 'POST':
         form = VideoUpload(request.POST, request.FILES)
         if form.is_valid():
@@ -36,7 +36,11 @@ def uploadvideo(request):
             form.save(commit = True)
             return redirect(reverse('videolist'))
     else:
-        form = VideoUpload()
-    return render(request, 'video/uploadvideo.html', {'form' : form})
+        # Only Premium members can upload videos
+        if mythmaker_membership.membership_id == 2:
+            form = VideoUpload()
+            return render(request, 'video/uploadvideo.html', {'form' : form})
+        else:
+            return redirect(reverse('profile'))
 
 
