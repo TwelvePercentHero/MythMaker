@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ video.title }} | MythMakers{% endblock %}
+
+{% block content %}
+
+<section class="container-fluid video-bg">
+    <div class="row">
+        <div class="video-div col-xs-12 offset-md-2 col-md-8">
+            <video width="1280" height="720" controls>
+                <source src="{{ video.video_file.url }}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <div class="row">
+        <div class="video-info col-xs-12 offset-md-2 col-md-8">
+            <h1>{{ video.title }}</h1>
+            <p>Uploaded By {{ video.uploaded_by }}</p>
+        </div> 
+    </div>
+</section>
+
+{% endblock %}

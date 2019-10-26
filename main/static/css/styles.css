@@ -96,6 +96,38 @@ footer ul li {
     padding: 20px;
 }
 
+/* Video Page */
+
+.video-bg {
+    height: 100vh;
+    background: url('../images/home-image.png');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0px;
+}
+
+.video-div {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.video-info {
+    background-color: #984B43;
+    padding-top: 20px;
+    margin-top: 0px;
+}
+
 /* Registration Page */
 
 .errorlist {
