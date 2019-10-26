@@ -1,6 +1,14 @@
-from django.shortcuts import render
+from django.conf import settings
+from django.shortcuts import render, redirect, reverse
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+
+from accounts.views import get_user_membership
+from accounts.models import MythMaker, Membership, MythMakerMembership, Subscription
+
 from .models import Video
+from .forms import VideoUpload
 
 def video(request, video_id):
     video = Video.objects.get(pk = video_id)
@@ -16,3 +24,18 @@ def videolist(request):
         grouped_videos.append(page_objects)
     context = {'videos' : videos, 'grouped_videos' : grouped_videos}
     return render(request, 'video/videolist.html', context)
+
+@login_required
+def uploadvideo(request):
+    user = request.user
+    user_membership = get_user_membership(request)
+    if request.method == 'POST':
+        form = VideoUpload(request.POST, request.FILES)
+        if form.is_valid():
+            form.save(commit = True)
+            return redirect(reverse('videolist'))
+    else:
+        form = VideoUpload()
+    return render(request, 'video/uploadvideo.html', {'form' : form})
+
+
