@@ -50,8 +50,13 @@ def userlist(request):
 def publicprofile(request, user_id):
     mythmaker_user = User.objects.get(pk = user_id)
     mythmaker_membership = MythMakerMembership.objects.get(user = mythmaker_user)
-    context = {'mythmaker_user' : mythmaker_user, 'mythmaker_membership' : mythmaker_membership }
-    return render(request, 'registration/publicprofile.html', context)
+    # If user clicks on own profile, redirect to profile view
+    if mythmaker_user == request.user:
+        return redirect(reverse('profile'))
+    # If user clicks on another profile, show public profile
+    else:
+        context = {'mythmaker_user' : mythmaker_user, 'mythmaker_membership' : mythmaker_membership }
+        return render(request, 'registration/publicprofile.html', context)
 
 @login_required
 def profile(request):
@@ -69,12 +74,14 @@ def register(request):
             user.save()
             current_site = get_current_site(request)
             mail_subject = 'Activate your MythMaker account'
+            # Include HTML email template to send if applicable
             html_message = render_to_string('registration/activation_email.html', {
                 'user' : user,
                 'domain' : current_site.domain,
                 'uid' : urlsafe_base64_encode(force_bytes(user.pk)),
                 'token' : account_activation_token.make_token(user),
             })
+            # Strip tags from HTML message if plain text is specified
             plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
             to_email = form.cleaned_data.get('email')
