@@ -102,10 +102,9 @@ def activate(request, uidb64, token):
 def edit(request):
     current_user = request.user
     user_membership = get_user_membership(request)
-    edit_profile = MythMakerMembership.objects.get(user = current_user)
+    edit_profile = MythMaker.objects.get(user = current_user)
     if request.method == 'POST':
         form = UpdateProfile(request.POST, request.FILES, instance = edit_profile)
-        form.actual_user = edit_profile
         if form.is_valid():
             form.save(commit=True)
             return redirect(reverse('profile'))
