@@ -18,8 +18,8 @@
             <div class="card-body">
               <h5 class="card-title">{{ v.title }}</h5>
               <p class="card-text">Uploaded by <strong>{{ v.uploaded_by }}</strong></p>
-              <a href="{% url 'video' v.id %}" class="btn btn-primary">Watch</a>
-              <a href="#" class="btn btn-primary">Like</a>
+              <a href="{% url 'video' v.id %}" class="btn btn-outline-success edit-btn">Watch</a>
+              <a href="#" class="btn btn-outline-success edit-btn">Like</a>
             </div>
         </div>
     
@@ -30,7 +30,7 @@
 
           <div class="row">
             {% if mythmaker_membership.membership_id == 2 %}
-              <a href="{% url 'uploadvideo' %}" class="btn btn-primary">Upload</a>
+              <a href="{% url 'uploadvideo' %}" class="btn btn-outline-success btn-lg">Upload</a>
             {% else %}
               <p>Upgrade now to upload video stories!</p>
             {% endif %}
