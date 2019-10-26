@@ -32,6 +32,7 @@ def uploadvideo(request):
     if request.method == 'POST':
         form = VideoUpload(request.POST, request.FILES)
         if form.is_valid():
+            form.instance.uploaded_by = request.user
             form.save(commit = True)
             return redirect(reverse('videolist'))
     else:
