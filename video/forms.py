@@ -7,15 +7,17 @@ class VideoUpload(ModelForm):
     title = forms.CharField(required = True)
     video_file = forms.FileField(required = True)
     thumbnail = forms.ImageField(required = True)
+    description = forms.CharField(required = True)
 
     class Meta:
         model = Video
-        fields = ('title', 'video_file', 'thumbnail')
+        fields = ('title', 'video_file', 'thumbnail', 'description')
 
 
     def clean_video_upload(self):
         title = self.cleaned_data['title']
         video_file = self.cleaned_data['video_file']
         thumbnail = self.cleaned_data['thumbnail']
+        description = self.cleaned_data['description']
 
         return clean_video_upload

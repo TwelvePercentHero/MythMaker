@@ -7,6 +7,7 @@ class Video(models.Model):
     date_posted = models.DateTimeField(auto_now_add = True)
     video_file = models.FileField(upload_to = 'videos')
     thumbnail = models.FileField(upload_to = 'thumbnails')
+    description = models.CharField(max_length = 1000, blank = True, null = True)
 
     def __str__(self):
         return self.title
