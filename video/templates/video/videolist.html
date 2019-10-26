@@ -27,9 +27,15 @@
         </div>
     
         {% endfor %}
-        </div>
 
-        <a href="{% url 'uploadvideo' %}" class="btn btn-primary">Upload</a>
+          <div class="row">
+            {% if mythmaker_membership.membership_id == 2 %}
+              <a href="{% url 'uploadvideo' %}" class="btn btn-primary">Upload</a>
+            {% else %}
+              <p>Upgrade now to upload video stories!</p>
+            {% endif %}
+          </div>
+        </div>
     
     </section>
 

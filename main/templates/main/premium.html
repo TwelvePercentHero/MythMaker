@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Premium Members Only... | MythMakers{% endblock %}
+
+{% block content %}
+
+<section class="container-fluid main-bg">
+
+    <div class="jumbotron text-center">
+        <h1>Sorry...</h1>
+        <p>You need to be a Premium Member in order to do that.</p>
+        <p>Click below to view all the benefits of being a Premium Member, and upgrade your account!</p>
+        <a href="{% url 'benefits' %}" class="btn btn-primary">View Benefits</a>
+        <p>You can also do this at any time from your <a href="{% url 'profile' %}">personal profile</a>.</p>
+
+    </div>
+
+</section>
+
+{% endblock %}

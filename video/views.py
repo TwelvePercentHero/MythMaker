@@ -16,13 +16,15 @@ def video(request, video_id):
     return render(request, 'video/video.html', context)
 
 def videolist(request):
+    user = request.user
+    mythmaker_membership = MythMakerMembership.objects.get(user = user)
     video_list = Video.objects.all().order_by('title')
     videos = Paginator(video_list, 3)
     grouped_videos = []
     for page in videos.page_range:
         page_objects = videos.page(page).object_list
         grouped_videos.append(page_objects)
-    context = {'videos' : videos, 'grouped_videos' : grouped_videos}
+    context = {'videos' : videos, 'user': user, 'mythmaker_membership' : mythmaker_membership, 'grouped_videos' : grouped_videos}
     return render(request, 'video/videolist.html', context)
 
 @login_required
@@ -41,6 +43,6 @@ def uploadvideo(request):
             form = VideoUpload()
             return render(request, 'video/uploadvideo.html', {'form' : form})
         else:
-            return redirect(reverse('profile'))
+            return render(request, 'main/premium.html')
 
 
