@@ -166,6 +166,14 @@ video {
     color: #EAC67A;
 }
 
+.vid-info {
+    color: #fff;
+}
+
+.links-div {
+    text-align: right;
+}
+
 /* Video Upload */
 
 .upload {
