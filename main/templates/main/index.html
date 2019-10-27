@@ -36,8 +36,9 @@
             <div class="col-xs-12 col-md-2 latest-videos">
                 <a href="{% url 'video' video.id %}" class="video-list-item">
                     <img src="{{ video.thumbnail.url }}" class="list-thumb" alt="{{ video.title }} thumbnail">
-                    <h5 class="card-title">{{ video.title }}</h5>
-                    <p class="card-text"><strong>{{ video.uploaded_by }}</strong></p>
+                    <h5 class="latest-title">{{ video.title }}</h5>
+                    <p class="latest-text">{{ video.uploaded_by }}</p>
+                    <p class="latest-text">{{ video.date_posted }}</p>
                 </a>
             </div>
         {% endfor %}

@@ -31,10 +31,13 @@
           {% if mythmaker_membership.membership_id == 2 %}
           <a href="{% url 'uploadvideo' %}" class="btn btn-outline-success">Upload</a>
           {% elif mythmaker_membership.membership_id == 1 %}
+          <h4>Upgrade</h4>
           <p>Upgrade to Premium to upload your own videos.</p>
-          <a class="btn btn-outline-success btn-lg" href="{% url 'benefits' %}" role="button">Upgrade Now</a>
+          <a class="btn btn-outline-success" href="{% url 'benefits' %}" role="button">Upgrade</a>
           {% elif mythmaker_membership is None %}
+          <h4>Register</h4>
           <p>Register to save videos to your favourites</p>
+          <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
           {% endif %}
         </div>
         

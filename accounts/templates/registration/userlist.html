@@ -6,26 +6,25 @@
 {% block content %}
 
 <section class="container-fluid main-bg">
-    <div class="col-xs-12 offset-md-2 col-md-9">
+    <div class="col-xs-12 offset-md-2 col-md-9 user-div">
 
     {% for maker in grouped_mythmakers %}
     <div class="row">
 
     {% for m in maker %}
-
-    <div class="card user-card" style="width: 18rem;">
-      {% if m.mythmaker.profile_image == '' %}
-        <img src="{% static 'images/default-profile.png' %}" class="card-img-top">
-      {% else %}
-        <img src="{{ m.mythmaker.profile_image.url }}" class="card-img-top" alt="...">
-      {% endif %}
-        <div class="card-body">
-          <h5 class="card-title">{{ m.username }}</h5>
-          <p class="card-text">{{ m.mythmaker.tagline }}</p>
-          <a href="{% url 'publicprofile' m.id %}" class="btn btn-outline-success edit-btn">View Profile</a>
-          <a href="#" class="btn btn-outline-success edit-btn">Follow</a>
-        </div>
-    </div>
+    <a href="{% url 'publicprofile' m.id %}" class="user-list-item">
+      <div class="card user-card" style="width: 18rem;">
+        {% if m.mythmaker.profile_image == '' %}
+          <img src="{% static 'images/default-profile.png' %}" class="card-img-top">
+        {% else %}
+          <img src="{{ m.mythmaker.profile_image.url }}" class="card-img-top" alt="...">
+        {% endif %}
+          <div class="card-body">
+            <h4 class="card-title">{{ m.username }}</h5>
+            <p class="card-text">{{ m.mythmaker.tagline }}</p>
+          </div>
+      </div>
+    </a>
 
     {% endfor %}
     </div>
