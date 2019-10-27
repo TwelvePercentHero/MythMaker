@@ -6,37 +6,26 @@
 {% block content %}
 
 <section class="container-fluid main-bg">
-        <div class="col-xs-12 offset-md-2 col-md-9">
-    
-        {% for vid in grouped_videos %}
-        <div class="row">
-    
-        {% for v in vid %}
-    
-        <div class="card user-card" style="width: 18rem;">
-            <img src="{{ v.thumbnail.url }}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{ v.title }}</h5>
-              <p class="card-text">Uploaded by <strong>{{ v.uploaded_by }}</strong></p>
-              <a href="{% url 'video' v.id %}" class="btn btn-outline-success edit-btn">Watch</a>
-              <a href="#" class="btn btn-outline-success edit-btn">Like</a>
-            </div>
-        </div>
-    
-        {% endfor %}
-        </div>
-    
-        {% endfor %}
 
-          <div class="row">
-            {% if mythmaker_membership.membership_id == 2 %}
-              <a href="{% url 'uploadvideo' %}" class="btn btn-outline-success btn-lg">Upload</a>
-            {% else %}
-              <p>Upgrade now to upload video stories!</p>
-            {% endif %}
-          </div>
-        </div>
+        <div class="col-xs-12 col-md-2 filter-div"><h4>Filters</h4></div>
+        <div class="col-xs-12 col-md-9 video-list">
     
+        {% for video in videos %}   
+        
+        <a href="{% url 'video' video.id %}" class="video-list-item">
+          <div class="media">
+            <img class="list-thumb" src="{{ video.thumbnail.url }}" alt="Thumbnail for {{ video.title }}">
+            <div class="media-body">
+              <h4 class="mt-0">{{ video.title }}</h5>
+              <p>{{ video.uploaded_by }} | {{ video.date_posted }}</p>
+              <p>{{ video.description }}</p>
+              
+            </div>
+          </div>
+        </a>
+    
+        {% endfor %}
+        </div>
     </section>
 
 

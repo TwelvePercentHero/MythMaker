@@ -96,6 +96,40 @@ footer ul li {
     padding: 20px;
 }
 
+/* Video List */
+
+.filter-div {
+    height: 100%;
+    padding-top: 80px;
+}
+
+.video-list {
+    height: 100%;
+    padding-top: 80px;
+}
+
+.video-list-item {
+    color: #fff;
+}
+
+.video-list-item:hover {
+    text-decoration: none;
+    color: #d7d9db;
+}
+
+.list-thumb {
+    width: 240px;
+    height: 135px;
+}
+
+.media {
+    margin-bottom: 30px;
+}
+
+.media-body {
+    margin-left: 20px;
+}
+
 /* Video Page */
 
 .video-bg {
@@ -122,10 +156,14 @@ video {
     padding-bottom: 0px;
 }
 
-.video-info {
-    background-color: #984B43;
-    padding-top: 20px;
-    margin-top: 0px;
+.video-title {
+    color: #EAC67A;
+}
+
+/* Video Upload */
+
+.upload-label {
+    font-weight: bold;
 }
 
 /* Registration Page */

@@ -18,13 +18,8 @@ def video(request, video_id):
 def videolist(request):
     user = request.user
     mythmaker_membership = MythMakerMembership.objects.get(user = user)
-    video_list = Video.objects.all().order_by('title')
-    videos = Paginator(video_list, 3)
-    grouped_videos = []
-    for page in videos.page_range:
-        page_objects = videos.page(page).object_list
-        grouped_videos.append(page_objects)
-    context = {'videos' : videos, 'user': user, 'mythmaker_membership' : mythmaker_membership, 'grouped_videos' : grouped_videos}
+    videos = Video.objects.all().order_by('title')
+    context = {'videos' : videos, 'user': user, 'mythmaker_membership' : mythmaker_membership}
     return render(request, 'video/videolist.html', context)
 
 @login_required

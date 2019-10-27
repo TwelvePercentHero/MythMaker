@@ -13,6 +13,11 @@ class VideoUpload(ModelForm):
         model = Video
         fields = ('title', 'video_file', 'thumbnail', 'description')
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter a video title'})
+        self.fields['description'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter a description'})
+
     def clean_video_upload(self):
         title = self.cleaned_data['title']
         video_file = self.cleaned_data['video_file']

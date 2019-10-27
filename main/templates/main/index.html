@@ -27,6 +27,18 @@
     <div class="row">
         <div class="col-xs-12 offset-md-1 col-md-10 latest-col">
             <h4>Latest Video</h4>
+            {% for video in latest_videos %}
+            <div class="card user-card" style="width: 18rem;">
+                <img src="{{ video.thumbnail.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{ video.title }}</h5>
+                  <p class="card-text">Uploaded by <strong>{{ video.uploaded_by }}</strong></p>
+                  <a href="{% url 'video' video.id %}" class="btn btn-outline-success edit-btn">Watch</a>
+                  <a href="#" class="btn btn-outline-success edit-btn">Like</a>
+                </div>
+            </div>
+
+            {% endfor %}
         </div>
     </div>
 
