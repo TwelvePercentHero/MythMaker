@@ -7,7 +7,7 @@ class VideoUpload(ModelForm):
     title = forms.CharField(required = True)
     video_file = forms.FileField(required = False, label = 'video_file')
     thumbnail = forms.ImageField(required = False, label = 'thumbnail')
-    description = forms.CharField(required = True)
+    description = forms.CharField(required = True,  widget = forms.Textarea(attrs={'rows': 10, 'cols': 20}))
 
     class Meta:
         model = Video

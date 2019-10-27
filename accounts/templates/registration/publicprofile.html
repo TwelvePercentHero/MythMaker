@@ -23,7 +23,7 @@
             {% if mythmaker_user.mythmaker.profile_image == '' %}
             <img class="img-fluid" src="{% static 'images/default-profile.png' %}">
             {% else %}
-            <img class="img-fluid" src="{{ user.mythmaker.profile_image.url }}">
+            <img class="img-fluid" src="{{ mythmaker_user.mythmaker.profile_image.url }}">
             {% endif %}
             <h3>{{ mythmaker_user.username }}</h3>
             <p>{{ mythmaker_membership.membership.get_membership_type_display }} Member</p>

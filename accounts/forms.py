@@ -36,7 +36,7 @@ class ExtendedAuthForm(AuthenticationForm):
 
 class UpdateProfile(ModelForm):
     tagline = forms.CharField(required=False)
-    bio = forms.CharField(required=False)
+    bio = forms.CharField(required=False, widget = forms.Textarea(attrs={'rows': 10, 'cols': 20}))
     profile_image = forms.ImageField(required=False)
     profile_header = forms.ImageField(required=False)
 
