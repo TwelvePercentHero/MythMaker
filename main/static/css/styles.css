@@ -96,6 +96,10 @@ footer ul li {
     padding: 20px;
 }
 
+.latest-videos {
+    display: inline-block;
+}
+
 /* Video List */
 
 .filter-div {
