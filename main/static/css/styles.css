@@ -130,6 +130,12 @@ footer ul li {
     margin-left: 20px;
 }
 
+.upload-div {
+    height: 100%;
+    padding-top: 80px;
+}
+
+
 /* Video Page */
 
 .video-bg {
@@ -165,6 +171,7 @@ video {
 .upload {
     width: 600px;
 }
+
 .upload-label {
     font-weight: bold;
 }

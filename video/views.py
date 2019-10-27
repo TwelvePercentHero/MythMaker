@@ -17,9 +17,12 @@ def video(request, video_id):
 
 def videolist(request):
     user = request.user
-    mythmaker_membership = MythMakerMembership.objects.get(user = user)
+    if request.user.is_authenticated:
+        mythmaker_membership = MythMakerMembership.objects.get(user = user)
+    else:
+        mythmaker_membership = None
     videos = Video.objects.all().order_by('title')
-    context = {'videos' : videos, 'user': user, 'mythmaker_membership' : mythmaker_membership}
+    context = {'videos' : videos, 'mythmaker_membership' : mythmaker_membership}
     return render(request, 'video/videolist.html', context)
 
 @login_required

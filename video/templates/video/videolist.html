@@ -8,7 +8,7 @@
 <section class="container-fluid main-bg">
 
         <div class="col-xs-12 col-md-2 filter-div"><h4>Filters</h4></div>
-        <div class="col-xs-12 col-md-9 video-list">
+        <div class="col-xs-12 col-md-8 video-list">
     
         {% for video in videos %}   
         
@@ -26,6 +26,18 @@
     
         {% endfor %}
         </div>
+
+        <div class="col-xs-12 col-md-2 upload-div">
+          {% if mythmaker_membership.membership_id == 2 %}
+          <a href="{% url 'uploadvideo' %}" class="btn btn-outline-success">Upload</a>
+          {% elif mythmaker_membership.membership_id == 1 %}
+          <p>Upgrade to Premium to upload your own videos.</p>
+          <a class="btn btn-outline-success btn-lg" href="{% url 'benefits' %}" role="button">Upgrade Now</a>
+          {% elif mythmaker_membership is None %}
+          <p>Register to save videos to your favourites</p>
+          {% endif %}
+        </div>
+        
     </section>
 
 
