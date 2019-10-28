@@ -203,6 +203,38 @@ video {
     font-weight: bold;
 }
 
+/* Story Page */
+
+.story-bg {
+    height: 100vh;
+    background: url('../images/home-image.png');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-div {
+    text-align: center;
+}
+
+.title-div h1 {
+    color: #EAC67A;
+}
+
+.title-div p {
+    color: #fff;
+}
+
+.story-div {
+    padding-bottom: 20px;
+    color: #fff;
+}
+
 /* Registration Page */
 
 .errorlist {

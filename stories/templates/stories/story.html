@@ -5,21 +5,18 @@
 
 {% block content %}
 
-<section class="container-fluid">
+<section class="container-fluid story-bg">
     <div class="row">
         <div class="col-md-12 header-container">
             <img class="img-fluid profile-header" src="{{ story.cover_image.url }}">
         </div>
     </div>
 
-</section>
-
-<section class="container-fluid">
     <div class="row">
-        <div class="col-xs-12 offset-md-1 col-md-10 story-div">
+        <div class="col-xs-12 offset-md-1 col-md-10 title-div">
             <h1>{{ story.title }}</h1>
-            <p>{{ story.synopsis }}</p>
-            <p>{{ story.author }} | {{ story.date_posted }}</p>
+            <p><em>{{ story.synopsis }}</em></p>
+            <p><strong>{{ story.author }} | {{ story.date_posted }}</strong></p>
         </div>
     </div>
 
