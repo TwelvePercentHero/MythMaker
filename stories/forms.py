@@ -6,13 +6,21 @@ from .models import Story
 class StoryUpload(ModelForm):
     title = forms.CharField(required = True)
     synopsis = forms.CharField(required = True)
-    story = forms.CharField(required = True, widget = forms.Textarea(attrs={'rows': 100, 'cols': 80}))
+    story = forms.CharField(required = True, widget = forms.Textarea(attrs={'rows': 20, 'cols': 60}))
     cover_image = forms.ImageField(required = False, label = 'cover-image')
     story_thumbnail = forms.ImageField(required = False, label = 'story_thumbnail')
 
     class Meta:
         model = Story
         fields = ('title', 'synopsis', 'story', 'cover_image', 'story_thumbnail')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['synopsis'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['story'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['cover_image'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['story_thumbnail'].widget.attrs.update({'class' : 'form-control'})
 
     def clean_story_upload(self):
         title = self.cleaned_data['title']

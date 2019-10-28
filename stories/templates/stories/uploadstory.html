@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Upload Story | MythMakers{% endblock %}
+
+{% block content %}
+
+<section class="container-fluid main-bg">
+
+    <div class="jumbotron text-center upload-story">
+        <h1>Upload a Story</h1>
+        <hr class="my-4">
+        <form id="uploadstory" enctype="multipart/form-data" action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="upload-label" for="title">Title</label><br>
+                    {{ form.title }}
+            </div>
+            <div class="form-group">
+                <label class="upload-label" for="synopsis">Brief Synopsis</label><br>
+                    {{ form.synopsis }}
+            </div>
+            <div class="form-group">
+                <label class="upload-label" for="story">Your Story</label><br>
+                    {{ form.story }}
+            </div>
+            <div class="form-group">
+                <label class="upload-label" for="story_thumbnail">Upload Story Thumbnail</label><br>
+                    {{ form.story_thumbnail }}
+            </div>
+            <div class="form-group">
+                <label class="upload-label" for="cover_image">Upload Cover Image</label><br>
+                    {{ form.cover_image }}
+            </div>
+            <div class="form-group">
+                {{ form.errors }}
+            </div>
+            <button type="submit" class="btn btn-outline-success">Upload</button>
+        </form>
+    </div>
+
+</section>
+
+{% endblock %}

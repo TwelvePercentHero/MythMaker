@@ -251,6 +251,12 @@ video {
     color: #fff;
 }
 
+/* Upload Story Page */
+
+.upload-story {
+    width: 800px;
+}
+
 /* Registration Page */
 
 .errorlist {
