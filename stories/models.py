@@ -8,6 +8,7 @@ class Story(models.Model):
     synopsis = models.CharField(max_length = 250)
     story = models.CharField(max_length = 10000, blank = True, null = True)
     cover_image = models.ImageField(upload_to = 'cover_images', blank = True)
+    story_thumbnail = models.ImageField(upload_to = 'story_thumbnails', blank = True)
 
     class Meta:
         verbose_name = 'Story'

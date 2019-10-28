@@ -203,6 +203,22 @@ video {
     font-weight: bold;
 }
 
+/* Storylist Page */
+
+.story-list {
+    height: 100%;
+    padding-top: 80px;
+}
+
+.story-list-item {
+    color: #fff;
+}
+
+.story-list-item:hover {
+    text-decoration: none;
+    color: #d7d9db;
+}
+
 /* Story Page */
 
 .story-bg {

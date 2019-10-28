@@ -8,8 +8,22 @@
 <section class="container-fluid main-bg">
 
         <div class="col-xs-12 col-md-2 filter-div"><h4>Filters</h4></div>
-        <div class="col-xs-12 col-md-8 video-list">
-            <h1>Stories</h1>
+        <div class="col-xs-12 col-md-8 story-list">
+        
+            {% for story in stories %}
+
+            <a href="{% url 'story' story.id %}" class="story-list-item">
+                <div class="media">
+                    <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
+                    <div class="media-body">
+                        <h4 class="mt-0">{{ story.title }}</h4>
+                        <p>{{ story.author }} | {{ story.date_posted }}</p>
+                        <p>{{ story.synopsis }}</p>
+                    </div>
+                </div>
+            </a>
+
+            {% endfor %}
         </div>
         
     </section>
