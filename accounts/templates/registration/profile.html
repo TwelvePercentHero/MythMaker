@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12 header-container">
             {% if user.mythmaker.profile_header == '' %}
-            <img class="img fluid profile-header" src="{% static 'images/default-header.png' %}">
+            <img class="img-fluid profile-header" src="{% static 'images/default-header.png' %}">
             {% else %}
             <img class="img-fluid profile-header" src="{{ user.mythmaker.profile_header.url }}">
             {% endif %}
