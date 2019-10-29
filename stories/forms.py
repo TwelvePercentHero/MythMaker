@@ -7,7 +7,7 @@ from .models import Story
 class StoryUpload(ModelForm):
     title = forms.CharField(required = True)
     synopsis = forms.CharField(required = True)
-    story = forms.CharField(required = True, widget = TinyMCE(attrs={'rows': 20, 'cols': 60}))
+    story = forms.CharField(required = True, widget = TinyMCE(attrs={'rows': 10, 'cols': 60}))
     cover_image = forms.ImageField(required = False, label = 'cover-image')
     story_thumbnail = forms.ImageField(required = False, label = 'story_thumbnail')
 
