@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'video',
     'stories',
+    'audio',
 ]
 
 MIDDLEWARE = [
