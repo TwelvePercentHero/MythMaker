@@ -22,3 +22,20 @@ def audiolist(request):
     audios = Audio.objects.all().order_by('title')
     context = {'audios' : audios, 'mythmaker_membership' : mythmaker_membership}
     return render(request, 'audio/audiolist.html', context)
+
+@login_required
+def uploadaudio(request):
+    user = request.user
+    mythmaker_membership = MythMakerMembership.objects.get(user = user)
+    if request.method == 'POST':
+        form = AudioUpload(request.POST, request.FILES)
+        if form.is_valid():
+            form.instance.creator = request.user
+            form.save(commit = True)
+            return redirect(reverse('audiolist'))
+    else:
+        # Only Premium members can upload audio
+        if mythmaker_membership.membership_id == 2:
+            return render(request, 'audio/uploadaudio.html', {'form' : form})
+        else:
+            return render(request, 'main/premium.html')
