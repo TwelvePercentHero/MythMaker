@@ -36,6 +36,7 @@ def uploadaudio(request):
     else:
         # Only Premium members can upload audio
         if mythmaker_membership.membership_id == 2:
+            form = AudioUpload()
             return render(request, 'audio/uploadaudio.html', {'form' : form})
         else:
             return render(request, 'main/premium.html')
