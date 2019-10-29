@@ -22,7 +22,10 @@
 
     <div class="row">
         <div class="col-xs-12 offset-md-1 col-md-10 story-div">
+            <!-- Turn autoescape off to render HTML content -->
+            {% autoescape off %}
             {{ story.story }}
+            {% endautoescape %}
         </div>
     </div>
 </section>

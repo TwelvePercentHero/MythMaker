@@ -222,16 +222,8 @@ video {
 /* Story Page */
 
 .story-bg {
-    height: 100vh;
-    background: url('../images/home-image.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    align-items: center;
-    justify-content: center;
+    height: 100%;
+    background-color: #233237;
 }
 
 .title-div {
