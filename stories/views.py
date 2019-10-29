@@ -11,8 +11,9 @@ def story(request, story_id):
     return render(request, 'stories/story.html', context)
 
 def storylist(request):
+    user = request.user
     stories = Story.objects.all().order_by('title')
-    context = {'stories' : stories}
+    context = {'user' : user, 'stories' : stories}
     return render(request, 'stories/storylist.html', context)
 
 @login_required
