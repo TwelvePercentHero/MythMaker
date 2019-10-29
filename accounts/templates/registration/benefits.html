@@ -27,10 +27,18 @@
             <p>Upgrading your membership means you could be creating awesome stories like the ones below.</p>
         </div>
         <div class="col-xs-12 offset-md-1 col-md-3 benefits-col">
-            <p>Placeholder</p>
+            <a href="{% url 'story' story.id %}" class="story-list-item">
+            <h4>{{ story.title }}</h4>
+            <p>{{ story.author }} | {{ story.date_posted }}</p>
+            <p>{{ story.synopsis }}</p>
+            </a>
         </div>
         <div class="col-xs-12 col-md-3 benefits-col">
-            <p>Placeholder</p>
+            <a href="{% url 'video' video.id %}" class="video-list-item">
+            <h4>{{ video.title }}</h4>
+            <img src="{{ video.thumbnail.url }}" class="list-thumb">
+            <p>{{ video.uploaded_by }} | {{ video.date_posted }}</p>
+            </a>
         </div>
         <div class="col-xs-12 col-md-3 benefits-col">
             <p>Placeholder</p>

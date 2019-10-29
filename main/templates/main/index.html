@@ -25,6 +25,21 @@
     </div>
 
     <div class="row">
+            <div class="col-xs-12 offset-md-1 col-md-10">
+            {% for story in latest_stories %}
+            <div class="col-xs-12 col-md-2 latest-stories">
+                <a href="{% url 'story' story.id %}" class="story-list-item">
+                    <img src="{{ story.story_thumbnail.url }}" class="list-thumb" alt="{{ story.title }} thumbnail">
+                    <h5 class="latest-title">{{ story.title }}</h5>
+                    <p class="latest-text">{{ story.author }}</p>
+                    <p class="latest-text">{{ story.date_posted }}</p>
+                </a>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+
+    <div class="row">
         <div class="col-xs-12 offset-md-1 col-md-10 latest-col">
             <h4>Latest Video</h4>
         </div>

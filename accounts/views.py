@@ -18,6 +18,9 @@ from django.forms import inlineformset_factory
 from .forms import MythMakerForm, UpdateProfile
 from .tokens import account_activation_token
 from .models import MythMaker, Membership, MythMakerMembership, Subscription
+from video.models import Video
+from stories.models import Story
+import random
 
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -124,7 +127,11 @@ def edit(request):
 def benefits(request):
     username = request.user.username
     user_membership = get_user_membership(request)
-    context = {'username' : username, 'user_membership' : user_membership}
+    all_stories = Story.objects.all()
+    story = random.choice(all_stories)
+    all_videos = Video.objects.all()
+    video = random.choice(all_videos)
+    context = {'username' : username, 'user_membership' : user_membership, 'story' : story, 'video' : video}
     return render(request, 'registration/benefits.html', context)
 
 @login_required

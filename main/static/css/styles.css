@@ -100,6 +100,10 @@ footer ul li {
     display: inline-block;
 }
 
+.latest-stories {
+    display: inline-block;
+}
+
 .latest-title {
     color: #EAC67A;
 }
@@ -315,6 +319,12 @@ video {
 
 .edit-field {
     width: 100%;
+}
+
+/* Benefits Page */
+
+.benefits-col {
+    text-align: center;
 }
 
 /* Stripe Elements - code adapted from Stripe Elements tutorial found at `https://stripe.com/docs/stripe-js` */
