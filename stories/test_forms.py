@@ -11,11 +11,13 @@ testfile = (
 class TestStoryForm(TestCase):
 
     def test_story_upload_with_images(self):
-        form = StoryUpload({'title' : 'Test Title',
-                            'synopsis' : 'Test Synopsis',
-                            'story' : 'This is a test story',
-                            'cover_image' : SimpleUploadedFile('small.gif', testfile, content_type = 'image/gif'),
-                            'story_thumbnail' : SimpleUploadedFile('small.gif', testfile, content_type = 'image/gif')})
+        form = StoryUpload({
+            'title' : 'Test Title',
+            'synopsis' : 'Test Synopsis',
+            'story' : 'This is a test story',
+            'cover_image' : SimpleUploadedFile('small.gif', testfile, content_type = 'image/gif'),
+            'story_thumbnail' : SimpleUploadedFile('small.gif', testfile, content_type = 'image/gif')
+            })
         self.assertTrue(form.is_valid)
     
     def test_story_upload_without_images(self):

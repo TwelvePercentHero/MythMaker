@@ -5,7 +5,7 @@ from .models import Audio
 
 class AudioUpload(ModelForm):
     title = forms.CharField(required = True)
-    audio_file = forms.FileField(required = False, label = 'audio_file')
+    audio_file = forms.FileField(required = True, label = 'audio_file')
     audio_thumbnail = forms.ImageField(required = False, label = 'audio_thumbnail')
     cover_image = forms.ImageField(required = False, label = 'cover_image')
     description = forms.CharField(required = True)
