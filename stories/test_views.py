@@ -1,33 +1,28 @@
-from django.test import TestCase, Client
+from django.test import TestCase
+from django.core.files.uploadedfile import SimpleUploadedFile
 from .models import Story
 
-from accounts.forms import MythMakerForm, ExtendedAuthForm
+testfile = (
+    b'\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x00\x00\x00\x21\xf9\x04'
+    b'\x01\x0a\x00\x01\x00\x2c\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02'
+    b'\x02\x4c\x01\x00\x3b'
+    )
+
 
 class TestStoryViews(TestCase):
-
-    c = Client()
-
-    def setUp(self):
-        user = MythMakerForm({'username': 'Test',
-                                    'email': 'mythmakerinchief@gmail.com',
-                                    'password1': 'testing123',
-                                    'password2': 'testing123'})
-        user.is_active = True
-        test_user = user.save()
-        authenticate_test = ExtendedAuthForm({'username': 'Test',
-                                                'password': 'testing123'})
-        authenticate_test.save()
-
-        logged_in = self.c.login(username = 'Test', password = 'testing123')
     
-    '''def test_storylist(self):
-        page = self.c.get('/storylist/')
+    def test_storylist(self):
+        page = self.client.get('/storylist/')
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'stories/storylist.html')
 
     def test_story(self):
-        story = Story(title = 'Test Story', synopsis = 'Test synopsis')
-        story.cover_image = open('media/profile_headers/profile-header.png')
+        story = Story(
+            title = 'Test Story',
+            synopsis = 'Test synopsis',
+            story = 'This is a Test Story',
+            cover_image = SimpleUploadedFile('small.gif', testfile, content_type = 'image/gif'),
+            story_thumbnail = SimpleUploadedFile('small.gif', testfile, content_type = 'image/gif'),)
         story.save()
-        page = self.c.get('/story/{}'.format(story.id))
-        self.assertEqual(page.status_code, 200)'''
+        page = self.client.get('/story/{}'.format(story.id))
+        self.assertEqual(page.status_code, 200)
