@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
-{% block title %}Profile for {{ username }} | MythMakers{% endblock %}
+{% block title %}Profile for {{ user.username }} | MythMakers{% endblock %}
 
 {% block content %}
 
@@ -25,7 +25,7 @@
             {% else %}
             <img class="img-fluid" src="{{ user.mythmaker.profile_image.url }}">
             {% endif %}
-            <h3>{{ username }}</h3>
+            <h3>{{ user.username }}</h3>
             <p>{{ user_membership.membership.get_membership_type_display }} Member</p>
             <p><em>{{ user.mythmaker.tagline }}</em></p>
             <p>Joined {{ user.date_joined }}</p>
@@ -39,6 +39,64 @@
         <div class="col-xs-12 col-md-8 activity-pane">
             <h3>Activity</h3>
             <hr>
+
+            <button class="btn" id="show-videos">Videos</button>
+            <button class="btn" id="show-stories">Stories</button>
+            <button class="btn" id="show-audios">Audios</button>
+
+            <div class="d-block" id="video-results">
+                <h4>Uploaded Videos</h4>
+                {% for video in videos %}   
+                    
+                <a href="{% url 'video' video.id %}" class="video-list-item">
+                    <div class="media">
+                    <img class="list-thumb" src="{{ video.thumbnail.url }}" alt="Thumbnail for {{ video.title }}">
+                    <div class="media-body">
+                        <h4 class="mt-0">{{ video.title }}</h5>
+                        <p>{{ video.uploaded_by }} | {{ video.date_posted }}</p>
+                        <p>{{ video.description }}</p>
+                    </div>
+                    </div>
+                </a>
+                
+                {% endfor %}
+            </div>
+
+            <div class="d-none" id="story-results">
+                <h4>Uploaded Stories</h4>
+                {% for story in stories %}
+            
+                <a href="{% url 'story' story.id %}" class="story-list-item">
+                    <div class="media">
+                        <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
+                        <div class="media-body">
+                            <h4 class="mt-0">{{ story.title }}</h4>
+                            <p>{{ story.author }} | {{ story.date_posted }}</p>
+                            <p>{{ story.synopsis }}</p>
+                        </div>
+                    </div>
+                </a>
+            
+                {% endfor %}
+            </div>
+
+            <div class="d-none" id="audio-results">
+                <h4>Uploaded Audios</h4>
+                {% for audio in audios %}
+            
+                <a href="{% url 'audio' audio.id %}" class="audio-list-item">
+                    <div class="media">
+                        <img class="list-thumb" src="{{ audio.audio_thumbnail.url }}">
+                        <div class="media-body">
+                            <h4 class="mt-0">{{ audio.title }}</h4>
+                            <p>{{ audio.creator }} | {{ audio.date_posted }}</p>
+                            <p>{{ audio.description }}</p>
+                        </div>
+                    </div>
+                </a>
+            
+                {% endfor %}
+            </div>
         </div>
     </div>
 </section>

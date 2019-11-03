@@ -7,11 +7,17 @@
 
 <section class="container-fluid main-bg">
 
-        <div class="col-xs-12 col-md-2 filter-div"><h4>Search Results for '{{ query }}'</h4></div>
+        <div class="col-xs-12 col-md-2 filter-div">
+            <h4>Search Results for '{{ query }}'</h4>
+        </div>
+
         <div class="col-xs-12 col-md-8 video-list">
         
-        <button class="btn" id="show-videos">Videos</button> | <button class="btn" id="show-stories">Stories</button>
-          | <button class="btn" id="show-audios">Audios</button>  | <button class="btn" id="show-users">Creators</button> 
+        <button class="btn" id="show-videos">Videos</button>
+        <button class="btn" id="show-stories">Stories</button>
+        <button class="btn" id="show-audios">Audios</button>
+        <button class="btn" id="show-users">Creators</button>
+
         <div class="d-block" id="video-results">
         {% for video in videos %}   
         

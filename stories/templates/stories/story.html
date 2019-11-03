@@ -13,15 +13,19 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 offset-md-1 col-md-10 title-div">
+        <div class="col-xs-12 offset-md-1 col-md-8 title-div">
             <h1>{{ story.title }}</h1>
             <p><em>{{ story.synopsis }}</em></p>
             <p><strong>{{ story.author }} | {{ story.date_posted }}</strong></p>
         </div>
+
+        <div class="col-xs-12 col-md-2 related-div">
+            <h4>More from {{ user }}</h4>
+        </div>
     </div>
 
     <div class="row">
-        <div class="col-xs-12 offset-md-1 col-md-10 story-div">
+        <div class="col-xs-12 offset-md-1 col-md-8 story-div">
             <!-- Turn autoescape off to render HTML content -->
             {% autoescape off %}
             {{ story.story }}

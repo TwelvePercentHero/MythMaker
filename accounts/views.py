@@ -64,9 +64,12 @@ def publicprofile(request, user_id):
 
 @login_required
 def profile(request):
-    username = request.user.username
+    user = request.user
     user_membership = get_user_membership(request)
-    context = {'username' : username, 'user_membership' : user_membership}
+    videos = Video.objects.filter(uploaded_by = user)
+    stories = Story.objects.filter(author = user)
+    audios = Audio.objects.filter(creator = user)
+    context = {'user' : user, 'user_membership' : user_membership, 'videos' : videos, 'stories' : stories, 'audios' : audios}
     return render(request, 'registration/profile.html', context)
 
 def register(request):
