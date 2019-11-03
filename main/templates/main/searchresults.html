@@ -25,6 +25,57 @@
         </a>
     
         {% endfor %}
+
+        {% for story in stories %}
+
+        <a href="{% url 'story' story.id %}" class="story-list-item">
+            <div class="media">
+                <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
+                <div class="media-body">
+                    <h4 class="mt-0">{{ story.title }}</h4>
+                    <p>{{ story.author }} | {{ story.date_posted }}</p>
+                    <p>{{ story.synopsis }}</p>
+                </div>
+            </div>
+        </a>
+
+        {% endfor %}
+
+        {% for audio in audios %}
+
+        <a href="{% url 'audio' audio.id %}" class="audio-list-item">
+            <div class="media">
+                <img class="list-thumb" src="{{ audio.audio_thumbnail.url }}">
+                <div class="media-body">
+                    <h4 class="mt-0">{{ audio.title }}</h4>
+                    <p>{{ audio.creator }} | {{ audio.date_posted }}</p>
+                    <p>{{ audio.description }}</p>
+                </div>
+            </div>
+        </a>
+
+        {% endfor %}
+
+        {% for mythmaker in mythmakers %}
+
+        <a href="{% url 'publicprofile' mythmaker.id %}" class="user-list-item">
+            <div class="card user-card" style="width: 18rem;">
+                {% if mythmaker.mythmaker.profile_image == '' %}
+                <img src="{% static 'images/default-profile.png' %}" class="card-img-top">
+                {% else %}
+                <img src="{{ mythmaker.mythmaker.profile_image.url }}" class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body">
+                    <h4 class="card-title">{{ mythmaker.username }}</h5>
+                    <p class="card-text">{{ mythmaker.mythmaker.tagline }}</p>
+                </div>
+            </div>
+        </a>
+
+
+        {% endfor %}
+
+
         </div>
 
         <div class="col-xs-12 col-md-2 upload-div">

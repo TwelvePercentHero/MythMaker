@@ -14,9 +14,9 @@ def index(request):
     return render(request, 'main/index.html', context)
 
 def searchresults(request):
-    videos = Video.objects.filter(Q(title__icontains=request.GET['q']))
-    '''stories = Story.objects.filter()
-    audio = Audio.objects.filter()
-    mythmakers = Users.objects.filter()'''
-    context = {'videos' : videos}
+    videos = Video.objects.filter(Q(title__icontains = request.GET['q']) | Q(description__icontains = request.GET['q']))
+    stories = Story.objects.filter(Q(title__icontains = request.GET['q']) | Q(synopsis__icontains = request.GET['q']))
+    audios = Audio.objects.filter(Q(title__icontains = request.GET['q']) | Q(description__icontains = request.GET['q']))
+    mythmakers = User.objects.filter(Q(username__icontains = request.GET['q']))
+    context = {'videos' : videos, 'stories' : stories, 'audios' : audios, 'mythmakers' : mythmakers}
     return render(request, 'main/searchresults.html', context)
