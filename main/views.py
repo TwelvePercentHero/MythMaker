@@ -13,8 +13,10 @@ def index(request):
     context = {'latest_videos' : latest_videos, 'latest_stories' : latest_stories, 'latest_audio' : latest_audio}
     return render(request, 'main/index.html', context)
 
-'''def searchresults(request):
-    videos = Video.objects.filter()
-    stories = Story.objects.filter()
+def searchresults(request):
+    videos = Video.objects.filter(Q(title__icontains=request.GET['q']))
+    '''stories = Story.objects.filter()
     audio = Audio.objects.filter()
     mythmakers = Users.objects.filter()'''
+    context = {'videos' : videos}
+    return render(request, 'main/searchresults.html', context)

@@ -40,7 +40,14 @@
           <a class="nav-link" href="{% url 'userlist' %}">Creators</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <form class="navbar-form" action="{% url 'searchresults' %}" id="search" method="GET">
+          <div class="form-group" style="display:inline;">
+            <div class="input-group">
+              <input class="form-control" name="q" type="text" placeholder="Search...">
+            </div>
+          </div>
+        </form>
+      <ul class="nav navbar-form navbar-right">
         {% if user.is_authenticated %}
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
