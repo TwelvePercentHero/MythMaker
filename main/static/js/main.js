@@ -17,7 +17,7 @@ $(document).ready(function() {
         $("#audio-results").removeClass("d-none").addClass("d-block");
         $("#user-results").removeClass("d-block").addClass("d-none");
     });
-    $("#show-stories").click(function() {
+    $("#show-users").click(function() {
         $("#video-results").removeClass("d-block").addClass("d-none");
         $("#story-results").removeClass("d-block").addClass("d-none");
         $("#audio-results").removeClass("d-block").addClass("d-none");
