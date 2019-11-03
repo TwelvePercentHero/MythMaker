@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.core.files import File
 from django.core.files.uploadedfile import SimpleUploadedFile
 from .forms import AudioUpload
 
@@ -15,6 +16,7 @@ class TestAudioForm(TestCase):
             'title' : 'Test Title',
             'description' : 'Test Audio Description',
             'audio_thumbnail' : SimpleUploadedFile('small.gif', testimage, content_type = 'image/gif'),
-            'cover_image' : SimpleUploadedFile('small.gif', testimage, content_type = 'image/gif')
+            'cover_image' : SimpleUploadedFile('small.gif', testimage, content_type = 'image/gif'),
+            'audio_file' : File(open('media/audio/test_audio_file.mp3'))
             })
         self.assertTrue(form.is_valid)
