@@ -10,8 +10,9 @@
         <div class="col-xs-12 col-md-2 filter-div"><h4>Search Results for '{{ query }}'</h4></div>
         <div class="col-xs-12 col-md-8 video-list">
         
-        <a id="button" href="#">Videos</a> | <a id="button2" href="#">Stories</a> | <a id="button3" href="#">Audios</a> | <a id="button4" href="#">Creators</a>
-        <div id="video-results">
+        <button class="btn" id="show-videos">Videos</button> | <button class="btn" id="show-stories">Stories</button>
+          | <button class="btn" id="show-audios">Audios</button>  | <button class="btn" id="show-users">Creators</button> 
+        <div class="d-block" id="video-results">
         {% for video in videos %}   
         
         <a href="{% url 'video' video.id %}" class="video-list-item">
@@ -29,7 +30,7 @@
         {% endfor %}
         </div>
 
-        <div id="story-results">
+        <div class="d-none" id="story-results">
         {% for story in stories %}
 
         <a href="{% url 'story' story.id %}" class="story-list-item">
@@ -46,7 +47,7 @@
         {% endfor %}
         </div>
 
-        <div id="audio-results">
+        <div class="d-none" id="audio-results">
         {% for audio in audios %}
 
         <a href="{% url 'audio' audio.id %}" class="audio-list-item">
@@ -63,7 +64,7 @@
         {% endfor %}
         </div>
 
-        <div id="user-results">
+        <div class="d-none" id="user-results">
         {% for mythmaker in mythmakers %}
 
         <a href="{% url 'publicprofile' mythmaker.id %}" class="user-list-item">
