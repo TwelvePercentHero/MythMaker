@@ -41,7 +41,7 @@
         </li>
       </ul>
       <form class="navbar-form" action="{% url 'searchresults' %}" id="search" method="GET">
-          <div class="form-group" style="display:inline;">
+          <div class="form-group search-bar">
             <div class="input-group">
               <input class="form-control" name="q" type="text" placeholder="Search...">
             </div>
@@ -98,4 +98,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Custom jQuery -->
+    <script src="{% static 'js/main.js' %}"></script>
 </html>

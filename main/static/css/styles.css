@@ -59,8 +59,8 @@ footer ul li {
     background-color: #18121E;
 }
 
-#search {
-    text-align: center;
+.search-bar {
+    display: inline;
 }
 
 /* Home Page */
