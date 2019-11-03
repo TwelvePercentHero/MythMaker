@@ -29,8 +29,8 @@
         <div class="col-xs-12 offset-md-1 col-md-3 benefits-col">
             <a href="{% url 'story' story.id %}" class="story-list-item">
             <h4>{{ story.title }}</h4>
+            <img src="{{ story.story_thumbnail.url }}" class="list-thumb">
             <p>{{ story.author }} | {{ story.date_posted }}</p>
-            <p>{{ story.synopsis }}</p>
             </a>
         </div>
         <div class="col-xs-12 col-md-3 benefits-col">
@@ -41,7 +41,11 @@
             </a>
         </div>
         <div class="col-xs-12 col-md-3 benefits-col">
-            <p>Placeholder</p>
+            <a href="{% url 'audio' audio.id %}" class="audio-list-item">
+            <h4>{{ audio.title }}</h4>
+            <img src="{{ audio.audio_thumbnail.url }}" class="list-thumb">
+            <p>{{ audio.creator }} | {{ audio.date_posted }}</p>
+            </a>
         </div>
     </div>
 

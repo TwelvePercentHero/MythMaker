@@ -65,6 +65,21 @@
             <h4>Latest Audio</h4>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-xs-12 offset-md-1 col-md-10">
+        {% for audio in latest_audio %}
+            <div class="col-xs-12 col-md-2 latest-audio">
+                <a href="{% url 'audio' audio.id %}" class="audio-list-item">
+                    <img src="{{ audio.audio_thumbnail.url }}" class="list-thumb" alt="{{ audio.title }} thumbnail">
+                    <h5 class="latest-title">{{ audio.title }}</h5>
+                    <p class="latest-text">{{ audio.creator }}</p>
+                    <p class="latest-text">{{ audio.date_posted }}</p>
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
 </section>
 
 {% endblock %}

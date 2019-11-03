@@ -20,6 +20,7 @@ from .tokens import account_activation_token
 from .models import MythMaker, Membership, MythMakerMembership, Subscription
 from video.models import Video
 from stories.models import Story
+from audio.models import Audio
 import random
 
 import stripe
@@ -131,7 +132,9 @@ def benefits(request):
     story = random.choice(all_stories)
     all_videos = Video.objects.all()
     video = random.choice(all_videos)
-    context = {'username' : username, 'user_membership' : user_membership, 'story' : story, 'video' : video}
+    all_audio = Audio.objects.all()
+    audio = random.choice(all_audio)
+    context = {'username' : username, 'user_membership' : user_membership, 'story' : story, 'video' : video, 'audio' : audio}
     return render(request, 'registration/benefits.html', context)
 
 @login_required
