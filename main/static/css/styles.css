@@ -336,6 +336,36 @@ video {
     padding-top: 20px;
 }
 
+.display-btn {
+    border-top: 1px solid #232323;
+    border-left: 1px solid #232323;
+    border-right: 1px solid #232323;
+    border-radius: 0%;
+    font-weight: bold;
+}
+
+.display-container {
+    border: 1px solid #232323;
+    padding: 30px;
+}
+
+.profile-body {
+    color: #232323;
+}
+
+.d-block h4 {
+    color: #232323;
+}
+
+.profile-list-item {
+    color: #232323;
+}
+
+.profile-list-item:hover {
+    text-decoration: none;
+    color: #232323;
+}
+
 .upgrade-div p {
     font-size: 18px;
 }
