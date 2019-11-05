@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'video',
     'stories',
     'audio',
+    'community',
 ]
 
 MIDDLEWARE = [
