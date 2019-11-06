@@ -21,6 +21,7 @@ from .models import MythMaker, Membership, MythMakerMembership, Subscription
 from video.models import Video
 from stories.models import Story
 from audio.models import Audio
+from community.models import Like
 import random
 
 import stripe
@@ -69,7 +70,19 @@ def profile(request):
     videos = Video.objects.filter(uploaded_by = user)
     stories = Story.objects.filter(author = user)
     audios = Audio.objects.filter(creator = user)
-    context = {'user' : user, 'user_membership' : user_membership, 'videos' : videos, 'stories' : stories, 'audios' : audios}
+    story_likes = Like.objects.filter(liked_by = user, story_type = 'STORY')
+    video_likes = Like.objects.filter(liked_by = user, story_type = 'VIDEO')
+    audio_likes = Like.objects.filter(liked_by = user, story_type = 'AUDIO')
+    context = {
+        'user' : user,
+        'user_membership' : user_membership,
+        'videos' : videos,
+        'stories' : stories,
+        'audios' : audios,
+        'story_likes' : story_likes,
+        'video_likes' : video_likes,
+        'audio_likes' : audio_likes,
+        }
     return render(request, 'registration/profile.html', context)
 
 def register(request):

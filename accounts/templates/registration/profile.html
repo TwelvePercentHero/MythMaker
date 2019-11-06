@@ -64,6 +64,19 @@
                     </a>
                 
                     {% endfor %}
+                    <h4>Liked Stories</h4>
+                    {% for liked_story in story_likes %}
+                    <a href="{% url 'story' liked_story.story.id %}" class="profile-list-item">
+                            <div class="media">
+                                <img class="list-thumb" src="{{ liked_story.story.story_thumbnail.url }}">
+                                <div class="media-body profile-body">
+                                    <h4 class="mt-0">{{ liked_story.story.title }}</h4>
+                                    <p>{{ liked_story.story.author }} | {{ liked_story.story.date_posted }}</p>
+                                    <p>{{ liked_story.story.synopsis }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
                 </div>
 
             <div class="d-none" id="video-results">
@@ -82,6 +95,20 @@
                 </a>
                 
                 {% endfor %}
+
+                <h4>Liked Videos</h4>
+                {% for liked_video in video_likes %}
+                <a href="{% url 'video' liked_video.video.id %}" class="profile-list-item">
+                        <div class="media">
+                        <img class="list-thumb" src="{{ liked_video.video.thumbnail.url }}" alt="Thumbnail for {{ video.title }}">
+                        <div class="media-body profile-body">
+                            <h4 class="mt-0">{{ liked_video.video.title }}</h5>
+                            <p><strong>{{ liked_video.video.uploaded_by }} | {{ liked_video.video.date_posted }}</strong></p>
+                            <p>{{ liked_video.video.description }}</p>
+                        </div>
+                        </div>
+                    </a>
+                {% endfor %}
             </div>
 
             <div class="d-none" id="audio-results">
@@ -99,6 +126,21 @@
                     </div>
                 </a>
             
+                {% endfor %}
+
+                <h4>Liked Audios</h4>
+                {% for liked_audio in audio_likes %}
+                <a href="{% url 'audio' liked_audio.audio.id %}" class="profile-list-item">
+                    <div class="media">
+                        <img class="list-thumb" src="{{ liked_audio.audio.audio_thumbnail.url }}">
+                        <div class="media-body">
+                            <h4 class="mt-0">{{ liked_audio.audio.title }}</h4>
+                            <p>{{ liked_audio.audio.creator }} | {{ liked_audio.audio.date_posted }}</p>
+                            <p>{{ liked_audio.audio.description }}</p>
+                        </div>
+                    </div>
+                </a>
+
                 {% endfor %}
             </div>
         </div>
