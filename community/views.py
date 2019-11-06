@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Like, Comment
 from stories.models import Story
+from video.models import Video
 
 
 @login_required
@@ -17,5 +18,18 @@ def like_story(request, story_id):
             new_like.save()
             return redirect(reverse('story', kwargs={'story_id' : story_id}))
         else:
-            return redirect(reverse('storylist'))
+            return redirect(reverse('story', kwargs={'story_id': story_id}))
+
+@login_required
+def like_video(request, video_id):
+    user = request.user
+    video = Video.objects.get(pk = video_id)
+    context = {'video' : video}
+    if request.method == 'POST':
+        if not Like.objects.filter(liked_by = user, video = video).exists():
+            new_like = Like(liked_by = user, story_type = 'VIDEO', video = video)
+            new_like.save()
+            return redirect(reverse('video', kwargs={'video_id' : video_id}))
+        else:
+            return redirect(reverse('video', kwargs={'video_id' : video_id}))
 
