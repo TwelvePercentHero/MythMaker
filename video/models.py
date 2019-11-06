@@ -11,6 +11,7 @@ class Video(models.Model):
     video_file = models.FileField(upload_to = 'videos', blank = True)
     thumbnail = models.FileField(upload_to = 'thumbnails', blank = True, help_text = 'Recommended image size 1920x1080px')
     description = models.CharField(max_length = 1000, blank = True, null = True)
+    video_likes = models.IntegerField(default = 0)
 
     def __str__(self):
         return self.title

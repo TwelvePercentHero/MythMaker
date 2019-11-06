@@ -33,6 +33,8 @@ def like_video(request, video_id):
         if not Like.objects.filter(liked_by = user, video = video).exists():
             new_like = Like(liked_by = user, story_type = 'VIDEO', video = video)
             new_like.save()
+            video.video_likes += 1
+            video.save()
             return redirect(reverse('video', kwargs = {'video_id' : video_id}))
         else:
             return redirect(reverse('video', kwargs = {'video_id' : video_id}))
