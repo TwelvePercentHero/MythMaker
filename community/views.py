@@ -12,7 +12,10 @@ def like_story(request, story_id):
     story = Story.objects.get(pk = story_id)
     context = {'story' : story}
     if request.method == 'POST':
-        new_like = Like(liked_by = user, story_type = 'STORY', story = story)
-        new_like.save()
-        return redirect(reverse('story', kwargs={'story_id' : story_id}))
+        if not Like.objects.filter(liked_by = user, story = story).exists():
+            new_like = Like(liked_by = user, story_type = 'STORY', story = story)
+            new_like.save()
+            return redirect(reverse('story', kwargs={'story_id' : story_id}))
+        else:
+            return redirect(reverse('storylist'))
 
