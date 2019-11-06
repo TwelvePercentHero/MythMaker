@@ -27,6 +27,13 @@
             </audio>
         </div>
     </div>
+
+    <div class="row">
+        <form id="like_audio" action="{% url 'like_audio' audio.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-success">Like</button>
+        </form>
+    </div>
 </section>
 
 {% endblock %}
