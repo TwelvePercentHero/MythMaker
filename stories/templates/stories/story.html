@@ -32,6 +32,13 @@
             {% endautoescape %}
         </div>
     </div>
+
+    <div class="row">
+        <form id="like_story" action="{% url 'like_story' story.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-success">Like</button>
+        </form>
+    </div>
 </section>
 
 {% endblock %}

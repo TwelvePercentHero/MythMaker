@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('video.urls')),
     path('', include('stories.urls')),
     path('', include('audio.urls')),
+    path('', include('community.urls')),
     path('', include('django.contrib.auth.urls')),
     path('tinymce/', include('tinymce.urls')),
 ]
