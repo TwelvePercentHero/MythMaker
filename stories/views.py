@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Story
 from .forms import StoryUpload
 
-from community.models import Like, Comment
+from community.models import Comment
 from community.forms import CommentUpload
 
 def story(request, story_id):

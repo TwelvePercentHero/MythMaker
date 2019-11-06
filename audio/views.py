@@ -8,9 +8,25 @@ from accounts.models import MythMakerMembership
 from .models import Audio
 from .forms import AudioUpload
 
+from community.models import Like, Comment
+from community.forms import CommentUpload
+
 def audio(request, audio_id):
+    user = request.user
     audio = Audio.objects.get(pk = audio_id)
-    context = {'audio': audio}
+    if user.is_authenticated:
+        if request.method == 'POST':
+            form = CommentUpload(request.POST)
+            if form.is_valid():
+                form.instance.commenter = user
+                form.instance.audio = audio
+                form.save()
+                return redirect(reverse('audio', kwargs = {'audio_id' : audio_id}))
+        else:
+            form = CommentUpload()
+            context = {'user' : user, 'audio' : audio, 'form' : form}
+            return render(request, 'audio/audio.html', context)
+    context = {'user' : user, 'audio': audio}
     return render(request, 'audio/audio.html', context)
 
 def audiolist(request):

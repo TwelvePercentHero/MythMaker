@@ -33,8 +33,19 @@
             {% csrf_token %}
             <button type="submit" class="btn btn-outline-success">Like</button>
         </form>
+        {{ audio.audio_likes }}
     </div>
-    {{ audio.audio_likes }}
+
+
+    <div class="row">
+            <form id="audio_comment" action="{% url 'audio' audio.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.comment }}
+                </div>
+                <button type="submit" class="btn btn-outline-success">Comment</button>
+            </form>
+        </div>
 </section>
 
 {% endblock %}
