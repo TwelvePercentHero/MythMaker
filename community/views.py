@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.db.models import F
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -17,6 +18,8 @@ def like_story(request, story_id):
         if not Like.objects.filter(liked_by = user, story = story).exists():
             new_like = Like(liked_by = user, story_type = 'STORY', story = story)
             new_like.save()
+            story.story_likes += 1
+            story.save()
             return redirect(reverse('story', kwargs = {'story_id' : story_id}))
         else:
             return redirect(reverse('story', kwargs = {'story_id': story_id}))

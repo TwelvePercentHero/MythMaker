@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Story
 from .forms import StoryUpload
 
+from community.models import Like
+
 def story(request, story_id):
     story = Story.objects.get(pk = story_id)
     context = {'story' : story}
