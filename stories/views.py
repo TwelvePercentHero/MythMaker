@@ -6,10 +6,24 @@ from .models import Story
 from .forms import StoryUpload
 
 from community.models import Like
+from community.forms import CommentUpload
 
 def story(request, story_id):
+    user = request.user
     story = Story.objects.get(pk = story_id)
-    context = {'story' : story}
+    if user.is_authenticated:
+        if request.method == 'POST':
+            form = CommentUpload(request.POST)
+            if form.is_valid():
+                form.instance.commenter = user
+                Comment.story = story
+                form.save()
+                return redirect(reverse('story', kwargs = {'story_id' : story_id}))
+        else:
+            form = CommentUpload()
+            context = {'user' : user, 'story' : story, 'form' : form}
+            return render(request, 'stories/story.html', context)
+    context = {'user' : user, 'story' : story}
     return render(request, 'stories/story.html', context)
 
 def storylist(request):

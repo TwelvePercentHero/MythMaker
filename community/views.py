@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, reverse
-from django.db.models import F
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from .models import Like, Comment
+from .forms import CommentUpload
+
 from stories.models import Story
 from video.models import Video
 from audio.models import Audio
@@ -13,7 +14,7 @@ from audio.models import Audio
 def like_story(request, story_id):
     user = request.user
     story = Story.objects.get(pk = story_id)
-    context = {'story' : story}
+    context = {'user' : user, 'story' : story}
     if request.method == 'POST':
         if not Like.objects.filter(liked_by = user, story = story).exists():
             new_like = Like(liked_by = user, story_type = 'STORY', story = story)
@@ -28,7 +29,7 @@ def like_story(request, story_id):
 def like_video(request, video_id):
     user = request.user
     video = Video.objects.get(pk = video_id)
-    context = {'video' : video}
+    context = {'user' : user, 'video' : video}
     if request.method == 'POST':
         if not Like.objects.filter(liked_by = user, video = video).exists():
             new_like = Like(liked_by = user, story_type = 'VIDEO', video = video)
@@ -43,7 +44,7 @@ def like_video(request, video_id):
 def like_audio(request, audio_id):
     user = request.user
     audio = Audio.objects.get(pk = audio_id)
-    context = {'audio': audio}
+    context = {'user' : user, 'audio': audio}
     if request.method == 'POST':
         if not Like.objects.filter(liked_by = user, audio = audio).exists():
             new_like = Like(liked_by = user, story_type = 'AUDIO', audio = audio)
@@ -53,4 +54,18 @@ def like_audio(request, audio_id):
             return redirect(reverse('audio', kwargs = {'audio_id' : audio_id}))
         else:
             return redirect(reverse('audio', kwargs = {'audio_id' : audio_id}))
+
+@login_required
+def story_comment(request, story_id):
+    user = request.user
+    story = Story.objects.get(pk = story_id)
+    if request.method == 'POST':
+        form = CommentUpload(request.POST)
+        if form.is_valid():
+            form.instance.commenter = user
+            form.save(commit = True)
+            return redirect(reverse('story', kwargs = {'story_id' : story_id}))
+    else:
+        form = CommentUpload()
+        return render(request, 'stories/story.html', {'user' : user, 'story' : story, 'form' : form})
 
