@@ -9,9 +9,25 @@ from accounts.models import MythMakerMembership
 from .models import Video
 from .forms import VideoUpload
 
+from community.models import Comment
+from community.forms import CommentUpload
+
 def video(request, video_id):
+    user = request.user
     video = Video.objects.get(pk = video_id)
-    context = {'video' : video}
+    if user.is_authenticated:
+        if request.method == 'POST':
+            form = CommentUpload(request.POST)
+            if form.is_valid():
+                form.instance.commenter = user
+                form.instance.video = video
+                form.save()
+                return redirect(reverse('video', kwargs = {'video_id' : video_id}))
+        else:
+            form = CommentUpload()
+            context = {'user' : user, 'video' : video, 'form' : form}
+            return render(request, 'video/video.html', context)
+    context = {'user' : user, 'video' : video}
     return render(request, 'video/video.html', context)
 
 def videolist(request):

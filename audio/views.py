@@ -8,7 +8,7 @@ from accounts.models import MythMakerMembership
 from .models import Audio
 from .forms import AudioUpload
 
-from community.models import Like, Comment
+from community.models import Comment
 from community.forms import CommentUpload
 
 def audio(request, audio_id):

@@ -30,8 +30,18 @@
             {% csrf_token %}
             <button type="submit" class="btn btn-outline-success">Like</button>
         </form>
+        {{ video.video_likes }}
     </div>
-    {{ video.video_likes }}
+
+    <div class="row">
+            <form id="video_comment" action="{% url 'video' video.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.comment }}
+                </div>
+                <button type="submit" class="btn btn-outline-success">Comment</button>
+            </form>
+        </div>
 
 </section>
 
