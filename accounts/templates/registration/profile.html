@@ -64,6 +64,7 @@
                     </a>
                 
                     {% endfor %}
+                    <hr>
                     <h4>Liked Stories</h4>
                     {% for liked_story in story_likes %}
                     <a href="{% url 'story' liked_story.story.id %}" class="profile-list-item">
@@ -95,6 +96,7 @@
                 </a>
                 
                 {% endfor %}
+                <hr>
 
                 <h4>Liked Videos</h4>
                 {% for liked_video in video_likes %}
@@ -127,6 +129,7 @@
                 </a>
             
                 {% endfor %}
+                <hr>
 
                 <h4>Liked Audios</h4>
                 {% for liked_audio in audio_likes %}
