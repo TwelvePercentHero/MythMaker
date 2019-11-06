@@ -4,7 +4,7 @@ from django.forms import ModelForm
 from .models import Comment
 
 class CommentUpload(ModelForm):
-    comment = forms.CharField(required = True)
+    comment = forms.CharField(required = True, widget = forms.Textarea(attrs={'rows': 5, 'cols': 50}))
 
     class Meta:
         model = Comment
