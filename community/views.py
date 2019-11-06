@@ -48,6 +48,8 @@ def like_audio(request, audio_id):
         if not Like.objects.filter(liked_by = user, audio = audio).exists():
             new_like = Like(liked_by = user, story_type = 'AUDIO', audio = audio)
             new_like.save()
+            audio.audio_likes += 1
+            audio.save()
             return redirect(reverse('audio', kwargs = {'audio_id' : audio_id}))
         else:
             return redirect(reverse('audio', kwargs = {'audio_id' : audio_id}))
