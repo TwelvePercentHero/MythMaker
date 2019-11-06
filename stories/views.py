@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Story
 from .forms import StoryUpload
 
-from community.models import Like
+from community.models import Like, Comment
 from community.forms import CommentUpload
 
 def story(request, story_id):
@@ -16,7 +16,7 @@ def story(request, story_id):
             form = CommentUpload(request.POST)
             if form.is_valid():
                 form.instance.commenter = user
-                Comment.story = story
+                form.instance.story = story
                 form.save()
                 return redirect(reverse('story', kwargs = {'story_id' : story_id}))
         else:

@@ -42,7 +42,7 @@
     </div>
 
     <div class="row">
-        <form id="story_comment" action="{% url 'story_comment' story.id %}" method="POST">
+        <form id="story_comment" action="{% url 'story' story.id %}" method="POST">
             {% csrf_token %}
             <div class="form-group">
                 {{ form.comment }}

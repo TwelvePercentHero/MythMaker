@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from .models import Like, Comment
-from .forms import CommentUpload
+from .models import Like
 
 from stories.models import Story
 from video.models import Video
@@ -54,18 +53,4 @@ def like_audio(request, audio_id):
             return redirect(reverse('audio', kwargs = {'audio_id' : audio_id}))
         else:
             return redirect(reverse('audio', kwargs = {'audio_id' : audio_id}))
-
-@login_required
-def story_comment(request, story_id):
-    user = request.user
-    story = Story.objects.get(pk = story_id)
-    if request.method == 'POST':
-        form = CommentUpload(request.POST)
-        if form.is_valid():
-            form.instance.commenter = user
-            form.save(commit = True)
-            return redirect(reverse('story', kwargs = {'story_id' : story_id}))
-    else:
-        form = CommentUpload()
-        return render(request, 'stories/story.html', {'user' : user, 'story' : story, 'form' : form})
 
