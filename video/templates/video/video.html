@@ -23,10 +23,13 @@
             <p class="vid-info">Uploaded By {{ video.uploaded_by }} on {{ video.date_posted }}</p>
             <p class="vid-info">{{ video.description }}</p>
         </div> 
+    </div>
 
-        <div class="col-xs-12 col-md-2 links-div">
-            <a href="#" class="btn btn-outline-success edit-btn">Like</a>
-        </div>
+    <div class="row">
+        <form id="like_video" action="{% url 'like_video' video.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-success">Like</button>
+        </form>
     </div>
 
 </section>

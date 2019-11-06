@@ -33,3 +33,5 @@ def like_video(request, video_id):
         else:
             return redirect(reverse('video', kwargs={'video_id' : video_id}))
 
+
+
