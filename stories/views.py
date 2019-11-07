@@ -11,6 +11,7 @@ from community.forms import CommentUpload
 def story(request, story_id):
     user = request.user
     story = Story.objects.get(pk = story_id)
+    comments = Comment.objects.filter(story = story).order_by('created')
     if user.is_authenticated:
         if request.method == 'POST':
             form = CommentUpload(request.POST)
@@ -18,12 +19,14 @@ def story(request, story_id):
                 form.instance.commenter = user
                 form.instance.story = story
                 form.save()
+                story.story_comment_count += 1
+                story.save()
                 return redirect(reverse('story', kwargs = {'story_id' : story_id}))
         else:
             form = CommentUpload()
-            context = {'user' : user, 'story' : story, 'form' : form}
+            context = {'user' : user, 'story' : story, 'comments' : comments, 'form' : form}
             return render(request, 'stories/story.html', context)
-    context = {'user' : user, 'story' : story}
+    context = {'user' : user, 'story' : story, 'comments' : comments}
     return render(request, 'stories/story.html', context)
 
 def storylist(request):

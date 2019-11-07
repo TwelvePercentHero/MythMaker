@@ -36,6 +36,15 @@
         {{ audio.audio_likes }}
     </div>
 
+    {% for comment in comments %}
+    <div class="row">
+        <div>
+            <p>{{ comment.comment }}</p>
+            <p>{{ comment.commenter }} | {{ comment.created }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
 
     <div class="row">
             <form id="audio_comment" action="{% url 'audio' audio.id %}" method="POST">

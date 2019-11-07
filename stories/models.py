@@ -11,6 +11,7 @@ class Story(models.Model):
     cover_image = models.ImageField(upload_to = 'cover_images', blank = True)
     story_thumbnail = models.ImageField(upload_to = 'story_thumbnails', blank = True)
     story_likes = models.IntegerField(default = 0)
+    story_comment_count = models.IntegerField(default = 0)
 
     class Meta:
         verbose_name = 'Story'

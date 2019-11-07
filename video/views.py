@@ -15,6 +15,7 @@ from community.forms import CommentUpload
 def video(request, video_id):
     user = request.user
     video = Video.objects.get(pk = video_id)
+    comments = Comment.objects.filter(video = video).order_by('created')
     if user.is_authenticated:
         if request.method == 'POST':
             form = CommentUpload(request.POST)
@@ -22,12 +23,14 @@ def video(request, video_id):
                 form.instance.commenter = user
                 form.instance.video = video
                 form.save()
+                video.video_comment_count += 1
+                video.save()
                 return redirect(reverse('video', kwargs = {'video_id' : video_id}))
         else:
             form = CommentUpload()
-            context = {'user' : user, 'video' : video, 'form' : form}
+            context = {'user' : user, 'video' : video, 'comments' : comments, 'form' : form}
             return render(request, 'video/video.html', context)
-    context = {'user' : user, 'video' : video}
+    context = {'user' : user, 'video' : video, 'comments' : comments}
     return render(request, 'video/video.html', context)
 
 def videolist(request):

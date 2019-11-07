@@ -17,7 +17,8 @@
                     <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
                     <div class="media-body">
                         <h4 class="mt-0">{{ story.title }}</h4>
-                        <p>{{ story.author }} | {{ story.date_posted }} | {{ story.story_likes }}</p>
+                        <p>{{ story.author }} | {{ story.date_posted }} | 
+                            <i class="fas fa-heart"></i> {{ story.story_likes }} | <i class="fas fa-comments"></i> {{ story.story_comment_count }}</p>
                         <p>{{ story.synopsis }}</p>
                     </div>
                 </div>

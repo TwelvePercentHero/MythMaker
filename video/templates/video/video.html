@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<section class="container-fluid video-bg">
+<section class="container-fluid story-bg">
     <div class="row">
         <div class="video-div col-xs-12 offset-md-1 col-md-8">
             <video width="1280" height="720" controls>
@@ -32,6 +32,15 @@
         </form>
         {{ video.video_likes }}
     </div>
+
+    {% for comment in comments %}
+    <div class="row">
+        <div>
+            <p>{{ comment.comment }}</p>
+            <p>{{ comment.commenter }} | {{ comment.created }}</p>
+        </div>
+    </div>
+    {% endfor %}
 
     <div class="row">
             <form id="video_comment" action="{% url 'video' video.id %}" method="POST">

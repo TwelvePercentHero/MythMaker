@@ -10,6 +10,7 @@ class Audio(models.Model):
     cover_image = models.ImageField(upload_to = 'audio_covers', blank = True)
     audio_thumbnail = models.ImageField(upload_to = 'audio_thumbnails', blank = True)
     audio_likes = models.IntegerField(default = 0)
+    audio_comment_count = models.IntegerField(default = 0)
 
     class Meta:
         verbose_name = 'Audio'

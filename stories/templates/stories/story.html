@@ -41,6 +41,15 @@
         {{ story.story_likes }}
     </div>
 
+        {% for comment in comments %}
+        <div class="row">
+        <div>
+            <p>{{ comment.comment }}</p>
+            <p>{{ comment.commenter }} | {{ comment.created }}</p>
+        </div>
+        </div>
+        {% endfor %}
+
     <div class="row">
         <form id="story_comment" action="{% url 'story' story.id %}" method="POST">
             {% csrf_token %}
