@@ -17,10 +17,10 @@
             <a href="{% url 'story' story.id %}" class="story-list-item">
                 <div class="story-item">
                     <div class="row">
-                    <div class="story-image col-sm-12 col-md-12 col-lg-3">
+                    <div class="story-image col-sm-12 col-lg-3">
                         <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
                     </div>
-                    <div class="story-item-body col-sm-12 col-md-12 col-lg-9">
+                    <div class="story-item-body col-sm-12 col-lg-9">
                         <h4 class="mt-0">{{ story.title }}</h4>
                         <p>{{ story.author }} | {{ story.date_posted }} | 
                             <i class="fas fa-heart"></i> {{ story.story_likes }} | <i class="fas fa-comments"></i> {{ story.story_comment_count }}</p>
