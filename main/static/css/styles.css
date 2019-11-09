@@ -9,6 +9,10 @@ footer {
     color: #EAC67A;
 }
 
+footer p {
+    padding: 10px;
+}
+
 footer i {
     padding: 5px;
 }
@@ -21,6 +25,20 @@ footer ul li {
     display: inline;
     list-style: none;
     padding: 5px;
+}
+
+.footer-links {
+    color: #EAC67A;
+}
+
+.footer-links:hover {
+    color: #EDB234;
+    text-decoration: none;
+}
+
+.solid-bg {
+    height: 100%;
+    background-color: #233237;
 }
 
 /* Navbar */
@@ -90,6 +108,7 @@ footer ul li {
 .dark-section {
     background-color: #18121E;
     color: #FFF;
+    padding-bottom: 40px;
 }
 
 .dark-section h1, h4 {
@@ -104,26 +123,27 @@ footer ul li {
     padding: 20px;
 }
 
-.latest-videos {
-    display: inline-block;
-}
-
 .latest-stories {
-    display: inline-block;
-}
-
-.latest-audio {
     display: inline-block;
 }
 
 .latest-title {
     color: #EAC67A;
+    font-size: 18px;
+    padding-top: 12px;
 }
 
 .latest-text {
     color: #fff;
     font-size: 14px;
     margin-bottom: 5px;
+}
+
+/* About Page */
+
+.side-div {
+    padding-top: 30px;
+    color: #fff;
 }
 
 /* Video List */
@@ -224,11 +244,6 @@ video {
 }
 
 /* Story Page */
-
-.story-bg {
-    height: 100%;
-    background-color: #233237;
-}
 
 .title-div {
     text-align: center;
@@ -435,5 +450,11 @@ video {
 @media (max-width: 575.98px) {
     .navbar-brand {
         width: 200px;
+    }
+    .footer-div {
+        text-align: center;
+    }
+    .latest-stories {
+        text-align: center;
     }
 }

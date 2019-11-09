@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<section class="container-fluid story-bg">
+<section class="container-fluid solid-bg">
     <div class="row">
         <div class="col-md-12 header-container">
             <img class="img-fluid profile-header" src="{{ audio.cover_image.url }}">
@@ -13,10 +13,14 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 offset-md-1 col-md-10 title-div">
+        <div class="col-xs-12 offset-md-1 col-md-8 title-div">
             <h1>{{ audio.title }}</h1>
             <p><em>{{ audio.description }}</em></p>
             <p><strong>{{ audio.creator }} | {{ audio.date_posted }}</strong></p>
+        </div>
+
+        <div class="col-xs-12 col-md-3 side-div">
+            <h4>More from {{ audio.creator }}</h4>
         </div>
     </div>
 

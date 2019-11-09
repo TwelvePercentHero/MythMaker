@@ -1,9 +1,32 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
-{% block title %}About Us | MythMakers{% endblock %}
+{% block title %}Welcome to MythMakers | MythMakers{% endblock %}
 
 {% block content %}
 
+<section class="container-fluid solid-bg">
+
+    <div class="row">
+        <div class="col-md-12 header-container">
+            <img class="img-fluid profile-header" src="{% static 'images/default-header.png' %}" alt="About MythMakers image">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 offset-md-1 col-md-8 title-div">
+            <h1>Welcome to MythMakers</h1>
+                <p><strong>MythMakers is an online storytelling community using the power of the internet to create new and exciting stories in a range of 
+                media forms</strong></p>
+        </div>
+
+        <div class="col-xs-12 col-md-2 side-div">
+            <h4>Interested?</h4>
+            <p>Become a MythMaker and join the internet's newest storytelling community</p>
+            <a class="btn btn-outline-success btn-lg" href="{% url 'register' %}" role="button">Register</a>
+        </div>
+    </div>
+
+</section>
 
 {% endblock %}
