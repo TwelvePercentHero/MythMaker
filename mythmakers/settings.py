@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'mythmakers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mythmakersDB',
@@ -90,9 +90,9 @@ WSGI_APPLICATION = 'mythmakers.wsgi.application'
         'HOST' : 'localhost',
         'PORT' : '5432',
     }
-}'''
+}
 
-if "DATABASE_URL" in os.environ:
+'''if "DATABASE_URL" in os.environ:
     DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL')) }
 else:
     print("Database URL not found. Using SQLite instead")
@@ -101,7 +101,7 @@ else:
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
-    }
+    }'''
 
 
 # Password validation
