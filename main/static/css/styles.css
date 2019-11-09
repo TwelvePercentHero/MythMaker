@@ -501,4 +501,10 @@ video {
     .main-bg {
         height: 100%;
     }
+    .story-item, .upload-div {
+        text-align: center;
+    }
+    .upload-div {
+        padding-bottom: 20px;
+    }
 }
