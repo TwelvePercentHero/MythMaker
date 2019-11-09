@@ -8,9 +8,9 @@ from stories.models import Story
 from audio.models import Audio
 
 def index(request):
-    latest_videos = Video.objects.order_by('date_posted')[0:5]
-    latest_stories = Story.objects.order_by('date_posted')[0:5]
-    latest_audio = Audio.objects.order_by('date_posted')[0:5]
+    latest_videos = Video.objects.order_by('-date_posted')[0:5]
+    latest_stories = Story.objects.order_by('-date_posted')[0:5]
+    latest_audio = Audio.objects.order_by('-date_posted')[0:5]
     context = {'latest_videos' : latest_videos, 'latest_stories' : latest_stories, 'latest_audio' : latest_audio}
     return render(request, 'main/index.html', context)
 
