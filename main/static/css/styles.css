@@ -47,16 +47,20 @@ footer ul li {
     background-color: #18121E;
 }
 
-.nav-link {
-    color: #EAC67A;
-}
-
 .navbar-right {
     padding-right: 50px;
 }
 
 .dropdown-menu {
     background-color: #18121E;
+}
+
+.user-menu a {
+    color: #EAC67A;
+}
+
+.user-menu a:hover {
+    color: #EDB234;
 }
 
 .search-bar {

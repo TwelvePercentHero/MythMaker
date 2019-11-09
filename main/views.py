@@ -14,6 +14,9 @@ def index(request):
     context = {'latest_videos' : latest_videos, 'latest_stories' : latest_stories, 'latest_audio' : latest_audio}
     return render(request, 'main/index.html', context)
 
+def about(request):
+    return render(request, 'main/about.html')
+
 def searchresults(request):
     user = request.user
     if request.user.is_authenticated:
