@@ -163,6 +163,12 @@ label {
     color: #fff;
 }
 
+/* List Pages */
+
+.story-item {
+    margin-bottom: 20px;
+}
+
 /* Video List */
 
 .filter-div {
@@ -393,12 +399,6 @@ video {
     font-size: 18px;
 }
 
-/* Edit Page */
-
-.edit-field {
-    width: 100%;
-}
-
 /* Benefits Page */
 
 .benefits-col {
@@ -443,6 +443,10 @@ video {
     font-weight: bold;
 }
 
+.edit-field {
+    width: 100%;
+}
+
 /* Buttons */
 
 .btn-outline-success {
@@ -479,10 +483,7 @@ video {
     .navbar-brand {
         width: 200px;
     }
-    .footer-div {
-        text-align: center;
-    }
-    .latest-stories {
+    .footer-div, .latest-col, .latest-stories, .story-item, .upload-div {
         text-align: center;
     }
     .main-bg {
@@ -490,5 +491,14 @@ video {
     }
     .jumbotron {
         margin-top: 20px;
+    }
+    .upload-div {
+        padding-bottom: 20px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .main-bg {
+        height: 100%;
     }
 }

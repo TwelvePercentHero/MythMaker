@@ -6,29 +6,36 @@
 {% block content %}
 
 <section class="container-fluid main-bg">
+    <div class="row">
+        <div class="col-sm-12 col-xl-2 filter-div">
+            <h4>Filters</h4>
+        </div>
 
-        <div class="col-xs-12 col-md-2 filter-div"><h4>Filters</h4></div>
-        <div class="col-xs-12 col-md-8 story-list">
+        <div class="col-sm-12 col-xl-8 story-list">
         
             {% for story in stories %}
-
             <a href="{% url 'story' story.id %}" class="story-list-item">
-                <div class="media">
-                    <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
-                    <div class="media-body">
+                <div class="story-item">
+                    <div class="row">
+                    <div class="story-image col-sm-12 col-md-12 col-lg-3">
+                        <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
+                    </div>
+                    <div class="story-item-body col-sm-12 col-md-12 col-lg-9">
                         <h4 class="mt-0">{{ story.title }}</h4>
                         <p>{{ story.author }} | {{ story.date_posted }} | 
                             <i class="fas fa-heart"></i> {{ story.story_likes }} | <i class="fas fa-comments"></i> {{ story.story_comment_count }}</p>
                         <p>{{ story.synopsis }}</p>
                     </div>
+                    </div>
                 </div>
             </a>
-
             {% endfor %}
         </div>
 
-        <div class="col-xs-12 col-md-2 upload-div">
+        <div class="col-sm-12 col-xl-2 upload-div">
             {% if user.is_authenticated %}
+            <h4>Upload</h4>
+            <p>Add your own story to the MythMaker canon</p>
             <a href="{% url 'uploadstory' %}" class="btn btn-outline-success">Upload</a>
             {% else %}
             <h4>Register</h4>
@@ -36,6 +43,8 @@
             <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
             {% endif %}
         </div>
+
+    </div>
         
     </section>
 
