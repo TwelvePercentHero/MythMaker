@@ -13,11 +13,7 @@ footer p {
     padding: 10px;
 }
 
-footer i {
-    padding: 5px;
-}
-
-footer ul {
+footer i, ul {
     padding: 5px;
 }
 
@@ -39,6 +35,31 @@ footer ul li {
 .solid-bg {
     height: 100%;
     background-color: #233237;
+}
+
+.jumbotron {
+    background-color: rgb(152, 75, 67, 0.8)
+}
+
+.jumbotron-header {
+    color: #EAC67A;
+}
+
+.jumbotron a {
+    color: #EAC67A;
+}
+
+.jumbotron a:hover {
+    color: #EDB234;
+    text-decoration: none;
+}
+
+.jumbotron-text {
+    padding-top: 20px;
+}
+
+label {
+    color: #EAC67A;
 }
 
 /* Navbar */
@@ -99,10 +120,6 @@ footer ul li {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.jumbotron {
-    background-color: rgb(152, 75, 67, 0.8)
 }
 
 .dark-section {
@@ -419,6 +436,13 @@ video {
     margin-bottom: 20px;
 }
 
+/* Forms */
+
+.upgrade-jumbo p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 /* Buttons */
 
 .btn-outline-success {
@@ -441,6 +465,10 @@ video {
     background-color: #291f33
 }
 
+.submit-payment {
+    margin-top: 20px;
+}
+
 .fas {
     color:#EAC67A;
   }
@@ -456,5 +484,11 @@ video {
     }
     .latest-stories {
         text-align: center;
+    }
+    .main-bg {
+        height: 100%;
+    }
+    .jumbotron {
+        margin-top: 20px;
     }
 }
