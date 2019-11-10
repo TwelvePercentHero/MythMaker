@@ -25,6 +25,9 @@
 
         <div class="col-xs-12 col-md-2 side-div">
             <h4>More from {{ story.author }}</h4>
+            {% for more in more_stories %}
+            <p>{{ more.title }}</p>
+            {% endfor %}
         </div>
     </div>
 
@@ -47,12 +50,17 @@
     </div>
 
     <hr>
-
+    <div class="row">
+        <div class="col-sm-12 offset-lg-1 col-lg-8">
+            <h2 class="comment-header">Comments</h2>
+        </div>
+    </div>
         {% for comment in comments %}
         <div class="row">
             <div class="col-sm-12 offset-lg-1 col-lg-8">
-                <p>{{ comment.comment }}</p>
-                <p>{{ comment.commenter }} | {{ comment.created }}</p>
+                <p class="comment-body">{{ comment.comment }}</p>
+                <p class="comment-info"><strong>{{ comment.commenter }}</strong> | {{ comment.created }}</p>
+                <hr>
             </div>
         </div>
         {% endfor %}

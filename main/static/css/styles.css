@@ -505,7 +505,35 @@ video {
     color:#EAC67A;
   }
 
-/* Media Queries */
+/* --- Messages --- */
+
+.messages {
+    width: 100%;
+    text-align: center;
+}
+
+.alert {
+    margin-bottom: 0px;
+}
+
+/* --- Comments --- */
+
+.comment-header {
+    color: #EAC67A;
+    font-size: 20px;
+}
+
+.comment-body {
+    color: #fff;
+    font-size: 14px;
+}
+
+.comment-info {
+    color: #EAC67A;
+    font-size: 14px;
+}
+
+/* --- Media Queries --- */
 
 @media (max-width: 575.98px) {
     .navbar-brand {

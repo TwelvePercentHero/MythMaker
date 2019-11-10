@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -23,6 +24,7 @@ def story(request, story_id):
                 form.save()
                 story.story_comment_count += 1
                 story.save()
+                messages.success(request, 'Your comment was successfully published!')
                 return redirect(reverse('story', kwargs = {'story_id' : story_id}))
         else:
             form = CommentUpload()
