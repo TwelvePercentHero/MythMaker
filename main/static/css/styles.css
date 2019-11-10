@@ -165,8 +165,23 @@ label {
 
 /* List Pages */
 
+.story-page {
+    height: 100%;
+    vertical-align: top;
+}
+
 .story-item {
     margin-bottom: 20px;
+}
+
+.page-link {
+    background-color: #18121E;
+    color: #EAC67A;
+}
+
+.page-link:hover {
+    background-color: #EAC67A;
+    color: #18121E;
 }
 
 /* Video List */

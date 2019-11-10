@@ -5,7 +5,8 @@
 
 {% block content %}
 
-<section class="container-fluid main-bg story-page">
+<section class="container-fluid main-bg">
+    <div class="story-page">
     <div class="row">
         <div class="col-sm-12 col-xl-2 filter-div">
             <h4>Filters</h4>
@@ -37,7 +38,7 @@
                     {% if storylist.has_previous %}
                         <li class="page-item"><a class="page-link" href="?page={{ storylist.previous_page_number }}">&laquo;</a></li>
                     {% else %}
-                        <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+                        <li></li>
                     {% endif %}
                     {% for s in storylist.paginator.page_range %}
                         {% if storylist.number == s %}
@@ -49,7 +50,7 @@
                     {% if storylist.has_next %}
                         <li class="page-item"><a class="page-link" href="?page={{ storylist.next_page_number }}">&raquo;</a></li>
                     {% else %}
-                        <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+                        <li></li>
                     {% endif %}
                     </ul>
                 {% endif %}
@@ -68,7 +69,7 @@
             {% endif %}
         </div>
     </div>
-
+    </div>
 </section>
 
 
