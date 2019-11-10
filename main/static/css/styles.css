@@ -1,4 +1,4 @@
-/* Base Elements */
+/* --- Base Elements --- */
 
 body {
     font-family: 'Questrial', sans-serif;
@@ -62,7 +62,7 @@ label {
     color: #EAC67A;
 }
 
-/* Navbar */
+/* --- Navbar --- */
 
 .navbar-dark {
     background-color: #18121E;
@@ -106,7 +106,7 @@ label {
     display: inline;
 }
 
-/* Home Page */
+/* --- Home Page --- */
 
 .main-bg {
     height: 100vh;
@@ -156,14 +156,14 @@ label {
     margin-bottom: 5px;
 }
 
-/* About Page */
+/* --- About Page --- */
 
 .side-div {
-    padding-top: 30px;
+    padding-top: 5px;
     color: #fff;
 }
 
-/* List Pages */
+/* --- List Pages --- */
 
 .story-page {
     height: 100%;
@@ -210,7 +210,22 @@ label {
     margin-bottom: 5px;
 }
 
-/* Video List */
+.story-list {
+    height: 100%;
+    padding-top: 80px;
+    padding-right: 40px;
+}
+
+.story-list-item {
+    color: #fff;
+}
+
+.story-list-item:hover {
+    text-decoration: none;
+    color: #d7d9db;
+}
+
+/* --- Video List --- */
 
 .video-list {
     height: 100%;
@@ -250,7 +265,7 @@ label {
 }
 
 
-/* Video Page */
+/* --- Video Page --- */
 
 video {
     width: 100%;
@@ -275,7 +290,7 @@ video {
     text-align: right;
 }
 
-/* Video Upload */
+/* --- Video Upload --- */
 
 .upload {
     width: 600px;
@@ -285,35 +300,24 @@ video {
     font-weight: bold;
 }
 
-/* Storylist Page */
-
-.story-list {
-    height: 100%;
-    padding-top: 80px;
-    padding-right: 40px;
-}
-
-.story-list-item {
-    color: #fff;
-}
-
-.story-list-item:hover {
-    text-decoration: none;
-    color: #d7d9db;
-}
-
-/* Story Page */
+/* --- Story Page --- */
 
 .title-div {
     text-align: center;
+    margin-top: 20px;
 }
 
-.title-div h1 {
+.title-div h1, .more-title {
     color: #EAC67A;
 }
 
 .title-div p {
     color: #fff;
+}
+
+.like-div {
+    padding-top: 30px;
+    color: #EAC67A;
 }
 
 .story-div {
@@ -336,14 +340,14 @@ video {
     width: 800px;
 }
 
-/* Registration Page */
+/* --- Registration Page --- */
 
 .errorlist {
     list-style: none;
     font-weight: bold;
 }
 
-/* User List Page */
+/* --- User List Page --- */
 
 .user-div {
     height: 100%;
@@ -368,7 +372,7 @@ video {
     color: #d7d9db;
 }
 
-/* Profile Page */
+/* --- Profile Page --- */
 
 .header-container {
     padding: 0px;
@@ -427,13 +431,13 @@ video {
     font-size: 18px;
 }
 
-/* Benefits Page */
+/* --- Benefits Page --- */
 
 .benefits-col {
     text-align: center;
 }
 
-/* Stripe Elements - code adapted from Stripe Elements tutorial found at `https://stripe.com/docs/stripe-js` */
+/* --- Stripe Elements - code adapted from Stripe Elements tutorial found at `https://stripe.com/docs/stripe-js` --- */
 
 .StripeElement {
     box-sizing: border-box;  
@@ -464,7 +468,7 @@ video {
     margin-bottom: 20px;
 }
 
-/* Forms */
+/* --- Forms --- */
 
 .upgrade-jumbo p {
     font-size: 20px;
@@ -475,7 +479,7 @@ video {
     width: 100%;
 }
 
-/* Buttons */
+/* --- Buttons --- */
 
 .btn-outline-success {
     color: #EAC67A;
@@ -533,13 +537,17 @@ video {
     font-size: 14px;
 }
 
+.comment-button {
+    margin-bottom: 20px;
+}
+
 /* --- Media Queries --- */
 
 @media (max-width: 575.98px) {
     .navbar-brand {
         width: 200px;
     }
-    .footer-div, .latest-col, .latest-stories, .story-item, .upload-div {
+    .footer-div, .latest-col, .latest-stories, .story-item, .upload-div, .like-div {
         text-align: center;
     }
     .main-bg {
@@ -549,6 +557,13 @@ video {
         margin-top: 20px;
     }
     .upload-div {
+        padding-bottom: 20px;
+    }
+    .story-title {
+        font-size: 26px;
+    }
+    .like-div {
+        padding-top: 15px;
         padding-bottom: 20px;
     }
 }

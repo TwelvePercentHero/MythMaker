@@ -14,6 +14,7 @@ def story(request, story_id):
     user = request.user
     story = Story.objects.get(pk = story_id)
     comments = Comment.objects.filter(story = story).order_by('created')
+    comments_count = comments.count()
     more_stories = Story.objects.filter(author = story.author).order_by('-story_likes')[0:5]
     if user.is_authenticated:
         if request.method == 'POST':
@@ -28,9 +29,22 @@ def story(request, story_id):
                 return redirect(reverse('story', kwargs = {'story_id' : story_id}))
         else:
             form = CommentUpload()
-            context = {'user' : user, 'story' : story, 'comments' : comments, 'more_stories' : more_stories, 'form' : form}
+            context = {
+                'user' : user,
+                'story' : story,
+                'comments' : comments,
+                'comments_count' : comments_count,
+                'more_stories' : more_stories,
+                'form' : form
+                }
             return render(request, 'stories/story.html', context)
-    context = {'user' : user, 'story' : story, 'comments' : comments, 'more_stories' : more_stories}
+    context = {
+        'user' : user,
+        'story' : story,
+        'comments' : comments,
+        'comments_count': comments_count,
+        'more_stories' : more_stories
+        }
     return render(request, 'stories/story.html', context)
 
 def storylist(request):

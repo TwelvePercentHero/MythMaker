@@ -14,20 +14,19 @@
 
     <div class="row">
         <div class="col-sm-12 offset-lg-1 col-lg-8 title-div">
-            <h1>{{ story.title }}</h1>
+            <h1 class="story-title">{{ story.title }}</h1>
             <p><em>{{ story.synopsis }}</em></p>
             <p><strong>{{ story.author }} | {{ story.date_posted }}</strong></p>
-            <form id="like_story" action="{% url 'like_story' story.id %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-outline-success"><i class="fas fa-heart"></i></button>{{ story.story_likes }}
-            </form>
         </div>
 
-        <div class="col-xs-12 col-md-2 side-div">
-            <h4>More from {{ story.author }}</h4>
-            {% for more in more_stories %}
-            <p>{{ more.title }}</p>
-            {% endfor %}
+        <div class="col-sm-12 col-lg-3 like-div">
+            <form id="like_story" action="{% url 'like_story' story.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-success">
+                    <i class="fas fa-heart"></i>
+                </button>
+                Story liked {{ story.story_likes }} times
+            </form>
         </div>
     </div>
 
@@ -37,6 +36,22 @@
             {% autoescape off %}
             {{ story.story }}
             {% endautoescape %}
+        </div>
+
+        <div class="col-xs-12 col-md-2 side-div">
+            <h4>More from {{ story.author }}</h4>
+            {% for more in more_stories %}
+            {% if more.title != story.title %}
+            <a class="story-list-item" href="{% url 'story' more.id %}">
+                <div class="more-item">
+                    <img class="list-thumb" src="{{ more.story_thumbnail.url }}">
+                    <div class="item-body">
+                        <p class="more-title">{{ more.title }}</p>
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 
@@ -52,7 +67,7 @@
     <hr>
     <div class="row">
         <div class="col-sm-12 offset-lg-1 col-lg-8">
-            <h2 class="comment-header">Comments</h2>
+            <h2 class="comment-header">Comments ({{ comments_count }})</h2>
         </div>
     </div>
         {% for comment in comments %}
@@ -78,7 +93,7 @@
         </div>
         {% else %}
         <div class="col-sm-12 offset-lg-1 col-lg-8 comment-button">
-            <p><a href="{% url 'register' %}">Register</a> to comment on this story</p>
+            <p><a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">Register</a> to comment on this story</p>
         </div>
         {% endif %}
     </div>
