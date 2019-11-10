@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
 
 from accounts.models import MythMakerMembership
@@ -40,7 +40,15 @@ def videolist(request):
     else:
         mythmaker_membership = None
     videos = Video.objects.all().order_by('title')
-    context = {'videos' : videos, 'mythmaker_membership' : mythmaker_membership}
+    video_count = videos.count()
+    paginated_list = Paginator(videos, 5)
+    try:
+        videolist = paginated_list.page(page)
+    except PageNotAnInteger:
+        videolist = paginated_list.page(1)
+    except EmptyPage:
+        videolist = paginated_list.page(paginator.num_pages)
+    context = {'user' : user, 'video_count' : video_count, 'videolist' : videolist, 'mythmaker_membership' : mythmaker_membership}
     return render(request, 'video/videolist.html', context)
 
 @login_required

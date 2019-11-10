@@ -8,7 +8,7 @@
 <section class="container-fluid main-bg">
     <div class="story-page">
     <div class="row">
-        <div class="col-sm-12 col-xl-2 filter-div">
+        <div class="col-sm-12 col-xl-2 count-div">
             <h2 class="count-heading">Showing {{ story_count }} stories</h2>
         </div>
 
@@ -23,8 +23,8 @@
                     </div>
                     <div class="story-item-body col-sm-12 col-lg-9">
                         <h4 class="mt-0">{{ story.title }}</h4>
-                        <p>{{ story.author }} | {{ story.date_posted }} | 
-                            <i class="fas fa-heart"></i> {{ story.story_likes }} | <i class="fas fa-comments"></i> {{ story.story_comment_count }}</p>
+                        <p class="user-info">{{ story.author }} | {{ story.date_posted }}</p>  
+                        <p class="community-info"><i class="fas fa-heart"></i> {{ story.story_likes }}  <i class="fas fa-comments"></i> {{ story.story_comment_count }}</p>
                         <p>{{ story.synopsis }}</p>
                     </div>
                     </div>

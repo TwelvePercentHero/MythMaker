@@ -6,10 +6,10 @@
 {% block content %}
 
 <section class="container-fluid main-bg">
-
+  <div class="story-page">
   <div class="row">
-        <div class="col-sm-12 col-xl-2 filter-div">
-          <h4>Filters</h4>
+        <div class="col-sm-12 col-xl-2 count-div">
+          <h2 class="count-heading">Showing  videos</h2>
         </div>
 
         <div class="col-xs-12 col-xl-8 story-list">
@@ -24,8 +24,8 @@
               </div>
               <div class="story-item-body col-sm-12 col-lg-9">
                   <h4 class="mt-0">{{ video.title }}</h5>
-                  <p>{{ video.uploaded_by }} | {{ video.date_posted }} |
-                    <i class="fas fa-heart"> </i>{{ video.video_likes }} | <i class="fas fa-comments"></i> {{ video.video_comment_count }}</p>
+                  <p class="user-info">{{ video.uploaded_by }} | {{ video.date_posted }}</p>
+                  <p class="community-info"><i class="fas fa-heart"> </i>{{ video.video_likes }} <i class="fas fa-comments"></i> {{ video.video_comment_count }}</p>
                   <p>{{ video.description }}</p>
             </div>
             </div>
@@ -52,7 +52,7 @@
         </div>
 
   </div>
-        
+</div>
 </section>
 
 

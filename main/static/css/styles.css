@@ -187,6 +187,7 @@ label {
 .count-div {
     height: 100%;
     padding-top: 80px;
+    text-align: center;
 }
 
 .count-heading {
@@ -198,6 +199,15 @@ label {
 .filter-div {
     height: 100%;
     padding-top: 80px;
+}
+
+.user-info {
+    margin-bottom: 5px;
+}
+
+.community-info {
+    font-size: 12px;
+    margin-bottom: 5px;
 }
 
 /* Video List */
