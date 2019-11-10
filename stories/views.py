@@ -55,8 +55,9 @@ def uploadstory(request):
         form = StoryUpload(request.POST, request.FILES)
         if form.is_valid():
             form.instance.author = request.user
-            form.save(commit = True)
-            return redirect(reverse('storylist'))
+            story = form.save(commit = True)
+            messages.success(request, 'You have successfully published your story!')
+            return redirect(reverse('story', kwargs={'story_id' : story.id}))
     else:
         form = StoryUpload()
         return render(request, 'stories/uploadstory.html', {'form' : form})
@@ -68,6 +69,8 @@ def deletestory(request, story_id):
     if request.method == 'POST':
         if user == story.author:
             story.delete()
+            messages.success(request, 'Your story was successfully deleted.')
             return redirect(reverse('storylist'))
         else:
+            messages.warning(request, 'You do not have permission to do that.')
             return redirect(reverse('storylist'))
