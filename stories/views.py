@@ -42,7 +42,7 @@ def story(request, story_id):
         'user' : user,
         'story' : story,
         'comments' : comments,
-        'comments_count': comments_count,
+        'comments_count' : comments_count,
         'more_stories' : more_stories
         }
     return render(request, 'stories/story.html', context)
@@ -71,7 +71,7 @@ def uploadstory(request):
             form.instance.author = request.user
             story = form.save(commit = True)
             messages.success(request, 'You have successfully published your story!')
-            return redirect(reverse('story', kwargs={'story_id' : story.id}))
+            return redirect(reverse('story', kwargs = {'story_id' : story.id}))
     else:
         form = StoryUpload()
         return render(request, 'stories/uploadstory.html', {'form' : form})

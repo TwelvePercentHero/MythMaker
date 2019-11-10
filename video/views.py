@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
@@ -16,6 +17,8 @@ def video(request, video_id):
     user = request.user
     video = Video.objects.get(pk = video_id)
     comments = Comment.objects.filter(video = video).order_by('created')
+    comments_count = comments.count()
+    more_videos = Video.objects.filter(uploaded_by = video.uploaded_by).order_by('-video_likes')[0:5]
     if user.is_authenticated:
         if request.method == 'POST':
             form = CommentUpload(request.POST)
@@ -25,12 +28,25 @@ def video(request, video_id):
                 form.save()
                 video.video_comment_count += 1
                 video.save()
+                messages.success(request, 'Your comment was successfully published!')
                 return redirect(reverse('video', kwargs = {'video_id' : video_id}))
         else:
             form = CommentUpload()
-            context = {'user' : user, 'video' : video, 'comments' : comments, 'form' : form}
+            context = {
+                'user' : user,
+                'video' : video,
+                'comments' : comments,
+                'comments_count' : comments_count,
+                'more_videos' : more_videos,
+                'form' : form}
             return render(request, 'video/video.html', context)
-    context = {'user' : user, 'video' : video, 'comments' : comments}
+    context = {
+        'user' : user,
+        'video' : video,
+        'comments' : comments,
+        'comments_count' : comments_count,
+        'more_videos' : more_videos,
+        }
     return render(request, 'video/video.html', context)
 
 def videolist(request):
@@ -61,7 +77,8 @@ def uploadvideo(request):
         if form.is_valid():
             form.instance.uploaded_by = request.user
             form.save(commit = True)
-            return redirect(reverse('videolist'))
+            messages.success(request, 'You have successfully published your video!')
+            return redirect(reverse('video', kwargs = {'video_id' : video.id}))
     else:
         # Only Premium members can upload videos
         if mythmaker_membership.membership_id == 2:
@@ -69,5 +86,18 @@ def uploadvideo(request):
             return render(request, 'video/uploadvideo.html', {'form' : form})
         else:
             return render(request, 'main/premium.html')
+
+@login_required
+def deletevideo(request, video_id):
+    user = request.user
+    video = Video.objects.get(pk = video_id)
+    if request.method == 'POST':
+        if user == video.uploaded_by:
+            story.delete()
+            messages.success(request, 'Your video was successfully deleted.')
+            return redirect(reverse('videolist'))
+        else:
+            messages.warning(request, 'You do not have permission to do that.')
+            return redirect(reverse('videolist'))
 
 
