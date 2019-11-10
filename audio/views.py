@@ -2,6 +2,7 @@ from django.conf import settings
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from accounts.models import MythMakerMembership
 
@@ -39,7 +40,16 @@ def audiolist(request):
     else:
         mythmaker_membership = None
     audios = Audio.objects.all().order_by('title')
-    context = {'audios' : audios, 'mythmaker_membership' : mythmaker_membership}
+    audio_count = audios.count()
+    page = request.GET.get('page', 1)
+    paginated_list = Paginator(audios, 5)
+    try:
+        audiolist = paginated_list.page(page)
+    except PageNotAnInteger:
+        audiolist = paginated_list.page(1)
+    except EmptyPage:
+        audiolist = paginated_list.page(paginator.num_pages)
+    context = {'user' : user, 'audio_count' : audio_count, 'audiolist' : audiolist, 'mythmaker_membership' : mythmaker_membership}
     return render(request, 'audio/audiolist.html', context)
 
 @login_required

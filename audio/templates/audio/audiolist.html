@@ -6,16 +6,16 @@
 {% block content %}
 
 <section class="container-fluid main-bg">
+    <div class="story-page">
     <div class="row">
-        <div class="col-sm-12 col-xl-2 filter-div">
-            <h4>Filters</h4>
+        <div class="col-sm-12 col-xl-2 count-div">
+            <h2 class="count-heading">Showing {{ audio_count }} audios</h4>
         </div>
 
         <div class="col-sm-12 col-xl-8 story-list">
         
-            {% for audio in audios %}
-
-            <a href="{% url 'audio' audio.id %}" class="audio-list-item">
+            {% for audio in audiolist %}
+            <a href="{% url 'audio' audio.id %}" class="story-list-item">
                 <div class="story-item">
                     <div class="row">
                         <div class="story-image col-sm-12 col-lg-3">
@@ -23,8 +23,8 @@
                         </div>
                         <div class="story-item-body col-sm-12 col-lg-9">
                             <h4 class="mt-0">{{ audio.title }}</h4>
-                            <p>{{ audio.creator }} | {{ audio.date_posted }} |
-                                <i class="fas fa-heart"></i> {{ audio.audio_likes }} | <i class="fas fa-comments"></i> {{ audio.audio_comment_count }}</p>
+                            <p class="user-info">{{ audio.creator }} | {{ audio.date_posted }}</p>
+                            <p class="community-info"><i class="fas fa-heart"></i> {{ audio.audio_likes }} | <i class="fas fa-comments"></i> {{ audio.audio_comment_count }}</p>
                             <p>{{ audio.description }}</p>
                         </div>
                     </div>
@@ -32,6 +32,30 @@
             </a>
 
             {% endfor %}
+
+            <div class="pagination-div">
+                {% if audiolist.has_other_pages %}
+                    <ul class="pagination">
+                    {% if audiolist.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ audiolist.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li></li>
+                    {% endif %}
+                    {% for s in audiolist.paginator.page_range %}
+                        {% if audiolist.number == s %}
+                            <li class="page-item"><a class="page-link" href="#">{{ s }}</a></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ s }}">{{ s }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if audiolist.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ audiolist.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li></li>
+                    {% endif %}
+                    </ul>
+                {% endif %}
+            </div>
         </div>
 
         <div class="col-sm-12 col-xl-2 upload-div">
@@ -48,6 +72,7 @@
             {% endif %}
         </div>
     </div>
+</div>
 </section>
 
 
