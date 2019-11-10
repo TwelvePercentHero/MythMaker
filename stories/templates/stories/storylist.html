@@ -13,7 +13,7 @@
 
         <div class="col-sm-12 col-xl-8 story-list">
         
-            {% for story in stories %}
+            {% for story in storylist %}
             <a href="{% url 'story' story.id %}" class="story-list-item">
                 <div class="story-item">
                     <div class="row">
@@ -30,6 +30,30 @@
                 </div>
             </a>
             {% endfor %}
+
+            <div class="pagination-div">
+            {% if storylist.has_other_pages %}
+                    <ul class="pagination">
+                    {% if storylist.has_previous %}
+                        <li><a href="?page={{ storylist.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for s in storylist.paginator.page_range %}
+                        {% if storylist.number == s %}
+                            <li class="active"><span>{{ s }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="?page={{ s }}">{{ s }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if storylist.has_next %}
+                        <li><a href="?page={{ storylist.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                    </ul>
+                {% endif %}
+            </div>
         </div>
 
         <div class="col-sm-12 col-xl-2 upload-div">
@@ -43,10 +67,9 @@
             <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
             {% endif %}
         </div>
-
     </div>
-        
-    </section>
+
+</section>
 
 
 {% endblock %}

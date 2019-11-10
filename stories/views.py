@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Story
 from .forms import StoryUpload
@@ -12,6 +13,7 @@ def story(request, story_id):
     user = request.user
     story = Story.objects.get(pk = story_id)
     comments = Comment.objects.filter(story = story).order_by('created')
+    more_stories = Story.objects.filter(author = user).order_by('-story_likes')[0:5]
     if user.is_authenticated:
         if request.method == 'POST':
             form = CommentUpload(request.POST)
@@ -24,15 +26,23 @@ def story(request, story_id):
                 return redirect(reverse('story', kwargs = {'story_id' : story_id}))
         else:
             form = CommentUpload()
-            context = {'user' : user, 'story' : story, 'comments' : comments, 'form' : form}
+            context = {'user' : user, 'story' : story, 'comments' : comments, 'more_stories' : more_stories, 'form' : form}
             return render(request, 'stories/story.html', context)
-    context = {'user' : user, 'story' : story, 'comments' : comments}
+    context = {'user' : user, 'story' : story, 'comments' : comments, 'more_stories' : more_stories}
     return render(request, 'stories/story.html', context)
 
 def storylist(request):
     user = request.user
     stories = Story.objects.all().order_by('title')
-    context = {'user' : user, 'stories' : stories}
+    page = request.GET.get('page', 1)
+    paginated_list = Paginator(stories, 5)
+    try:
+        storylist = paginated_list.page(page)
+    except PageNotAnInteger:
+        storylist = paginated_list.page(1)
+    except EmptyPage:
+        storylist = paginated_list.page(paginator.num_pages)
+    context = {'user' : user, 'storylist' : storylist}
     return render(request, 'stories/storylist.html', context)
 
 @login_required
@@ -47,3 +57,15 @@ def uploadstory(request):
     else:
         form = StoryUpload()
         return render(request, 'stories/uploadstory.html', {'form' : form})
+
+@login_required
+def deletestory(request, story_id):
+    user = request.user
+    story = Story.objects.get(pk = story_id)
+    context = {'user' : user, 'story': story}
+    if request.method == 'POST':
+        if user == story.author:
+            story.delete()
+            return redirect(reverse('storylist'))
+        else:
+            return redirect(reverse('storylist'))

@@ -285,6 +285,15 @@ video {
     color: #fff;
 }
 
+.delete-div {
+    text-align: right;
+    padding-bottom: 20px;
+}
+
+.modal-content {
+    background-color: rgb(152, 75, 67);
+}
+
 /* Upload Story Page */
 
 .upload-story {
