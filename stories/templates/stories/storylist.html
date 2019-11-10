@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<section class="container-fluid main-bg">
+<section class="container-fluid main-bg story-page">
     <div class="row">
         <div class="col-sm-12 col-xl-2 filter-div">
             <h4>Filters</h4>
@@ -35,21 +35,21 @@
             {% if storylist.has_other_pages %}
                     <ul class="pagination">
                     {% if storylist.has_previous %}
-                        <li><a href="?page={{ storylist.previous_page_number }}">&laquo;</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ storylist.previous_page_number }}">&laquo;</a></li>
                     {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
+                        <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
                     {% endif %}
                     {% for s in storylist.paginator.page_range %}
                         {% if storylist.number == s %}
-                            <li class="active"><span>{{ s }} <span class="sr-only">(current)</span></span></li>
+                            <li class="page-item"><a class="page-link" href="#">{{ s }}</a></li>
                         {% else %}
-                            <li><a href="?page={{ s }}">{{ s }}</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ s }}">{{ s }}</a></li>
                         {% endif %}
                     {% endfor %}
                     {% if storylist.has_next %}
-                        <li><a href="?page={{ storylist.next_page_number }}">&raquo;</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ storylist.next_page_number }}">&raquo;</a></li>
                     {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
+                        <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
                     {% endif %}
                     </ul>
                 {% endif %}
