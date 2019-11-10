@@ -286,8 +286,9 @@ video {
     color: #fff;
 }
 
-.links-div {
+.video-like {
     text-align: right;
+    color: #EAC67A;
 }
 
 /* --- Video Upload --- */

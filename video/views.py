@@ -76,7 +76,7 @@ def uploadvideo(request):
         form = VideoUpload(request.POST, request.FILES)
         if form.is_valid():
             form.instance.uploaded_by = request.user
-            form.save(commit = True)
+            video = form.save(commit = True)
             messages.success(request, 'You have successfully published your video!')
             return redirect(reverse('video', kwargs = {'video_id' : video.id}))
     else:
@@ -93,7 +93,7 @@ def deletevideo(request, video_id):
     video = Video.objects.get(pk = video_id)
     if request.method == 'POST':
         if user == video.uploaded_by:
-            story.delete()
+            video.delete()
             messages.success(request, 'Your video was successfully deleted.')
             return redirect(reverse('videolist'))
         else:

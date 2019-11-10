@@ -15,6 +15,18 @@
 
         <div class="col-xs-12 col-md-3 side-div">
             <h4>More from {{ video.uploaded_by }}</h4>
+            {% for more in more_videos %}
+            {% if more.title != video.title %}
+            <a class="story-list-item" href="{% url 'video' more.id %}">
+                <div class="more-item">
+                    <img class="list-thumb" src="{{ more.thumbnail.url }}">
+                    <div class="item-body">
+                        <p class="more-title">{{ more.title }}</p>
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
     <div class="row">
@@ -22,16 +34,28 @@
             <h1 class="video-title">{{ video.title }}</h1>
             <p class="vid-info">Uploaded By {{ video.uploaded_by }} on {{ video.date_posted }}</p>
             <p class="vid-info">{{ video.description }}</p>
-        </div> 
+        </div>
+        <div class="col-xs-12 col-lg-2 video-like">
+            <form id="like_video" action="{% url 'like_video' video.id %}" method="POST">
+                {% csrf_token %}
+                Video liked {{ video.video_likes }} times
+                <button type="submit" class="btn btn-outline-success">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </form>
+        </div>
     </div>
 
+    <!-- Trigger delete modal -->
     <div class="row">
-        <form id="like_video" action="{% url 'like_video' video.id %}" method="POST">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-outline-success">Like</button>
-        </form>
-        {{ video.video_likes }}
+        <div class="col-sm-12 offset-lg-1 col-lg-8 delete-div">
+        {% if request.user == video.uploaded_by %}
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash-alt"></i></button>
+        {% endif %}
+        </div>
     </div>
+    
+        <hr>
 
     {% for comment in comments %}
     <div class="row">
@@ -53,5 +77,29 @@
         </div>
 
 </section>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteModalLongTitle">Delete Video?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete {{ video.title }}?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+                <form id="delete_video" action="{% url 'deletevideo' video.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-success">Confirm Delete</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
