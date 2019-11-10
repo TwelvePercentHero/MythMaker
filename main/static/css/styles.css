@@ -184,12 +184,23 @@ label {
     color: #18121E;
 }
 
-/* Video List */
+.count-div {
+    height: 100%;
+    padding-top: 80px;
+}
+
+.count-heading {
+    color: #EAC67A;
+    font-size: 20px;
+    padding-left: 10px;
+}
 
 .filter-div {
     height: 100%;
     padding-top: 80px;
 }
+
+/* Video List */
 
 .video-list {
     height: 100%;

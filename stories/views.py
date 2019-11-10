@@ -34,6 +34,7 @@ def story(request, story_id):
 def storylist(request):
     user = request.user
     stories = Story.objects.all().order_by('title')
+    story_count = stories.count()
     page = request.GET.get('page', 1)
     paginated_list = Paginator(stories, 5)
     try:
@@ -42,7 +43,7 @@ def storylist(request):
         storylist = paginated_list.page(1)
     except EmptyPage:
         storylist = paginated_list.page(paginator.num_pages)
-    context = {'user' : user, 'storylist' : storylist}
+    context = {'user' : user, 'story_count' : story_count, 'storylist' : storylist}
     return render(request, 'stories/storylist.html', context)
 
 @login_required
