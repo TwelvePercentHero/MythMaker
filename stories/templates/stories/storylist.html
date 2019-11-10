@@ -6,30 +6,32 @@
 {% block content %}
 
 <section class="container-fluid main-bg">
+
     <div class="story-page">
+
     <div class="row">
+
         <div class="col-sm-12 col-xl-2 count-div">
             <h2 class="count-heading">Showing {{ story_count }} stories</h2>
         </div>
 
-        <div class="col-sm-12 col-xl-8 story-list">
-        
+        <div class="col-sm-12 col-xl-8 story-list">        
             {% for story in storylist %}
             <a href="{% url 'story' story.id %}" class="story-list-item">
                 <div class="story-item">
                     <div class="row">
-                    <div class="story-image col-sm-12 col-lg-3">
-                        <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
-                    </div>
-                    <div class="story-item-body col-sm-12 col-lg-9">
-                        <h4 class="mt-0">{{ story.title }}</h4>
-                        <p class="user-info">{{ story.author }} | {{ story.date_posted }}</p>  
-                        <p class="community-info"><i class="fas fa-heart"></i> {{ story.story_likes }}  <i class="fas fa-comments"></i> {{ story.story_comment_count }}</p>
-                        <p>{{ story.synopsis }}</p>
-                    </div>
+                        <div class="story-image col-sm-12 col-lg-3">
+                            <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
+                        </div>
+                        <div class="story-item-body col-sm-12 col-lg-9">
+                            <h4 class="mt-0">{{ story.title }}</h4>
+                                <p class="user-info">{{ story.author }} | {{ story.date_posted }}</p>
+                                <p class="community-info"><i class="fas fa-heart"></i> {{ story.story_likes }}  <i class="fas fa-comments"></i> {{ story.story_comment_count }}</p>
+                                <p>{{ story.synopsis }}</p>
+                        </div>
                     </div>
                 </div>
-            </a>
+            </a>            
             {% endfor %}
 
             <div class="pagination-div">
@@ -59,18 +61,20 @@
 
         <div class="col-sm-12 col-xl-2 upload-div">
             {% if user.is_authenticated %}
-            <h4>Upload</h4>
-            <p>Add your own story to the MythMaker canon</p>
-            <a href="{% url 'uploadstory' %}" class="btn btn-outline-success">Upload</a>
+                <h4>Upload</h4>
+                <p>Add your own story to the MythMaker canon</p>
+                <a href="{% url 'uploadstory' %}" class="btn btn-outline-success">Upload</a>
             {% else %}
-            <h4>Register</h4>
-            <p>Register to upload your own stories</p>
-            <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
+                <h4>Register</h4>
+                <p>Register to upload your own stories</p>
+                <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
             {% endif %}
         </div>
-    </div>
-    </div>
-</section>
 
+    </div>
+
+    </div>
+
+</section>
 
 {% endblock %}

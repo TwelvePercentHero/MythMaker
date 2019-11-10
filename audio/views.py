@@ -69,3 +69,14 @@ def uploadaudio(request):
             return render(request, 'audio/uploadaudio.html', {'form' : form})
         else:
             return render(request, 'main/premium.html')
+
+@login_required
+def deleteaudio(request, audio_id):
+    user = request.user
+    audio = Audio.objects.get(pk = audio_id)
+    if request.method == 'POST':
+        if user == audio.creator:
+            audio.delete()
+            return redirect(reverse('audiolist'))
+        else:
+            return redirect(reverse('audiolist'))

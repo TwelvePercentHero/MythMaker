@@ -6,14 +6,16 @@
 {% block content %}
 
 <section class="container-fluid main-bg">
+
     <div class="story-page">
+
     <div class="row">
+
         <div class="col-sm-12 col-xl-2 count-div">
             <h2 class="count-heading">Showing {{ audio_count }} audios</h4>
         </div>
 
-        <div class="col-sm-12 col-xl-8 story-list">
-        
+        <div class="col-sm-12 col-xl-8 story-list">        
             {% for audio in audiolist %}
             <a href="{% url 'audio' audio.id %}" class="story-list-item">
                 <div class="story-item">
@@ -23,14 +25,13 @@
                         </div>
                         <div class="story-item-body col-sm-12 col-lg-9">
                             <h4 class="mt-0">{{ audio.title }}</h4>
-                            <p class="user-info">{{ audio.creator }} | {{ audio.date_posted }}</p>
-                            <p class="community-info"><i class="fas fa-heart"></i> {{ audio.audio_likes }} | <i class="fas fa-comments"></i> {{ audio.audio_comment_count }}</p>
-                            <p>{{ audio.description }}</p>
+                                <p class="user-info">{{ audio.creator }} | {{ audio.date_posted }}</p>
+                                <p class="community-info"><i class="fas fa-heart"></i> {{ audio.audio_likes }} | <i class="fas fa-comments"></i> {{ audio.audio_comment_count }}</p>
+                                <p>{{ audio.description }}</p>
                         </div>
                     </div>
                 </div>
             </a>
-
             {% endfor %}
 
             <div class="pagination-div">
@@ -60,20 +61,22 @@
 
         <div class="col-sm-12 col-xl-2 upload-div">
             {% if mythmaker_membership.membership_id == 2 %}
-            <a href="{% url 'uploadaudio' %}" class="btn btn-outline-success">Upload</a>
+                <a href="{% url 'uploadaudio' %}" class="btn btn-outline-success">Upload</a>
             {% elif mythmaker_membership.membership_id == 1 %}
-            <h4>Upgrade</h4>
-            <p>Upgrade to Premium to upload your own audio.</p>
-            <a class="btn btn-outline-success" href="{% url 'benefits' %}" role="button">Upgrade</a>
+                <h4>Upgrade</h4>
+                <p>Upgrade to Premium to upload your own audio.</p>
+                <a class="btn btn-outline-success" href="{% url 'benefits' %}" role="button">Upgrade</a>
             {% elif mythmaker_membership is None %}
-            <h4>Register</h4>
-            <p>Register to save videos to your favourites</p>
-            <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
+                <h4>Register</h4>
+                <p>Register to save videos to your favourites</p>
+                <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
             {% endif %}
         </div>
-    </div>
-</div>
-</section>
 
+    </div>
+
+    </div>
+
+</section>
 
 {% endblock %}

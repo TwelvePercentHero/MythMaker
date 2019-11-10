@@ -336,23 +336,6 @@ video {
     width: 800px;
 }
 
-/* Audio List */
-
-.audio-list {
-    height: 100%;
-    padding-top: 80px;
-    padding-right: 40px;
-}
-
-.audio-list-item {
-    color: #fff;
-}
-
-.audio-list-item:hover {
-    text-decoration: none;
-    color: #d7d9db;
-}
-
 /* Registration Page */
 
 .errorlist {

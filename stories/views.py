@@ -13,7 +13,7 @@ def story(request, story_id):
     user = request.user
     story = Story.objects.get(pk = story_id)
     comments = Comment.objects.filter(story = story).order_by('created')
-    more_stories = Story.objects.filter(author = user).order_by('-story_likes')[0:5]
+    more_stories = Story.objects.filter(author = story.author).order_by('-story_likes')[0:5]
     if user.is_authenticated:
         if request.method == 'POST':
             form = CommentUpload(request.POST)
@@ -63,7 +63,6 @@ def uploadstory(request):
 def deletestory(request, story_id):
     user = request.user
     story = Story.objects.get(pk = story_id)
-    context = {'user' : user, 'story': story}
     if request.method == 'POST':
         if user == story.author:
             story.delete()
