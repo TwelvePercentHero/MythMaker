@@ -41,6 +41,7 @@ def videolist(request):
         mythmaker_membership = None
     videos = Video.objects.all().order_by('title')
     video_count = videos.count()
+    page = request.GET.get('page', 1)
     paginated_list = Paginator(videos, 5)
     try:
         videolist = paginated_list.page(page)
