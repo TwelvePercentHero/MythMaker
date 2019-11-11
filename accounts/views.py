@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.core import mail
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
@@ -43,13 +43,22 @@ def get_user_subscription(request):
     return None
 
 def userlist(request):
-    mythmaker_list = User.objects.all().order_by('date_joined')
-    mythmakers = Paginator(mythmaker_list, 3)
-    grouped_mythmakers = []
-    for page in mythmakers.page_range:
-        page_objects = mythmakers.page(page).object_list
-        grouped_mythmakers.append(page_objects)
-    context = {'mythmakers' : mythmakers, 'grouped_mythmakers' : grouped_mythmakers}
+    user = request.user
+    mythmakers = User.objects.all().order_by('date_joined')
+    mythmaker_count = mythmakers.count()
+    page = request.GET.get('page', 1)
+    paginated_list = Paginator(mythmakers, 6)
+    try:
+        userlist = paginated_list.page(page)
+    except PageNotAnInteger:
+        userlist = paginated_list.page(1)
+    except EmptyPage:
+        userlist = paginated_list.page(paginator.num_pages)
+    context = {
+        'user' : user,
+        'mythmaker_count' : mythmaker_count,
+        'userlist' : userlist
+        }
     return render(request, 'registration/userlist.html', context)
 
 def publicprofile(request, user_id):

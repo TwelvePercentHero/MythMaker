@@ -6,31 +6,60 @@
 {% block content %}
 
 <section class="container-fluid main-bg">
-    <div class="col-xs-12 offset-md-2 col-md-9 user-div">
 
-    {% for maker in grouped_mythmakers %}
+  <div class="user-page">
     <div class="row">
-
-    {% for m in maker %}
-    <a href="{% url 'publicprofile' m.id %}" class="user-list-item">
-      <div class="card user-card" style="width: 18rem;">
-        {% if m.mythmaker.profile_image == '' %}
-          <img src="{% static 'images/default-profile.png' %}" class="card-img-top">
-        {% else %}
-          <img src="{{ m.mythmaker.profile_image.url }}" class="card-img-top" alt="...">
-        {% endif %}
-          <div class="card-body">
-            <h4 class="card-title">{{ m.username }}</h5>
-            <p class="card-text">{{ m.mythmaker.tagline }}</p>
-          </div>
+      <div class="col-sm-12 col-lg-2 count-div">
+        <h2 class="count-heading">Showing {{ mythmaker_count }} users</h2>
       </div>
-    </a>
 
-    {% endfor %}
+      <div class="col-sm-12 col-lg-8 user-list">
+        <div class="row">
+          {% for user in userlist %}
+          <a href="{% url 'publicprofile' user.id %}" class="col-sm-12 col-lg-6 col-xl-4 user-list-item">
+          <div class="user-image">
+            {% if user.mythmaker.profile_image == '' %}
+              <img src="{% static 'images/default-profile.png' %}" class="img-fluid user-thumb">
+            {% else %}
+              <img src="{{ user.mythmaker.profile_image.url }}" class="img-fluid user-thumb">
+            {% endif %}
+          </div>
+          <div class="user-body">
+            <h4>{{ user.username }}</h4>
+            <p><em>{{ user.mythmaker.tagline }}</em></p>
+          </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
     </div>
 
-    {% endfor %}
+    <div class="row">
+        <div class="pagination-div col-sm-12 offset-lg-2 col-lg-8">
+            {% if userlist.has_other_pages %}
+                    <ul class="pagination">
+                    {% if userlist.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ userlist.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li></li>
+                    {% endif %}
+                    {% for s in userlist.paginator.page_range %}
+                        {% if userlist.number == s %}
+                            <li class="page-item"><a class="page-link" href="#">{{ s }}</a></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ s }}">{{ s }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if userlist.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ userlist.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li></li>
+                    {% endif %}
+                    </ul>
+                {% endif %}
+            </div>
     </div>
+  </div>
 
 </section>
 

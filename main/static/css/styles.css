@@ -225,6 +225,10 @@ label {
     color: #d7d9db;
 }
 
+.pagination-div {
+    vertical-align: bottom;
+}
+
 /* --- Video List --- */
 
 .video-list {
@@ -335,7 +339,7 @@ video {
     background-color: rgb(152, 75, 67);
 }
 
-/* Upload Story Page */
+/* --- Upload Story Page --- */
 
 .upload-story {
     width: 800px;
@@ -350,14 +354,25 @@ video {
 
 /* --- User List Page --- */
 
-.user-div {
+.user-page {
     height: 100%;
+    vertical-align: top;
+}
+
+.user-list {
     padding-top: 80px;
 }
 
-.user-card {
-    margin: 10px;
-    background-color: rgb(152, 75, 67, 0.8);
+.user-thumb {
+    max-height: 300px;
+    max-width: 300px;
+}
+
+.user-body {
+    max-width: 300px;
+    background-color: #18121E;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
 .card-title {
