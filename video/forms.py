@@ -4,10 +4,10 @@ from django.forms import ModelForm
 from .models import Video
 
 class VideoUpload(ModelForm):
-    title = forms.CharField(required = True)
+    title = forms.CharField(required = True, min_length = 5)
     video_file = forms.FileField(required = True, label = 'video_file')
     thumbnail = forms.ImageField(required = True, label = 'thumbnail')
-    description = forms.CharField(required = True, widget = forms.Textarea(attrs={'rows': 10, 'cols': 20}))
+    description = forms.CharField(required = True, min_length = '25', widget = forms.Textarea(attrs={'rows': 10, 'cols': 20}))
 
     class Meta:
         model = Video

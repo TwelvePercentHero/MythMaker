@@ -4,11 +4,11 @@ from django.forms import ModelForm
 from .models import Audio
 
 class AudioUpload(ModelForm):
-    title = forms.CharField(required = True)
+    title = forms.CharField(required = True, min_length = 5)
     audio_file = forms.FileField(required = True, label = 'audio_file')
     audio_thumbnail = forms.ImageField(required = True, label = 'audio_thumbnail')
     cover_image = forms.ImageField(required = True, label = 'cover_image')
-    description = forms.CharField(required = True)
+    description = forms.CharField(required = True, min_length = 25)
 
     class Meta:
         model = Audio
