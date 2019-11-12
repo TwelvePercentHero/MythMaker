@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -60,8 +61,12 @@ def uploadaudio(request):
         form = AudioUpload(request.POST, request.FILES)
         if form.is_valid():
             form.instance.creator = request.user
-            form.save(commit = True)
-            return redirect(reverse('audiolist'))
+            audio = form.save(commit = True)
+            messages.success(request, 'You have successfully published your audio!')
+            return redirect(reverse('audio', kwargs = {'audio_id' : audio.id}))
+        else:
+            messages.error(request, 'Unsupported file type, please try again')
+            return redirect(reverse('uploadaudio'))
     else:
         # Only Premium members can upload audio
         if mythmaker_membership.membership_id == 2:

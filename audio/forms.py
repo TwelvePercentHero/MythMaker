@@ -6,8 +6,8 @@ from .models import Audio
 class AudioUpload(ModelForm):
     title = forms.CharField(required = True)
     audio_file = forms.FileField(required = True, label = 'audio_file')
-    audio_thumbnail = forms.ImageField(required = False, label = 'audio_thumbnail')
-    cover_image = forms.ImageField(required = False, label = 'cover_image')
+    audio_thumbnail = forms.ImageField(required = True, label = 'audio_thumbnail')
+    cover_image = forms.ImageField(required = True, label = 'cover_image')
     description = forms.CharField(required = True)
 
     class Meta:
@@ -19,6 +19,9 @@ class AudioUpload(ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['title'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter audio title'})
         self.fields['description'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter a description'})
+        self.fields['audio_file'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['audio_thumbnail'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['cover_image'].widget.attrs.update({'class' : 'form-control'})
         
     def clean_audio_upload(self):
         title = self.cleaned_data['title']
