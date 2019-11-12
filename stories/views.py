@@ -76,6 +76,9 @@ def uploadstory(request):
             story = form.save(commit = True)
             messages.success(request, 'You have successfully published your story!')
             return redirect(reverse('story', kwargs = {'story_id' : story.id}))
+        else:
+            messages.error(request, 'There was a problem publishing your story. Please try again.')
+            return redirect(reverse('uploadstory'))
     else:
         form = StoryUpload()
         return render(request, 'stories/uploadstory.html', {'form' : form})

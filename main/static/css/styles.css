@@ -305,6 +305,11 @@ video {
     font-weight: bold;
 }
 
+.form-group p {
+    padding-top: 10px;
+    color: #18121E;
+}
+
 /* --- Story Page --- */
 
 .title-div {
@@ -375,8 +380,9 @@ video {
     margin-bottom: 20px;
 }
 
-.card-title {
-    margin-bottom: 5px;
+.register-div {
+    height: 100%;
+    padding-top: 80px;
 }
 
 .user-list-item {

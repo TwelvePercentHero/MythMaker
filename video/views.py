@@ -79,6 +79,9 @@ def uploadvideo(request):
             video = form.save(commit = True)
             messages.success(request, 'You have successfully published your video!')
             return redirect(reverse('video', kwargs = {'video_id' : video.id}))
+        else:
+            messages.error(request, 'Unsupported file type, please try again')
+            return redirect(reverse('uploadvideo'))
     else:
         # Only Premium members can upload videos
         if mythmaker_membership.membership_id == 2:
