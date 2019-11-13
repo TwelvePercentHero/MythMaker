@@ -7,11 +7,13 @@
 
 <section class="container-fluid main-bg">
 
-        <div class="col-xs-12 col-md-2 filter-div">
+    <div class="row">
+
+        <div class="col-sm-12 col-xl-2 filter-div">
             <h4>Search Results for '{{ query }}'</h4>
         </div>
 
-        <div class="col-xs-12 col-md-8 video-list">
+        <div class="col-sm-12 col-xl-8 video-list">
         
         <button class="btn" id="show-videos">Videos</button>
         <button class="btn" id="show-stories">Stories</button>
@@ -19,56 +21,71 @@
         <button class="btn" id="show-users">Creators</button>
 
         <div class="d-block" id="video-results">
-        {% for video in videos %}   
-        
-        <a href="{% url 'video' video.id %}" class="video-list-item">
-          <div class="media">
-            <img class="list-thumb" src="{{ video.thumbnail.url }}" alt="Thumbnail for {{ video.title }}">
-            <div class="media-body">
-              <h4 class="mt-0">{{ video.title }}</h5>
-              <p>{{ video.uploaded_by }} | {{ video.date_posted }}</p>
-              <p>{{ video.description }}</p>
-              
+                <div class="col-sm-12 col-xl-8 story-list">    
+                {% for video in videos %}                           
+                <a href="{% url 'video' video.id %}" class="video-list-item">
+                    <div class="story-item">
+                        <div class="row">
+                            <div class="story-image col-sm-12 col-lg-3">
+                                <img class="list-thumb" src="{{ video.thumbnail.url }}" alt="Thumbnail for {{ video.title }}">
+                            </div>
+                            <div class="story-item-body col-sm-12 col-lg-9">
+                                <h4 class="mt-0">{{ video.title }}</h5>
+                                <p class="user-info">{{ video.uploaded_by }} | {{ video.date_posted }}</p>
+                                <p class="community-info"><i class="fas fa-heart"> </i>{{ video.video_likes }} <i class="fas fa-comments"></i> {{ video.video_comment_count }}</p>
+                                <p>{{ video.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
             </div>
-          </div>
-        </a>
-    
-        {% endfor %}
         </div>
 
         <div class="d-none" id="story-results">
-        {% for story in stories %}
-
-        <a href="{% url 'story' story.id %}" class="story-list-item">
-            <div class="media">
-                <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
-                <div class="media-body">
-                    <h4 class="mt-0">{{ story.title }}</h4>
-                    <p>{{ story.author }} | {{ story.date_posted }}</p>
-                    <p>{{ story.synopsis }}</p>
-                </div>
+            <div class="col-sm-12 col-xl-8 story-list">        
+                {% for story in stories %}
+                <a href="{% url 'story' story.id %}" class="story-list-item">
+                    <div class="story-item">
+                        <div class="row">
+                            <div class="story-image col-sm-12 col-lg-3">
+                                <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
+                            </div>
+                            <div class="story-item-body col-sm-12 col-lg-9">
+                                <h4 class="mt-0">{{ story.title }}</h4>
+                                    <p class="user-info">{{ story.author }} | {{ story.date_posted }}</p>
+                                    <p class="community-info"><i class="fas fa-heart"></i> {{ story.story_likes }}  <i class="fas fa-comments"></i> {{ story.story_comment_count }}</p>
+                                    <p>{{ story.synopsis }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>            
+                {% endfor %}
             </div>
-        </a>
-
-        {% endfor %}
         </div>
 
         <div class="d-none" id="audio-results">
-        {% for audio in audios %}
-
-        <a href="{% url 'audio' audio.id %}" class="audio-list-item">
-            <div class="media">
-                <img class="list-thumb" src="{{ audio.audio_thumbnail.url }}">
-                <div class="media-body">
-                    <h4 class="mt-0">{{ audio.title }}</h4>
-                    <p>{{ audio.creator }} | {{ audio.date_posted }}</p>
-                    <p>{{ audio.description }}</p>
-                </div>
+            <div class="col-sm-12 col-xl-8 story-list">        
+                {% for audio in audios %}
+                <a href="{% url 'audio' audio.id %}" class="story-list-item">
+                    <div class="story-item">
+                        <div class="row">
+                            <div class="story-image col-sm-12 col-lg-3">
+                                <img class="list-thumb" src="{{ audio.audio_thumbnail.url }}">
+                            </div>
+                            <div class="story-item-body col-sm-12 col-lg-9">
+                                <h4 class="mt-0">{{ audio.title }}</h4>
+                                    <p class="user-info">{{ audio.creator }} | {{ audio.date_posted }}</p>
+                                    <p class="community-info"><i class="fas fa-heart"></i> {{ audio.audio_likes }} | <i class="fas fa-comments"></i> {{ audio.audio_comment_count }}</p>
+                                    <p>{{ audio.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
             </div>
-        </a>
-
-        {% endfor %}
         </div>
+        
 
         <div class="d-none" id="user-results">
         {% for mythmaker in mythmakers %}
@@ -94,7 +111,7 @@
 
         </div>
 
-        <div class="col-xs-12 col-md-2 upload-div">
+        <div class="col-sm-12 col-xl-2 upload-div">
           {% if mythmaker_membership.membership_id == 2 %}
           <a href="{% url 'uploadvideo' %}" class="btn btn-outline-success">Upload</a>
           {% elif mythmaker_membership.membership_id == 1 %}
@@ -107,6 +124,8 @@
           <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
           {% endif %}
         </div>
+
+    </div>
         
     </section>
 
