@@ -24,9 +24,9 @@ def searchresults(request):
     else:
         mythmaker_membership = None
     query = request.GET['q']
-    videos = Video.objects.filter(Q(title__icontains = query) | Q(description__icontains = query))
-    stories = Story.objects.filter(Q(title__icontains = query) | Q(synopsis__icontains = query))
-    audios = Audio.objects.filter(Q(title__icontains = query) | Q(description__icontains = query))
-    mythmakers = User.objects.filter(Q(username__icontains = query))
+    videos = Video.objects.filter(Q(title__icontains = query) | Q(description__icontains = query))[0:5]
+    stories = Story.objects.filter(Q(title__icontains = query) | Q(synopsis__icontains = query))[0:5]
+    audios = Audio.objects.filter(Q(title__icontains = query) | Q(description__icontains = query))[0:5]
+    mythmakers = User.objects.filter(Q(username__icontains = query))[0:5]
     context = {'user' : user, 'mythmaker_membership' : mythmaker_membership, 'query' : query, 'videos' : videos, 'stories' : stories, 'audios' : audios, 'mythmakers' : mythmakers}
     return render(request, 'main/searchresults.html', context)
