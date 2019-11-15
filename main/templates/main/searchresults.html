@@ -7,23 +7,26 @@
 
 <section class="container-fluid main-bg">
 
+    <div class="search-page">
+
     <div class="row">
 
         <div class="col-sm-12 col-xl-2 filter-div">
-            <h4>Search Results for '{{ query }}'</h4>
+            <h4>Top Results for '{{ query }}'</h4>
         </div>
 
-        <div class="col-sm-12 col-xl-8 video-list">
+        <div class="col-sm-12 col-xl-8 search-list">
         
-        <button class="btn" id="show-videos">Videos</button>
-        <button class="btn" id="show-stories">Stories</button>
-        <button class="btn" id="show-audios">Audios</button>
-        <button class="btn" id="show-users">Creators</button>
+        <button class="btn selected" id="show-videos">Videos</button>
+        <button class="btn deselected" id="show-stories">Stories</button>
+        <button class="btn deselected" id="show-audios">Audios</button>
+        <button class="btn deselected" id="show-users">Creators</button>
 
         <div class="d-block" id="video-results">
-                <div class="col-sm-12 col-xl-8 story-list">    
+                <div class="search-results">
+                <h4 class="search-heading">Video Results</h4>    
                 {% for video in videos %}                           
-                <a href="{% url 'video' video.id %}" class="video-list-item">
+                <a href="{% url 'video' video.id %}" class="story-list-item">
                     <div class="story-item">
                         <div class="row">
                             <div class="story-image col-sm-12 col-lg-3">
@@ -43,7 +46,8 @@
         </div>
 
         <div class="d-none" id="story-results">
-            <div class="col-sm-12 col-xl-8 story-list">        
+            <div class="search-results">
+                <h4 class="search-heading">Story Results</h4>      
                 {% for story in stories %}
                 <a href="{% url 'story' story.id %}" class="story-list-item">
                     <div class="story-item">
@@ -65,7 +69,8 @@
         </div>
 
         <div class="d-none" id="audio-results">
-            <div class="col-sm-12 col-xl-8 story-list">        
+            <div class="search-results">
+                <h4 class="search-heading">Audio Results</h4>        
                 {% for audio in audios %}
                 <a href="{% url 'audio' audio.id %}" class="story-list-item">
                     <div class="story-item">
@@ -88,25 +93,28 @@
         
 
         <div class="d-none" id="user-results">
+        <div class="search-results">
+            <h4 class="search-heading">User Results</h4>
         {% for mythmaker in mythmakers %}
 
-        <a href="{% url 'publicprofile' mythmaker.id %}" class="user-list-item">
-            <div class="card user-card" style="width: 18rem;">
-                {% if mythmaker.mythmaker.profile_image == '' %}
-                <img src="{% static 'images/default-profile.png' %}" class="card-img-top">
-                {% else %}
-                <img src="{{ mythmaker.mythmaker.profile_image.url }}" class="card-img-top" alt="...">
-                {% endif %}
-                <div class="card-body">
-                    <h4 class="card-title">{{ mythmaker.username }}</h5>
-                    <p class="card-text">{{ mythmaker.mythmaker.tagline }}</p>
+        <a href="{% url 'publicprofile' mythmaker.id %}" class="col-sm-12 col-lg-6 col-xl-4 user-list-item">
+                <div class="user-image">
+                  {% if mythmaker.mythmaker.profile_image == '' %}
+                    <img src="{% static 'images/default-profile.png' %}" class="img-fluid user-thumb">
+                  {% else %}
+                    <img src="{{ mythmaker.mythmaker.profile_image.url }}" class="img-fluid user-thumb">
+                  {% endif %}
                 </div>
-            </div>
-        </a>
+                <div class="user-body">
+                  <h4>{{ mythmaker.username }}</h4>
+                  <p><em>{{ mythmaker.mythmaker.tagline }}</em></p>
+                </div>
+                </a>
 
 
         {% endfor %}
         </div>
+    </div>
 
 
         </div>
@@ -126,6 +134,8 @@
         </div>
 
     </div>
+
+</div>
         
     </section>
 
