@@ -24,8 +24,14 @@
 
         <div class="d-block" id="video-results">
                 <div class="search-results">
-                <h4 class="search-heading">Video Results</h4>    
-                {% for video in videos %}                           
+                <h4 class="search-heading">Video Results</h4>   
+                {% if videos.count == 0 %}
+                <div class="no-results">
+                    <h5>No videos found</h5>
+                    <p>But try the tabs above, you might find your story in a different format...</p>
+                </div>
+                {% else %}
+                {% for video in videos %}                         
                 <a href="{% url 'video' video.id %}" class="story-list-item">
                     <div class="story-item">
                         <div class="row">
@@ -42,12 +48,19 @@
                     </div>
                 </a>
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
 
         <div class="d-none" id="story-results">
             <div class="search-results">
-                <h4 class="search-heading">Story Results</h4>      
+                <h4 class="search-heading">Story Results</h4>
+                {% if stories.count == 0 %}
+                <div class="no-results">
+                    <h5>No stories found</h5>
+                    <p>But try the tabs above, you might find your story in a different format...</p>
+                </div>
+                {% else %}      
                 {% for story in stories %}
                 <a href="{% url 'story' story.id %}" class="story-list-item">
                     <div class="story-item">
@@ -65,12 +78,19 @@
                     </div>
                 </a>            
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
 
         <div class="d-none" id="audio-results">
             <div class="search-results">
-                <h4 class="search-heading">Audio Results</h4>        
+                <h4 class="search-heading">Audio Results</h4>
+                {% if audios.count == 0 %}
+                <div class="no-results">
+                    <h5>No audios found</h5>
+                    <p>But try the tabs above, you might find your story in a different format...</p>
+                </div>
+                {% else %}        
                 {% for audio in audios %}
                 <a href="{% url 'audio' audio.id %}" class="story-list-item">
                     <div class="story-item">
@@ -88,6 +108,7 @@
                     </div>
                 </a>
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
         
@@ -95,6 +116,12 @@
         <div class="d-none" id="user-results">
         <div class="search-results">
             <h4 class="search-heading">User Results</h4>
+            {% if mythmakers.count == 0 %}
+                <div class="no-results">
+                    <h5>No users found</h5>
+                    <p>Nobody by that name round here.</p>
+                </div>
+                {% else %}
         {% for mythmaker in mythmakers %}
 
         <a href="{% url 'publicprofile' mythmaker.id %}" class="col-sm-12 col-lg-6 col-xl-4 user-list-item">
@@ -113,6 +140,7 @@
 
 
         {% endfor %}
+        {% endif %}
         </div>
     </div>
 

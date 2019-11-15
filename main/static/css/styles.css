@@ -238,6 +238,11 @@ label {
     color: #EAC67A;
 }
 
+.no-results {
+    color: #fff;
+    padding-top: 10px;
+}
+
 /* --- Video List --- */
 
 .video-list, .search-list {
