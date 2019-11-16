@@ -34,14 +34,14 @@
             </a>
         </div>
         <div class="col-xs-12 col-md-3 benefits-col">
-            <a href="{% url 'video' video.id %}" class="video-list-item">
+            <a href="{% url 'video' video.id %}" class="story-list-item">
             <h4>{{ video.title }}</h4>
             <img src="{{ video.thumbnail.url }}" class="list-thumb">
             <p>{{ video.uploaded_by }} | {{ video.date_posted }}</p>
             </a>
         </div>
         <div class="col-xs-12 col-md-3 benefits-col">
-            <a href="{% url 'audio' audio.id %}" class="audio-list-item">
+            <a href="{% url 'audio' audio.id %}" class="story-list-item">
             <h4>{{ audio.title }}</h4>
             <img src="{{ audio.audio_thumbnail.url }}" class="list-thumb">
             <p>{{ audio.creator }} | {{ audio.date_posted }}</p>
@@ -51,28 +51,20 @@
 
     <div class="row">
         <div class="col-xs-12 offset-md-1 col-md-10 benefits-col">
-            <h1>Be the first to know about new stories</h1>
-            <p>Premium MythMakers automatically receive the weekly <strong>MythMaker Digest</strong>, a collection of the best stories from around the site, chosen by fellow
-                MythMakers.</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 offset-md-1 col-md-10 benefits-col">
-            <h1>Hear from premium MythMakers</h1>
+            <h1>Hear from Premium MythMakers</h1>
             <blockquote class="blockquote">
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                <p class="mb-0">MythMakers is my favourite community site, everyone is so supportive of new creative works and it's great to be a part of it.</p>
+                <footer class="blockquote-footer">Pantheon, <cite title="Source Title">Premium MythMaker since September</cite></footer>
             </blockquote>
             <hr>
             <blockquote class="blockquote">
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                <p class="mb-0">I was desperately searching for a creative outlet, and being able to tell my stories in the formats that they deserve is amazing.</p>
+                <footer class="blockquote-footer">Conduit, <cite title="Source Title">Premium MythMaker since October</cite></footer>
             </blockquote>
             <hr>
             <blockquote class="blockquote">
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                <p class="mb-0">I believe MythMakers is the most supportive and productive community on the internet, and I wake up excited to see what new stories are being told.</p>
+                <footer class="blockquote-footer">Phil, <cite title="Source Title">Founder of MythMakers</cite></footer>
             </blockquote>
         </div>
     </div>
