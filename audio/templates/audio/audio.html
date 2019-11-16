@@ -14,25 +14,51 @@
 
     <div class="row">
         <div class="col-xs-12 offset-md-1 col-md-8 title-div">
-            <h1>{{ audio.title }}</h1>
+            <h1 class="story-title">{{ audio.title }}</h1>
             <p><em>{{ audio.description }}</em></p>
             <p><strong>{{ audio.creator }} | {{ audio.date_posted }}</strong></p>
-            <form id="like_audio" action="{% url 'like_audio' audio.id %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-outline-success"><i class="fas fa-heart"></i></button> {{ audio.audio_likes }}
-            </form>
+            
         </div>
 
-        <div class="col-xs-12 col-md-3 side-div">
-            <h4>More from {{ audio.creator }}</h4>
+        <div class="col-sm-12 col-lg-3 like-div">
+            <form id="like_audio" action="{% url 'like_audio' audio.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-success">
+                    <i class="fas fa-heart"></i>
+                </button>
+                Audio liked {{ audio.audio_likes }} time{% if audio.audio_likes == 1 %}{% else %}s{% endif %}
+            </form>
         </div>
+        
     </div>
 
     <div class="row">
-        <div class="col-xs-12 offset-md-1 col-md-10 story-div">
-            <audio controls>
-                <source src="{{ audio.audio_file.url }}" type="audio/ogg">
-            </audio>
+        <div class="col-sm-12 offset-lg-1 col-lg-8 story-div">
+            <div class="audio-div">
+                <audio controls>
+                    <source src="{{ audio.audio_file.url }}" type="audio/ogg">
+                </audio>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-3 side-div">
+            <h4>More from {{ audio.creator }}</h4>
+            {% if more_audios.count <= 1 %}
+            <p>This user has not uploaded any more audios.</p>
+            {% else %}
+            {% for more in more_audios %}
+                {% if more.title != audio.title %}
+                <a class="story-list-item" href="{% url 'audio' more.id %}">
+                    <div class="more-item">
+                        <img class="list-thumb" src="{{ more.audio_thumbnail.url }}">
+                        <div class="item-body">
+                            <p class="more-title">{{ more.title }}</p>
+                        </div>
+                    </div>
+                </a>
+                {% endif %}
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
 
@@ -47,11 +73,17 @@
 
     <hr>
 
+    <!-- Comments Section -->
+    <div class="row">
+        <div class="col-sm-12 offset-lg-1 col-lg-8">
+            <h2 class="comment-header">Comments ({{ comments_count }})</h2>
+        </div>
+    </div>
     {% for comment in comments %}
     <div class="row">
-        <div class="col-sm-12 offset-lg-1 col-lg-8"></div>
-            <p>{{ comment.comment }}</p>
-            <p>{{ comment.commenter }} | {{ comment.created }}</p>
+        <div class="col-sm-12 offset-lg-1 col-lg-8">
+            <p class="comment-body">{{ comment.comment }}</p>
+            <p class="comment-info">{{ comment.commenter }} | {{ comment.created }}</p>
         </div>
     </div>
     {% endfor %}

@@ -15,30 +15,34 @@
 
         <div class="col-xs-12 col-md-3 side-div">
             <h4>More from {{ video.uploaded_by }}</h4>
+            {% if more_videos.count <= 1 %}
+            <p>This user has not uploaded any more videos.</p>
+            {% else %}
             {% for more in more_videos %}
-            {% if more.title != video.title %}
-            <a class="story-list-item" href="{% url 'video' more.id %}">
-                <div class="more-item">
-                    <img class="list-thumb" src="{{ more.thumbnail.url }}">
-                    <div class="item-body">
-                        <p class="more-title">{{ more.title }}</p>
+                {% if more.title != video.title %}
+                <a class="story-list-item" href="{% url 'video' more.id %}">
+                    <div class="more-item">
+                        <img class="list-thumb" src="{{ more.thumbnail.url }}">
+                        <div class="item-body">
+                            <p class="more-title">{{ more.title }}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
-            {% endif %}
+                </a>
+                {% endif %}
             {% endfor %}
+            {% endif %}
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 offset-md-1 col-md-6">
-            <h1 class="video-title">{{ video.title }}</h1>
+            <h1 class="story-title">{{ video.title }}</h1>
             <p class="vid-info">Uploaded By {{ video.uploaded_by }} on {{ video.date_posted }}</p>
             <p class="vid-info">{{ video.description }}</p>
         </div>
         <div class="col-xs-12 col-lg-2 video-like">
             <form id="like_video" action="{% url 'like_video' video.id %}" method="POST">
                 {% csrf_token %}
-                Video liked {{ video.video_likes }} times
+                Video liked {{ video.video_likes }} time{% if video.video_likes == 1 %}{% else %}s{% endif %}
                 <button type="submit" class="btn btn-outline-success">
                     <i class="fas fa-heart"></i>
                 </button>
@@ -67,8 +71,7 @@
 
     {% for comment in comments %}
     <div class="row">
-        <div>
-            <div class="col-sm-12 offset-lg-1 col-lg-8">
+        <div class="col-sm-12 offset-lg-1 col-lg-8">
             <p class="comment-body">{{ comment.comment }}</p>
             <p class="comment-info">{{ comment.commenter }} | {{ comment.created }}</p>
             <hr>

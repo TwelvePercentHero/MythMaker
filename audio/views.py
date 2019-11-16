@@ -17,6 +17,8 @@ def audio(request, audio_id):
     user = request.user
     audio = Audio.objects.get(pk = audio_id)
     comments = Comment.objects.filter(audio = audio).order_by('created')
+    comments_count = comments.count()
+    more_audios = Audio.objects.filter(creator = audio.creator).order_by('-audio_likes')[0:5]
     if user.is_authenticated:
         if request.method == 'POST':
             form = CommentUpload(request.POST)
@@ -29,9 +31,22 @@ def audio(request, audio_id):
                 return redirect(reverse('audio', kwargs = {'audio_id' : audio_id}))
         else:
             form = CommentUpload()
-            context = {'user' : user, 'audio' : audio, 'comments' : comments, 'form' : form}
+            context = {
+                'user' : user,
+                'audio' : audio,
+                'comments' : comments,
+                'comments_count' : comments_count,
+                'more_audios' : more_audios,
+                'form' : form
+                }
             return render(request, 'audio/audio.html', context)
-    context = {'user' : user, 'audio': audio, 'comments' : comments}
+    context = {
+        'user' : user,
+        'audio': audio,
+        'comments' : comments,
+        'comments_count' : comments_count,
+        'more_audios' : more_audios
+        }
     return render(request, 'audio/audio.html', context)
 
 def audiolist(request):

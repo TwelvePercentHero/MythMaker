@@ -159,7 +159,7 @@ label {
 /* --- About Page --- */
 
 .side-div {
-    padding-top: 5px;
+    padding-top: 10px;
     color: #fff;
 }
 
@@ -296,10 +296,6 @@ video {
     padding-bottom: 0px;
 }
 
-.video-title {
-    color: #EAC67A;
-}
-
 .vid-info {
     color: #fff;
 }
@@ -322,6 +318,17 @@ video {
 .form-group p {
     padding-top: 10px;
     color: #18121E;
+}
+
+/* --- Audio Page --- */
+
+.audio-div {
+    text-align: center;
+    padding-top: 30px;
+}
+
+audio {
+    width: 100%;
 }
 
 /* --- Story Page --- */
@@ -399,6 +406,7 @@ video {
 .register-div {
     height: 100%;
     padding-top: 80px;
+    color: #fff;
 }
 
 .user-list-item {
@@ -675,6 +683,7 @@ video {
     }
     .story-title {
         font-size: 26px;
+        color: #EAC67A;
     }
     .like-div {
         padding-top: 15px;
