@@ -26,8 +26,8 @@
             <img class="img-fluid" src="{{ mythmaker_user.mythmaker.profile_image.url }}">
             {% endif %}
             <h3>{{ mythmaker_user.username }}</h3>
-            <p>{{ mythmaker_membership.membership.get_membership_type_display }} Member</p>
-            <p><em>{{ mythmaker_user.mythmaker.tagline }}</em></p>
+            <p class="member-type">{{ mythmaker_membership.membership.get_membership_type_display }} Member</p>
+            <p><strong>{{ mythmaker_user.mythmaker.tagline }}</strong></p>
             <p>Joined {{ mythmaker_user.date_joined }}</p>
             <p><strong>Bio</strong><br/>{{ mythmaker_user.mythmaker.bio }}</p>
         </div>
