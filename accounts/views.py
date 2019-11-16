@@ -138,6 +138,12 @@ def activate(request, uidb64, token):
 def edit(request):
     current_user = request.user
     user_membership = get_user_membership(request)
+    videos = Video.objects.filter(uploaded_by = current_user)
+    stories = Story.objects.filter(author = current_user)
+    audios = Audio.objects.filter(creator = current_user)
+    story_likes = Like.objects.filter(liked_by = current_user, story_type = 'STORY')
+    video_likes = Like.objects.filter(liked_by = current_user, story_type = 'VIDEO')
+    audio_likes = Like.objects.filter(liked_by = current_user, story_type = 'AUDIO')
     edit_profile = MythMaker.objects.get(user = current_user)
     if request.method == 'POST':
         form = UpdateProfile(request.POST, request.FILES, instance = edit_profile)
@@ -146,7 +152,17 @@ def edit(request):
             return redirect(reverse('profile'))
     else:
         form = UpdateProfile(instance = edit_profile)
-    context = {'form' : form, 'user_membership' : user_membership, 'edit_profile': edit_profile}
+    context = {
+        'form' : form,
+        'user_membership' : user_membership,
+        'edit_profile': edit_profile,
+        'videos' : videos,
+        'stories' : stories,
+        'audios' : audios,
+        'story_likes' : story_likes,
+        'video_likes' : video_likes,
+        'audio_likes' : audio_likes
+        }
     return render(request, 'registration/edit.html', context)
 
 @login_required

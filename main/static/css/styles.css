@@ -429,6 +429,7 @@ video {
     border: 0.5px solid #EAC67A;
     text-align: center;
     padding-top: 10px;
+    margin-bottom: 20px;
     background-color: #233237;
 }
 
@@ -553,8 +554,25 @@ video {
     font-weight: bold;
 }
 
+.profile-form {
+    color: #fff;
+}
+
+.profile-form a {
+    color: #EAC67A;
+}
+
+.profile-form a:hover {
+    color: #EDB234;
+    text-decoration: none;
+}
+
 .edit-field {
     width: 100%;
+}
+
+.upload-field {
+    color: #fff;
 }
 
 /* --- Buttons --- */
