@@ -64,12 +64,26 @@ def userlist(request):
 def publicprofile(request, user_id):
     mythmaker_user = User.objects.get(pk = user_id)
     mythmaker_membership = MythMakerMembership.objects.get(user = mythmaker_user)
+    videos = Video.objects.filter(uploaded_by = mythmaker_user)
+    stories = Story.objects.filter(author = mythmaker_user)
+    audios = Audio.objects.filter(creator = mythmaker_user)
+    story_likes = Like.objects.filter(liked_by = mythmaker_user, story_type = 'STORY')
+    video_likes = Like.objects.filter(liked_by = mythmaker_user, story_type = 'VIDEO')
+    audio_likes = Like.objects.filter(liked_by = mythmaker_user, story_type = 'AUDIO')
     # If user clicks on own profile, redirect to profile view
     if mythmaker_user == request.user:
         return redirect(reverse('profile'))
     # If user clicks on another profile, show public profile
     else:
-        context = {'mythmaker_user' : mythmaker_user, 'mythmaker_membership' : mythmaker_membership }
+        context = {
+            'mythmaker_user' : mythmaker_user,
+            'mythmaker_membership' : mythmaker_membership,
+            'videos' : videos,
+            'stories' : stories,
+            'audios' : audios,
+            'story_likes' : story_likes,
+            'video_likes' : video_likes,
+            'audio_likes' : audio_likes }
         return render(request, 'registration/publicprofile.html', context)
 
 @login_required
