@@ -422,19 +422,28 @@ video {
 }
 
 .profile-bg {
-    background-color: #232323;
+    background-color: #233237;
 }
   
 .user-details {
-    border: 0.5px solid #233237;
+    border: 0.5px solid #EAC67A;
     text-align: center;
     padding-top: 10px;
-    background-color: #fff;
+    background-color: #233237;
 }
 
 .user-details h3 {
-    color: #232323;
+    color: #EAC67A;
     font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.member-type {
+    font-size: 12px;
+}
+
+.user-details p {
+    color: #fff;
 }
 
 .activity-pane {
@@ -451,48 +460,49 @@ video {
 }
 
 .display-btn {
-    border-top: 1px solid #232323;
-    border-left: 1px solid #232323;
-    border-right: 1px solid #232323;
+    border-top: 1px solid #233237;
+    border-left: 1px solid #233237;
+    border-right: 1px solid #233237;
     border-radius: 0%;
     font-weight: bold;
 }
 
 .display-container {
-    border: 1px solid #232323;
+    border: 1px solid #EAC67A;
     padding: 30px;
-    background-color: #fff;
+    margin-bottom: 20px;
+    background-color: #233237;
 }
 
 .display-container h4 {
     font-weight: bold;
-    color: #232323;
+    color: #233237;
 }
 
 .profile-body {
-    color: #232323;
+    color: #fff;
 }
 
 .profile-body a {
-    color: #984B43;
+    color: #EAC67A;
 }
 
 .profile-body a:hover {
-    color: #54221d;
+    color: #EDB234;
     text-decoration: none;
 }
 
 .display-container h4 {
-    color: #232323;
+    color: #EAC67A;
 }
 
 .profile-list-item {
-    color: #232323;
+    color: #fff;
 }
 
 .profile-list-item:hover {
     text-decoration: none;
-    color: #232323;
+    color: #e6e0d5;
 }
 
 .upgrade-div p {
