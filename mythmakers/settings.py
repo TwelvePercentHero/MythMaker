@@ -147,6 +147,14 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
+# TinyMCE Config
+
+TINYMCE_DEFAULT_CONFIG = {
+    'theme' : 'simple',
+    'relative_urls' : False,
+    'width' : '100%',
+    }
+
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'

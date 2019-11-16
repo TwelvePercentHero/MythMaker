@@ -7,6 +7,8 @@ body {
 footer {
     background-color: #18121E;
     color: #EAC67A;
+    bottom: 0;
+    width: 100%;
 }
 
 footer p {
@@ -680,6 +682,9 @@ audio {
     }
     .upload-div {
         padding-bottom: 20px;
+    }
+    .upload-story {
+        width: 100%;
     }
     .story-title {
         font-size: 26px;
