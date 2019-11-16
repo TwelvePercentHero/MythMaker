@@ -7,7 +7,7 @@ body {
 footer {
     background-color: #18121E;
     color: #EAC67A;
-    bottom: 0;
+    padding-top: 20px;
     width: 100%;
 }
 
@@ -562,6 +562,11 @@ audio {
 .upgrade-jumbo p {
     font-size: 20px;
     font-weight: bold;
+}
+
+#login-jumbo {
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .profile-form {

@@ -6,7 +6,7 @@
 
 <section class="container-fluid main-bg">
 
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center" id="login-jumbo">
         <h1 class="jumbotron-header">Login to your account</h1>
         <hr class="my-4">
         <form method="POST" action="">
@@ -26,7 +26,8 @@
         </form>
 
         <div class="form-group">
-            <p class="jumbotron-text">Forgot your password? <a href="{% url 'password_reset' %}">Click here</a> to reset</p>
+            <p class="jumbotron-text">Forgot your password?</p>
+            <p class="jumbotron-text"><a href="{% url 'password_reset' %}">Click here</a> to reset</p>
         </div>
     </div>
 
