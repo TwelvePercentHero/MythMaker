@@ -17,6 +17,10 @@ class Video(models.Model):
     description = models.CharField(max_length = 1000, blank = True, null = True)
     video_likes = models.IntegerField(default = 0)
     video_comment_count = models.IntegerField(default = 0)
+    
+    class Meta:
+        verbose_name = 'Video'
+        verbose_name_plural = 'Videos'
 
     def __str__(self):
         return self.title

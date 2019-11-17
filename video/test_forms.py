@@ -11,7 +11,7 @@ testimage = (
 
 class TestVideoForm(TestCase):
 
-    def test_video_upload_with_images(self):
+    def test_video_upload(self):
         form = VideoUpload({
             'title' : 'Test Video Title',
             'description' : 'Test Video Description',

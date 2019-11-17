@@ -1,13 +1,5 @@
 from django.test import TestCase
-from django.core.files import File
-from django.core.files.uploadedfile import SimpleUploadedFile
 from .models import Audio
-
-testfile = (
-    b'\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x00\x00\x00\x21\xf9\x04'
-    b'\x01\x0a\x00\x01\x00\x2c\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02'
-    b'\x02\x4c\x01\x00\x3b'
-    )
 
 class TestAudioViews(TestCase):
 
@@ -21,8 +13,8 @@ class TestAudioViews(TestCase):
             title = 'Test Audio',
             description = 'This is a Test Description for the Test Audio',
             audio_file = 'media/audio/test_audio_file.mp3',
-            cover_image = SimpleUploadedFile('small.gif', testfile, content_type = 'image/gif'),
-            audio_thumbnail = SimpleUploadedFile('small.gif', testfile, content_type = 'image/gif')
+            cover_image = 'media/cover_images/test-header.jpg',
+            audio_thumbnail = 'media/thumbnails/test-thumb-1.jpg'
         )
         audio.save()
         page = self.client.get('/audio/{}'.format(audio.id))
