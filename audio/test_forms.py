@@ -11,7 +11,7 @@ testimage = (
 
 class TestAudioForm(TestCase):
 
-    def test_audio_upload_with_images(self):
+    def test_audio_upload(self):
         form = AudioUpload({
             'title' : 'Test Title',
             'description' : 'Test Audio Description',

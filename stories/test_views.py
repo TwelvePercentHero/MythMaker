@@ -8,7 +8,6 @@ testfile = (
     b'\x02\x4c\x01\x00\x3b'
     )
 
-
 class TestStoryViews(TestCase):
     
     def test_storylist(self):
