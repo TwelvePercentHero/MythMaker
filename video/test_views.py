@@ -18,3 +18,4 @@ class TestVideoViews(TestCase):
         video.save()
         page = self.client.get('/video/{}'.format(video.id))
         self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, 'video/video.html')
