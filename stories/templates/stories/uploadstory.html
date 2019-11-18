@@ -13,25 +13,25 @@
             {% csrf_token %}
             <div class="form-group">
                 <label class="upload-label" for="title">Title</label><br>
-                    {{ form.title }}
+                {{ form.title }}
             </div>
             <div class="form-group">
                 <label class="upload-label" for="synopsis">Brief Synopsis</label><br>
-                    {{ form.synopsis }}
+                {{ form.synopsis }}
             </div>
             <div class="form-group">
                 <label class="upload-label" for="story">Your Story</label><br>
-                    {{ form.story }}
+                {{ form.story }}
             </div>
             <div class="form-group">
                 <label class="upload-label" for="story_thumbnail">Upload Story Thumbnail</label><br>
-                    {{ form.story_thumbnail }}
-                    <p>Recommended image size: 1920x1080px or equivalent</p>
+                {{ form.story_thumbnail }}
+                <p>Recommended image size: 1920x1080px or equivalent</p>
             </div>
             <div class="form-group">
                 <label class="upload-label" for="cover_image">Upload Cover Image</label><br>
-                    {{ form.cover_image }}
-                    <p>Recommended image size: 1920x200px</p>
+                {{ form.cover_image }}
+                <p>Recommended image size: 1920x200px</p>
             </div>
             <div class="form-group">
                 {{ form.errors }}

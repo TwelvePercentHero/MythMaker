@@ -7,15 +7,15 @@
 
 <section class="container-fluid main-bg">
   <div class="story-page">
-  <div class="row">
-        <div class="col-sm-12 col-xl-2 count-div">
-          <h2 class="count-heading">Showing {{ video_count }} videos</h2>
-        </div>
+    <div class="row">
+      <div class="col-sm-12 col-xl-2 count-div">
+        <h2 class="count-heading">Showing {{ video_count }} videos</h2>
+      </div>
 
-        <div class="col-xs-12 col-xl-8 story-list">
-    
-        {% for video in videolist %}   
-        
+      <div class="col-xs-12 col-xl-8 story-list">
+
+        {% for video in videolist %}
+
         <a href="{% url 'video' video.id %}" class="video-list-item">
           <div class="story-item">
             <div class="row">
@@ -23,61 +23,63 @@
                 <img class="list-thumb" src="{{ video.thumbnail.url }}" alt="Thumbnail for {{ video.title }}">
               </div>
               <div class="story-item-body col-sm-12 col-lg-9">
-                  <h4 class="mt-0">{{ video.title }}</h5>
+                <h4 class="mt-0">{{ video.title }}</h5>
                   <p class="user-info">{{ video.uploaded_by }} | {{ video.date_posted }}</p>
-                  <p class="community-info"><i class="fas fa-heart"> </i>{{ video.video_likes }} <i class="fas fa-comments"></i> {{ video.video_comment_count }}</p>
+                  <p class="community-info"><i class="fas fa-heart"> </i>{{ video.video_likes }} <i
+                      class="fas fa-comments"></i> {{ video.video_comment_count }}</p>
                   <p>{{ video.description }}</p>
-            </div>
+              </div>
             </div>
           </div>
         </a>
-    
+
         {% endfor %}
 
         <div class="pagination-div">
-            {% if videolist.has_other_pages %}
-                    <ul class="pagination">
-                    {% if videolist.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page={{ videolist.previous_page_number }}">&laquo;</a></li>
-                    {% else %}
-                        <li></li>
-                    {% endif %}
-                    {% for s in videolist.paginator.page_range %}
-                        {% if videolist.number == s %}
-                            <li class="page-item"><a class="page-link" href="#">{{ s }}</a></li>
-                        {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ s }}">{{ s }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if videolist.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ videolist.next_page_number }}">&raquo;</a></li>
-                    {% else %}
-                        <li></li>
-                    {% endif %}
-                    </ul>
-                {% endif %}
-            </div>
-
-        </div>
-
-        <div class="col-sm-12 col-xl-2 upload-div">
-          {% if mythmaker_membership.membership_id == 2 %}
-          <h4>Upload</h4>
-          <p>Add your own story to the MythMaker canon</p>
-          <a href="{% url 'uploadvideo' %}" class="btn btn-outline-success">Upload</a>
-          {% elif mythmaker_membership.membership_id == 1 %}
-          <h4>Upgrade</h4>
-          <p>Upgrade to Premium to upload your own videos.</p>
-          <a class="btn btn-outline-success" href="{% url 'benefits' %}" role="button">Upgrade</a>
-          {% elif mythmaker_membership is None %}
-          <h4>Register</h4>
-          <p>Register to save videos to your favourites</p>
-          <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
+          {% if videolist.has_other_pages %}
+          <ul class="pagination">
+            {% if videolist.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ videolist.previous_page_number }}">&laquo;</a>
+            </li>
+            {% else %}
+            <li></li>
+            {% endif %}
+            {% for s in videolist.paginator.page_range %}
+            {% if videolist.number == s %}
+            <li class="page-item"><a class="page-link" href="#">{{ s }}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ s }}">{{ s }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if videolist.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ videolist.next_page_number }}">&raquo;</a></li>
+            {% else %}
+            <li></li>
+            {% endif %}
+          </ul>
           {% endif %}
         </div>
 
+      </div>
+
+      <div class="col-sm-12 col-xl-2 upload-div">
+        {% if mythmaker_membership.membership_id == 2 %}
+        <h4>Upload</h4>
+        <p>Add your own story to the MythMaker canon</p>
+        <a href="{% url 'uploadvideo' %}" class="btn btn-outline-success">Upload</a>
+        {% elif mythmaker_membership.membership_id == 1 %}
+        <h4>Upgrade</h4>
+        <p>Upgrade to Premium to upload your own videos.</p>
+        <a class="btn btn-outline-success" href="{% url 'benefits' %}" role="button">Upgrade</a>
+        {% elif mythmaker_membership is None %}
+        <h4>Register</h4>
+        <p>Register to save videos to your favourites</p>
+        <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
+        {% endif %}
+      </div>
+
+    </div>
   </div>
-</div>
 </section>
 
 

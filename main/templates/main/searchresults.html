@@ -9,163 +9,169 @@
 
     <div class="search-page">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-sm-12 col-xl-2 filter-div">
-            <h4>Top Results for '{{ query }}'</h4>
-        </div>
+            <div class="col-sm-12 col-xl-2 filter-div">
+                <h4>Top Results for '{{ query }}'</h4>
+            </div>
 
-        <div class="col-sm-12 col-xl-8 search-list">
-        
-        <button class="btn selected" id="show-videos">Videos</button>
-        <button class="btn deselected" id="show-stories">Stories</button>
-        <button class="btn deselected" id="show-audios">Audios</button>
-        <button class="btn deselected" id="show-users">Creators</button>
+            <div class="col-sm-12 col-xl-8 search-list">
 
-        <div class="d-block" id="video-results">
-                <div class="search-results">
-                <h4 class="search-heading">Video Results</h4>   
-                {% if videos.count == 0 %}
-                <div class="no-results">
-                    <h5>No videos found</h5>
-                    <p>But try the tabs above, you might find your story in a different format...</p>
-                </div>
-                {% else %}
-                {% for video in videos %}                         
-                <a href="{% url 'video' video.id %}" class="story-list-item">
-                    <div class="story-item">
-                        <div class="row">
-                            <div class="story-image col-sm-12 col-lg-3">
-                                <img class="list-thumb" src="{{ video.thumbnail.url }}" alt="Thumbnail for {{ video.title }}">
-                            </div>
-                            <div class="story-item-body col-sm-12 col-lg-9">
-                                <h4 class="mt-0">{{ video.title }}</h5>
-                                <p class="user-info">{{ video.uploaded_by }} | {{ video.date_posted }}</p>
-                                <p class="community-info"><i class="fas fa-heart"> </i>{{ video.video_likes }} <i class="fas fa-comments"></i> {{ video.video_comment_count }}</p>
-                                <p>{{ video.description }}</p>
-                            </div>
+                <button class="btn selected" id="show-videos">Videos</button>
+                <button class="btn deselected" id="show-stories">Stories</button>
+                <button class="btn deselected" id="show-audios">Audios</button>
+                <button class="btn deselected" id="show-users">Creators</button>
+
+                <div class="d-block" id="video-results">
+                    <div class="search-results">
+                        <h4 class="search-heading">Video Results</h4>
+                        {% if videos.count == 0 %}
+                        <div class="no-results">
+                            <h5>No videos found</h5>
+                            <p>But try the tabs above, you might find your story in a different format...</p>
                         </div>
+                        {% else %}
+                        {% for video in videos %}
+                        <a href="{% url 'video' video.id %}" class="story-list-item">
+                            <div class="story-item">
+                                <div class="row">
+                                    <div class="story-image col-sm-12 col-lg-3">
+                                        <img class="list-thumb" src="{{ video.thumbnail.url }}"
+                                            alt="Thumbnail for {{ video.title }}">
+                                    </div>
+                                    <div class="story-item-body col-sm-12 col-lg-9">
+                                        <h4 class="mt-0">{{ video.title }}</h5>
+                                            <p class="user-info">{{ video.uploaded_by }} | {{ video.date_posted }}</p>
+                                            <p class="community-info"><i class="fas fa-heart">
+                                                </i>{{ video.video_likes }} <i class="fas fa-comments"></i>
+                                                {{ video.video_comment_count }}</p>
+                                            <p>{{ video.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                        {% endif %}
                     </div>
-                </a>
-                {% endfor %}
+                </div>
+
+                <div class="d-none" id="story-results">
+                    <div class="search-results">
+                        <h4 class="search-heading">Story Results</h4>
+                        {% if stories.count == 0 %}
+                        <div class="no-results">
+                            <h5>No stories found</h5>
+                            <p>But try the tabs above, you might find your story in a different format...</p>
+                        </div>
+                        {% else %}
+                        {% for story in stories %}
+                        <a href="{% url 'story' story.id %}" class="story-list-item">
+                            <div class="story-item">
+                                <div class="row">
+                                    <div class="story-image col-sm-12 col-lg-3">
+                                        <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
+                                    </div>
+                                    <div class="story-item-body col-sm-12 col-lg-9">
+                                        <h4 class="mt-0">{{ story.title }}</h4>
+                                        <p class="user-info">{{ story.author }} | {{ story.date_posted }}</p>
+                                        <p class="community-info"><i class="fas fa-heart"></i> {{ story.story_likes }}
+                                            <i class="fas fa-comments"></i> {{ story.story_comment_count }}</p>
+                                        <p>{{ story.synopsis }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="d-none" id="audio-results">
+                    <div class="search-results">
+                        <h4 class="search-heading">Audio Results</h4>
+                        {% if audios.count == 0 %}
+                        <div class="no-results">
+                            <h5>No audios found</h5>
+                            <p>But try the tabs above, you might find your story in a different format...</p>
+                        </div>
+                        {% else %}
+                        {% for audio in audios %}
+                        <a href="{% url 'audio' audio.id %}" class="story-list-item">
+                            <div class="story-item">
+                                <div class="row">
+                                    <div class="story-image col-sm-12 col-lg-3">
+                                        <img class="list-thumb" src="{{ audio.audio_thumbnail.url }}">
+                                    </div>
+                                    <div class="story-item-body col-sm-12 col-lg-9">
+                                        <h4 class="mt-0">{{ audio.title }}</h4>
+                                        <p class="user-info">{{ audio.creator }} | {{ audio.date_posted }}</p>
+                                        <p class="community-info"><i class="fas fa-heart"></i> {{ audio.audio_likes }} |
+                                            <i class="fas fa-comments"></i> {{ audio.audio_comment_count }}</p>
+                                        <p>{{ audio.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+
+                <div class="d-none" id="user-results">
+                    <div class="search-results">
+                        <h4 class="search-heading">User Results</h4>
+                        {% if mythmakers.count == 0 %}
+                        <div class="no-results">
+                            <h5>No users found</h5>
+                            <p>Nobody by that name round here.</p>
+                        </div>
+                        {% else %}
+                        {% for mythmaker in mythmakers %}
+
+                        <a href="{% url 'publicprofile' mythmaker.id %}"
+                            class="col-sm-12 col-lg-6 col-xl-4 user-list-item">
+                            <div class="user-image">
+                                {% if mythmaker.mythmaker.profile_image == '' %}
+                                <img src="{% static 'images/default-profile.png' %}" class="img-fluid user-thumb">
+                                {% else %}
+                                <img src="{{ mythmaker.mythmaker.profile_image.url }}" class="img-fluid user-thumb">
+                                {% endif %}
+                            </div>
+                            <div class="user-body">
+                                <h4>{{ mythmaker.username }}</h4>
+                                <p><em>{{ mythmaker.mythmaker.tagline }}</em></p>
+                            </div>
+                        </a>
+
+
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-sm-12 col-xl-2 upload-div">
+                {% if mythmaker_membership.membership_id == 2 %}
+                <a href="{% url 'uploadvideo' %}" class="btn btn-outline-success">Upload</a>
+                {% elif mythmaker_membership.membership_id == 1 %}
+                <h4>Upgrade</h4>
+                <p>Upgrade to Premium to upload your own videos.</p>
+                <a class="btn btn-outline-success" href="{% url 'benefits' %}" role="button">Upgrade</a>
+                {% elif mythmaker_membership is None %}
+                <h4>Register</h4>
+                <p>Register to save videos to your favourites</p>
+                <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
                 {% endif %}
             </div>
+
         </div>
 
-        <div class="d-none" id="story-results">
-            <div class="search-results">
-                <h4 class="search-heading">Story Results</h4>
-                {% if stories.count == 0 %}
-                <div class="no-results">
-                    <h5>No stories found</h5>
-                    <p>But try the tabs above, you might find your story in a different format...</p>
-                </div>
-                {% else %}      
-                {% for story in stories %}
-                <a href="{% url 'story' story.id %}" class="story-list-item">
-                    <div class="story-item">
-                        <div class="row">
-                            <div class="story-image col-sm-12 col-lg-3">
-                                <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
-                            </div>
-                            <div class="story-item-body col-sm-12 col-lg-9">
-                                <h4 class="mt-0">{{ story.title }}</h4>
-                                    <p class="user-info">{{ story.author }} | {{ story.date_posted }}</p>
-                                    <p class="community-info"><i class="fas fa-heart"></i> {{ story.story_likes }}  <i class="fas fa-comments"></i> {{ story.story_comment_count }}</p>
-                                    <p>{{ story.synopsis }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>            
-                {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-
-        <div class="d-none" id="audio-results">
-            <div class="search-results">
-                <h4 class="search-heading">Audio Results</h4>
-                {% if audios.count == 0 %}
-                <div class="no-results">
-                    <h5>No audios found</h5>
-                    <p>But try the tabs above, you might find your story in a different format...</p>
-                </div>
-                {% else %}        
-                {% for audio in audios %}
-                <a href="{% url 'audio' audio.id %}" class="story-list-item">
-                    <div class="story-item">
-                        <div class="row">
-                            <div class="story-image col-sm-12 col-lg-3">
-                                <img class="list-thumb" src="{{ audio.audio_thumbnail.url }}">
-                            </div>
-                            <div class="story-item-body col-sm-12 col-lg-9">
-                                <h4 class="mt-0">{{ audio.title }}</h4>
-                                    <p class="user-info">{{ audio.creator }} | {{ audio.date_posted }}</p>
-                                    <p class="community-info"><i class="fas fa-heart"></i> {{ audio.audio_likes }} | <i class="fas fa-comments"></i> {{ audio.audio_comment_count }}</p>
-                                    <p>{{ audio.description }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-        
-
-        <div class="d-none" id="user-results">
-        <div class="search-results">
-            <h4 class="search-heading">User Results</h4>
-            {% if mythmakers.count == 0 %}
-                <div class="no-results">
-                    <h5>No users found</h5>
-                    <p>Nobody by that name round here.</p>
-                </div>
-                {% else %}
-        {% for mythmaker in mythmakers %}
-
-        <a href="{% url 'publicprofile' mythmaker.id %}" class="col-sm-12 col-lg-6 col-xl-4 user-list-item">
-                <div class="user-image">
-                  {% if mythmaker.mythmaker.profile_image == '' %}
-                    <img src="{% static 'images/default-profile.png' %}" class="img-fluid user-thumb">
-                  {% else %}
-                    <img src="{{ mythmaker.mythmaker.profile_image.url }}" class="img-fluid user-thumb">
-                  {% endif %}
-                </div>
-                <div class="user-body">
-                  <h4>{{ mythmaker.username }}</h4>
-                  <p><em>{{ mythmaker.mythmaker.tagline }}</em></p>
-                </div>
-                </a>
-
-
-        {% endfor %}
-        {% endif %}
-        </div>
     </div>
 
-
-        </div>
-
-        <div class="col-sm-12 col-xl-2 upload-div">
-          {% if mythmaker_membership.membership_id == 2 %}
-          <a href="{% url 'uploadvideo' %}" class="btn btn-outline-success">Upload</a>
-          {% elif mythmaker_membership.membership_id == 1 %}
-          <h4>Upgrade</h4>
-          <p>Upgrade to Premium to upload your own videos.</p>
-          <a class="btn btn-outline-success" href="{% url 'benefits' %}" role="button">Upgrade</a>
-          {% elif mythmaker_membership is None %}
-          <h4>Register</h4>
-          <p>Register to save videos to your favourites</p>
-          <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
-          {% endif %}
-        </div>
-
-    </div>
-
-</div>
-        
-    </section>
+</section>
 
 
 {% endblock %}

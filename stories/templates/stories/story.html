@@ -16,7 +16,8 @@
         <div class="col-sm-12 offset-lg-1 col-lg-8 title-div">
             <h1 class="story-title">{{ story.title }}</h1>
             <p><em>{{ story.synopsis }}</em></p>
-            <p><strong><a href="{% url 'publicprofile' creator.id %}">{{ story.author }}</a> | {{ story.date_posted }}</strong></p>
+            <p><strong><a href="{% url 'publicprofile' creator.id %}">{{ story.author }}</a> |
+                    {{ story.date_posted }}</strong></p>
         </div>
 
         <div class="col-sm-12 col-lg-3 like-div">
@@ -44,16 +45,16 @@
             <p>This user has not uploaded any more stories.</p>
             {% else %}
             {% for more in more_stories %}
-                {% if more.title != story.title %}
-                <a class="story-list-item" href="{% url 'story' more.id %}">
-                    <div class="more-item">
-                        <img class="list-thumb" src="{{ more.story_thumbnail.url }}">
-                        <div class="item-body">
-                            <p class="more-title">{{ more.title }}</p>
-                        </div>
+            {% if more.title != story.title %}
+            <a class="story-list-item" href="{% url 'story' more.id %}">
+                <div class="more-item">
+                    <img class="list-thumb" src="{{ more.story_thumbnail.url }}">
+                    <div class="item-body">
+                        <p class="more-title">{{ more.title }}</p>
                     </div>
-                </a>
-                {% endif %}
+                </div>
+            </a>
+            {% endif %}
             {% endfor %}
             {% endif %}
         </div>
@@ -62,9 +63,10 @@
     <!-- Trigger delete modal -->
     <div class="row">
         <div class="col-sm-12 offset-lg-1 col-lg-8 delete-div">
-        {% if request.user == story.author %}
-            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash-alt"></i></button>
-        {% endif %}
+            {% if request.user == story.author %}
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#deleteModal"><i
+                    class="fas fa-trash-alt"></i></button>
+            {% endif %}
         </div>
     </div>
 
@@ -76,15 +78,15 @@
             <h2 class="comment-header">Comments ({{ comments_count }})</h2>
         </div>
     </div>
-        {% for comment in comments %}
-        <div class="row">
-            <div class="col-sm-12 offset-lg-1 col-lg-8">
-                <p class="comment-body">{{ comment.comment }}</p>
-                <p class="comment-info"><strong>{{ comment.commenter }}</strong> | {{ comment.created }}</p>
-                <hr>
-            </div>
+    {% for comment in comments %}
+    <div class="row">
+        <div class="col-sm-12 offset-lg-1 col-lg-8">
+            <p class="comment-body">{{ comment.comment }}</p>
+            <p class="comment-info"><strong>{{ comment.commenter }}</strong> | {{ comment.created }}</p>
+            <hr>
         </div>
-        {% endfor %}
+    </div>
+    {% endfor %}
 
     <div class="row">
         {% if user.is_authenticated %}
@@ -99,7 +101,8 @@
         </div>
         {% else %}
         <div class="col-sm-12 offset-lg-1 col-lg-8 comment-button">
-            <p><a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">Register</a> to comment on this story</p>
+            <p><a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">Register</a> to comment on this
+                story</p>
         </div>
         {% endif %}
     </div>
@@ -107,24 +110,25 @@
 </section>
 
 <!-- Delete Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="deleteModalLongTitle">Delete Story?</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                <h5 class="modal-title" id="deleteModalLongTitle">Delete Story?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
-              Are you sure you want to delete {{ story.title }}?
+                Are you sure you want to delete {{ story.title }}?
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
-            <form id="delete_story" action="{% url 'deletestory' story.id %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-outline-success">Confirm Delete</button>
-            </form>
+                <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+                <form id="delete_story" action="{% url 'deletestory' story.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-success">Confirm Delete</button>
+                </form>
             </div>
         </div>
     </div>

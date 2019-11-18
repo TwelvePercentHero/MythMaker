@@ -9,69 +9,72 @@
 
     <div class="story-page">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-sm-12 col-xl-2 count-div">
-            <h2 class="count-heading">Showing {{ story_count }} stories</h2>
-        </div>
+            <div class="col-sm-12 col-xl-2 count-div">
+                <h2 class="count-heading">Showing {{ story_count }} stories</h2>
+            </div>
 
-        <div class="col-sm-12 col-xl-8 story-list">        
-            {% for story in storylist %}
-            <a href="{% url 'story' story.id %}" class="story-list-item">
-                <div class="story-item">
-                    <div class="row">
-                        <div class="story-image col-sm-12 col-lg-3">
-                            <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
-                        </div>
-                        <div class="story-item-body col-sm-12 col-lg-9">
-                            <h4 class="mt-0">{{ story.title }}</h4>
+            <div class="col-sm-12 col-xl-8 story-list">
+                {% for story in storylist %}
+                <a href="{% url 'story' story.id %}" class="story-list-item">
+                    <div class="story-item">
+                        <div class="row">
+                            <div class="story-image col-sm-12 col-lg-3">
+                                <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
+                            </div>
+                            <div class="story-item-body col-sm-12 col-lg-9">
+                                <h4 class="mt-0">{{ story.title }}</h4>
                                 <p class="user-info">{{ story.author }} | {{ story.date_posted }}</p>
-                                <p class="community-info"><i class="fas fa-heart"></i> {{ story.story_likes }}  <i class="fas fa-comments"></i> {{ story.story_comment_count }}</p>
+                                <p class="community-info"><i class="fas fa-heart"></i> {{ story.story_likes }} <i
+                                        class="fas fa-comments"></i> {{ story.story_comment_count }}</p>
                                 <p>{{ story.synopsis }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>            
-            {% endfor %}
+                </a>
+                {% endfor %}
 
-            <div class="pagination-div">
-            {% if storylist.has_other_pages %}
+                <div class="pagination-div">
+                    {% if storylist.has_other_pages %}
                     <ul class="pagination">
-                    {% if storylist.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page={{ storylist.previous_page_number }}">&laquo;</a></li>
-                    {% else %}
-                        <li></li>
-                    {% endif %}
-                    {% for s in storylist.paginator.page_range %}
-                        {% if storylist.number == s %}
-                            <li class="page-item"><a class="page-link" href="#">{{ s }}</a></li>
+                        {% if storylist.has_previous %}
+                        <li class="page-item"><a class="page-link"
+                                href="?page={{ storylist.previous_page_number }}">&laquo;</a></li>
                         {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ s }}">{{ s }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if storylist.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ storylist.next_page_number }}">&raquo;</a></li>
-                    {% else %}
                         <li></li>
-                    {% endif %}
+                        {% endif %}
+                        {% for s in storylist.paginator.page_range %}
+                        {% if storylist.number == s %}
+                        <li class="page-item"><a class="page-link" href="#">{{ s }}</a></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ s }}">{{ s }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                        {% if storylist.has_next %}
+                        <li class="page-item"><a class="page-link"
+                                href="?page={{ storylist.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                        <li></li>
+                        {% endif %}
                     </ul>
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
-        </div>
 
-        <div class="col-sm-12 col-xl-2 upload-div">
-            {% if user.is_authenticated %}
+            <div class="col-sm-12 col-xl-2 upload-div">
+                {% if user.is_authenticated %}
                 <h4>Upload</h4>
                 <p>Add your own story to the MythMaker canon</p>
                 <a href="{% url 'uploadstory' %}" class="btn btn-outline-success">Upload</a>
-            {% else %}
+                {% else %}
                 <h4>Register</h4>
                 <p>Register to upload your own stories</p>
                 <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
-            {% endif %}
-        </div>
+                {% endif %}
+            </div>
 
-    </div>
+        </div>
 
     </div>
 

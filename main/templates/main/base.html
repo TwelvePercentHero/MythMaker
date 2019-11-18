@@ -1,41 +1,45 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}">
-    {{ form.media }}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}">
+  {{ form.media }}
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Questrial&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Questrial&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
 
-    <!-- Add Stripe js script to head of all pages -->
-    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+  <!-- Add Stripe js script to head of all pages -->
+  <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
 
 </head>
+
 <body>
   <!-- Navbar - used across all pages -->
   <nav class="navbar sticky-top navbar-dark navbar-expand-lg">
 
     <!-- Brand Image -->
-    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/mythmakers.png' %}" alt="MythMakers Logo"></a>
+    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/mythmakers.png' %}"
+        alt="MythMakers Logo"></a>
 
-      <!-- Collapsible Navbar -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Collapsible Navbar -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
     </button>
-          
+
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">About</a>
+          <a class="nav-link" href="{% url 'about' %}">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'storylist' %}">Stories</a>
@@ -53,76 +57,80 @@
 
       <!-- Global Search Bar -->
       <form class="navbar-form" action="{% url 'searchresults' %}" id="search" method="GET">
-          <div class="form-group search-bar">
-            <div class="input-group">
-              <input class="form-control" name="q" type="text" placeholder="Search...">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
-              </div>
+        <div class="form-group search-bar">
+          <div class="input-group">
+            <input class="form-control" name="q" type="text" placeholder="Search...">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
             </div>
           </div>
+        </div>
       </form>
 
       <!-- User Options -->
       <ul class="nav navbar-form navbar-right user-menu">
         {% if user.is_authenticated %}
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-user-circle"></i> {{ user.username }}
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-            </div>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle"></i> {{ user.username }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </div>
         </li>
         {% else %}
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-user-circle"></i>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
-                <a class="nav-link" href="{% url 'register' %}">Register</a>
-            </div>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+            <a class="nav-link" href="{% url 'register' %}">Register</a>
+          </div>
         </li>
         {% endif %}
       </ul>
 
     </div>
-    
+
   </nav>
 
-<div class="row">
-  <div class="messages">
-    {% include 'main/messages.html' %}
+  <div class="row">
+    <div class="messages">
+      {% include 'main/messages.html' %}
+    </div>
   </div>
-</div>
 
-{% block content %}{% endblock %}
+  {% block content %}{% endblock %}
 
-<footer>
+  <footer>
     <div class="row">
       <div class="col-xs-12 offset-md-1 col-md-10 footer-div">
-          <i class="fab fa-facebook-square fa-2x"></i>  <i class="fab fa-twitter-square fa-2x"></i>  <i class="fab fa-instagram fa-2x"></i>  <i class="fas fa-envelope-square fa-2x"></i>
-          <ul>
-            <li>Terms of Use</li>
-            <li>Privacy</li>
-            <li>Contact Us</li>
-            <li><a class="footer-links" href="{% url 'about' %}">About</a></li>
-          </ul>
-          <p>Images courtesy of Pexels</p>
+        <i class="fab fa-facebook-square fa-2x"></i> <i class="fab fa-twitter-square fa-2x"></i> <i
+          class="fab fa-instagram fa-2x"></i> <i class="fas fa-envelope-square fa-2x"></i>
+        <ul>
+          <li>Terms of Use</li>
+          <li>Privacy</li>
+          <li>Contact Us</li>
+          <li><a class="footer-links" href="{% url 'about' %}">About</a></li>
+        </ul>
+        <p>Images courtesy of Pexels</p>
       </div>
     </div>
-</footer>
+  </footer>
 
-{% block stripe_js %}{% endblock %}
-    
+  {% block stripe_js %}{% endblock %}
+
 </body>
 
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- Custom jQuery -->
-    <script src="{% static 'js/main.js' %}"></script>
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- Custom jQuery -->
+<script src="{% static 'js/main.js' %}"></script>
+
 </html>
