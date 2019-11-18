@@ -15,7 +15,8 @@ def story(request, story_id):
     story = Story.objects.get(pk = story_id)
     comments = Comment.objects.filter(story = story).order_by('created')
     comments_count = comments.count()
-    more_stories = Story.objects.filter(author = story.author).order_by('-story_likes')[0:5]
+    creator = User.objects.get(username = story.author)
+    more_stories = Story.objects.filter(author = creator).order_by('-story_likes')[0:5]
     if user.is_authenticated:
         if request.method == 'POST':
             form = CommentUpload(request.POST)
@@ -34,6 +35,7 @@ def story(request, story_id):
                 'story' : story,
                 'comments' : comments,
                 'comments_count' : comments_count,
+                'creator' : creator,
                 'more_stories' : more_stories,
                 'form' : form
                 }
@@ -43,6 +45,7 @@ def story(request, story_id):
         'story' : story,
         'comments' : comments,
         'comments_count' : comments_count,
+        'creator' : creator,
         'more_stories' : more_stories
         }
     return render(request, 'stories/story.html', context)

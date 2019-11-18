@@ -39,12 +39,10 @@ class TestUpdateProfileForm(TestCase):
         test_membership = Membership.objects.create(
             membership_type = 'FR'
         )
-        c = Client()
-        c.login(username = 'TestUser', password = 'testpassword')
         
     def test_update_tagline(self):
-        user = User.objects.get(username = 'TestUser')
-        mythmaker = MythMaker.objects.get(user = user)
+        c = Client()
+        c.login(username = 'TestUser', password = 'testpassword')
         form = UpdateProfile({'tagline' : 'This is a test tagline'})
         form.save()
         self.assertTrue(form.is_valid())

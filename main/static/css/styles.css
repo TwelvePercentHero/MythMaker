@@ -247,6 +247,10 @@ label {
 
 /* --- Video List --- */
 
+.story-title {
+    color: #EAC67A;
+}
+
 .video-list, .search-list {
     height: 100%;
     padding-top: 80px;
@@ -302,6 +306,15 @@ video {
     color: #fff;
 }
 
+.vid-info a {
+    color: #EAC67A;
+}
+
+.vid-info a:hover {
+    color: #EDB234;
+    text-decoration: none;
+}
+
 .video-like {
     text-align: right;
     color: #EAC67A;
@@ -346,6 +359,15 @@ audio {
 
 .title-div p {
     color: #fff;
+}
+
+.title-div a {
+    color: #EAC67A;
+}
+
+.title-div a:hover {
+    color: #EDB234;
+    text-decoration: none;
 }
 
 .like-div {
@@ -693,7 +715,6 @@ audio {
     }
     .story-title {
         font-size: 26px;
-        color: #EAC67A;
     }
     .like-div {
         padding-top: 15px;

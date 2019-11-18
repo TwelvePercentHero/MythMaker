@@ -18,7 +18,8 @@ def audio(request, audio_id):
     audio = Audio.objects.get(pk = audio_id)
     comments = Comment.objects.filter(audio = audio).order_by('created')
     comments_count = comments.count()
-    more_audios = Audio.objects.filter(creator = audio.creator).order_by('-audio_likes')[0:5]
+    creator = User.objects.get(username = audio.creator)
+    more_audios = Audio.objects.filter(creator = creator).order_by('-audio_likes')[0:5]
     if user.is_authenticated:
         if request.method == 'POST':
             form = CommentUpload(request.POST)
@@ -36,6 +37,7 @@ def audio(request, audio_id):
                 'audio' : audio,
                 'comments' : comments,
                 'comments_count' : comments_count,
+                'creator' : creator,
                 'more_audios' : more_audios,
                 'form' : form
                 }
@@ -45,6 +47,7 @@ def audio(request, audio_id):
         'audio': audio,
         'comments' : comments,
         'comments_count' : comments_count,
+        'creator' : creator,
         'more_audios' : more_audios
         }
     return render(request, 'audio/audio.html', context)

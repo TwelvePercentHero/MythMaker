@@ -18,7 +18,8 @@ def video(request, video_id):
     video = Video.objects.get(pk = video_id)
     comments = Comment.objects.filter(video = video).order_by('created')
     comments_count = comments.count()
-    more_videos = Video.objects.filter(uploaded_by = video.uploaded_by).order_by('-video_likes')[0:5]
+    creator = User.objects.get(username = video.uploaded_by)
+    more_videos = Video.objects.filter(uploaded_by = creator).order_by('-video_likes')[0:5]
     if user.is_authenticated:
         if request.method == 'POST':
             form = CommentUpload(request.POST)
@@ -37,6 +38,7 @@ def video(request, video_id):
                 'video' : video,
                 'comments' : comments,
                 'comments_count' : comments_count,
+                'creator' : creator,
                 'more_videos' : more_videos,
                 'form' : form}
             return render(request, 'video/video.html', context)
@@ -45,6 +47,7 @@ def video(request, video_id):
         'video' : video,
         'comments' : comments,
         'comments_count' : comments_count,
+        'creator' : creator,
         'more_videos' : more_videos,
         }
     return render(request, 'video/video.html', context)

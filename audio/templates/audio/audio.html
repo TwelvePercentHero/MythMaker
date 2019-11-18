@@ -16,7 +16,7 @@
         <div class="col-xs-12 offset-md-1 col-md-8 title-div">
             <h1 class="story-title">{{ audio.title }}</h1>
             <p><em>{{ audio.description }}</em></p>
-            <p><strong>{{ audio.creator }} | {{ audio.date_posted }}</strong></p>
+            <p><strong><a href="{% url 'publicprofile' creator.id %}">{{ audio.creator }}</a> | {{ audio.date_posted }}</strong></p>
             
         </div>
 
