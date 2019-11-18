@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .forms import MythMakerForm, UpdateProfile
 from django.contrib.auth.models import User
+from django.test import Client
 from .models import MythMaker, Membership
 
 class TestMythMakerForm(TestCase):
@@ -38,6 +39,8 @@ class TestUpdateProfileForm(TestCase):
         test_membership = Membership.objects.create(
             membership_type = 'FR'
         )
+        c = Client()
+        c.login(username = 'TestUser', password = 'testpassword')
         
     def test_update_tagline(self):
         user = User.objects.get(username = 'TestUser')
