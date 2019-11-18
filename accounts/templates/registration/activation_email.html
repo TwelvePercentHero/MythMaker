@@ -1,18 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body style="margin: 0; padding: 0;">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
             <td style="padding: 20px 0 30px 0;">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; border: 1px solid #233237">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="600"
+                    style="border-collapse: collapse; border: 1px solid #233237">
                     <tr>
                         <td align="center" bgcolor="#984B43" style="padding: 40px 0 30px 0;">
-                            <h1 style="color: #EAC67A; font-family: Candara, sans-serif;">Activate your MythMaker account</h1>
+                            <h1 style="color: #EAC67A; font-family: Candara, sans-serif;">Activate your MythMaker
+                                account</h1>
                         </td>
                     </tr>
                     <tr>
@@ -20,20 +24,24 @@
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
                                     <td>
-                                        <p style="font-family: Candara, sans-serif; font-size: 18px;"><strong>Hi, {{ user.username }}</strong></p>
+                                        <p style="font-family: Candara, sans-serif; font-size: 18px;"><strong>Hi,
+                                                {{ user.username }}</strong></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p style="font-family: Candara, sans-serif; font-size: 18px;">You are receiving this email because you have 
-                                            registered for an account on MythMakers. Please click the link below to activate
+                                        <p style="font-family: Candara, sans-serif; font-size: 18px;">You are receiving
+                                            this email because you have
+                                            registered for an account on MythMakers. Please click the link below to
+                                            activate
                                             your account.
                                         </p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="center" style="padding: 20px 0 20px 0;">
-                                        <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}" style="font-family: Candara, sans-serif; font-size: 18px; border: 2px solid #EAC67A; 
+                                        <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}"
+                                            style="font-family: Candara, sans-serif; font-size: 18px; border: 2px solid #EAC67A; 
                                         border-radius: 10px; padding: 10px 10px 10px 10px; background-color: #984B43; color: #EAC67A; text-decoration: none;">
                                             Activate
                                         </a>
@@ -41,7 +49,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p style="font-family: Candara, sans-serif; font-size: 18px;">If you believe you have received this email 
+                                        <p style="font-family: Candara, sans-serif; font-size: 18px;">If you believe you
+                                            have received this email
                                             in error, please disregard it.</p>
                                     </td>
                                 </tr>
@@ -53,7 +62,8 @@
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
                                     <td>
-                                        <p style="font-family: Candara, sans-serif; font-size: 18px; color: #EAC67A;">&reg; MythMakers 2019</p>
+                                        <p style="font-family: Candara, sans-serif; font-size: 18px; color: #EAC67A;">
+                                            &reg; MythMakers 2019</p>
                                     </td>
                                 </tr>
                             </table>
@@ -67,4 +77,3 @@
 
 
 </html>
-

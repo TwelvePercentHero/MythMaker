@@ -29,7 +29,7 @@
             <p class="member-type">{{ mythmaker_membership.membership.get_membership_type_display }} Member</p>
             <p><strong>{{ mythmaker_user.mythmaker.tagline }}</strong></p>
             <p>Joined {{ mythmaker_user.date_joined }}</p>
-            <p><strong>Bio</strong><br/>{{ mythmaker_user.mythmaker.bio }}</p>
+            <p><strong>Bio</strong><br />{{ mythmaker_user.mythmaker.bio }}</p>
         </div>
 
         <div class="col-xs-12 col-md-8 activity-pane">
@@ -37,26 +37,26 @@
             <hr>
 
             <div class="display-buttons">
-                    <button class="btn display-btn selected" id="show-stories">Stories</button>
-                    <button class="btn display-btn deselected" id="show-videos">Videos</button>
-                    <button class="btn display-btn deselected" id="show-audios">Audios</button>
-                </div>
-    
-                <div class="display-container">
-    
+                <button class="btn display-btn selected" id="show-stories">Stories</button>
+                <button class="btn display-btn deselected" id="show-videos">Videos</button>
+                <button class="btn display-btn deselected" id="show-audios">Audios</button>
+            </div>
+
+            <div class="display-container">
+
                 <div class="d-block" id="story-results">
-                        <h4>Uploaded Stories</h4>
-                        {% if stories.count == 0 %}
-                        <p class="profile-body">This user has not uploaded any stories.</p>
-                        {% else %}
-                        {% for story in stories %}
-                    
-                        <a href="{% url 'story' story.id %}" class="profile-list-item">
-                            <div class="profile-item">
-                                <div class="row">
-                                    <div class="profile-image col-sm-12 col-lg-3">
-                                        <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
-                                    </div>                            
+                    <h4>Uploaded Stories</h4>
+                    {% if stories.count == 0 %}
+                    <p class="profile-body">This user has not uploaded any stories.</p>
+                    {% else %}
+                    {% for story in stories %}
+
+                    <a href="{% url 'story' story.id %}" class="profile-list-item">
+                        <div class="profile-item">
+                            <div class="row">
+                                <div class="profile-image col-sm-12 col-lg-3">
+                                    <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
+                                </div>
                                 <div class="profile-item-body col-sm-12 col-lg-9">
                                     <h4 class="mt-0">{{ story.title }}</h4>
                                     <p>{{ story.author }} | {{ story.date_posted }}</p>
@@ -64,90 +64,94 @@
                                 </div>
                             </div>
                         </div>
-                        </a>
-                    
-                        {% endfor %}
-                        {% endif %}
-                        <hr>
-                        <h4>Liked Stories</h4>
-                        {% if story_likes.count == 0 %}
-                        <p class="profile-body">This user has not liked any stories.</p>
-                        {% else %}
-                        {% for liked_story in story_likes %}
-                        <a href="{% url 'story' liked_story.story.id %}" class="profile-list-item">
-                                <div class="profile-item">
-                                    <div class="row">
-                                        <div class="profile-image col-sm-12 col-lg-3">
-                                            <img class="list-thumb" src="{{ liked_story.story.story_thumbnail.url }}">
-                                        </div>
-                                        <div class="profile-item-body col-sm-12 col-lg-9">
-                                            <h4 class="mt-0">{{ liked_story.story.title }}</h4>
-                                            <p>{{ liked_story.story.author }} | {{ liked_story.story.date_posted }}</p>
-                                            <p>{{ liked_story.story.synopsis }}</p>
-                                        </div>
-                                    </div>                                
+                    </a>
+
+                    {% endfor %}
+                    {% endif %}
+                    <hr>
+                    <h4>Liked Stories</h4>
+                    {% if story_likes.count == 0 %}
+                    <p class="profile-body">This user has not liked any stories.</p>
+                    {% else %}
+                    {% for liked_story in story_likes %}
+                    <a href="{% url 'story' liked_story.story.id %}" class="profile-list-item">
+                        <div class="profile-item">
+                            <div class="row">
+                                <div class="profile-image col-sm-12 col-lg-3">
+                                    <img class="list-thumb" src="{{ liked_story.story.story_thumbnail.url }}">
                                 </div>
-                            </a>
-                        {% endfor %}
-                        {% endif %}
-                    </div>
-    
+                                <div class="profile-item-body col-sm-12 col-lg-9">
+                                    <h4 class="mt-0">{{ liked_story.story.title }}</h4>
+                                    <p>{{ liked_story.story.author }} | {{ liked_story.story.date_posted }}</p>
+                                    <p>{{ liked_story.story.synopsis }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
                 <div class="d-none" id="video-results">
                     <h4>Uploaded Videos</h4>
                     {% if videos.count == 0 %}
-                        <p class="profile-body">This user has not uploaded any videos.</p>
+                    <p class="profile-body">This user has not uploaded any videos.</p>
                     {% else %}
-                    {% for video in videos %}   
-                        
+                    {% for video in videos %}
+
                     <a href="{% url 'video' video.id %}" class="profile-list-item">
                         <div class="profile-item">
                             <div class="row">
                                 <div class="profile-image col-sm-12 col-lg-3">
-                                    <img class="list-thumb" src="{{ video.thumbnail.url }}" alt="Thumbnail for {{ video.title }}">
+                                    <img class="list-thumb" src="{{ video.thumbnail.url }}"
+                                        alt="Thumbnail for {{ video.title }}">
                                 </div>
                                 <div class="profile-item-body col-sm-12 col-lg-9">
-                                        <h4 class="mt-0">{{ video.title }}</h5>
-                                        <p class="profile-body"><strong>{{ video.uploaded_by }} | {{ video.date_posted }}</strong></p>
+                                    <h4 class="mt-0">{{ video.title }}</h5>
+                                        <p class="profile-body"><strong>{{ video.uploaded_by }} |
+                                                {{ video.date_posted }}</strong></p>
                                         <p class="profile-body">{{ video.description }}</p>
                                 </div>
                             </div>
                         </div>
                     </a>
-                    
+
                     {% endfor %}
                     {% endif %}
                     <hr>
-    
+
                     <h4>Liked Videos</h4>
                     {% if video_likes.count == 0 %}
                     <p class="profile-body">This user has not liked any videos.</p>
                     {% else %}
                     {% for liked_video in video_likes %}
                     <a href="{% url 'video' liked_video.video.id %}" class="profile-list-item">
-                            <div class="profile-item">
-                                <div class="row">
-                                    <div class="profile-image col-sm-12 col-lg-3">
-                                        <img class="list-thumb" src="{{ liked_video.video.thumbnail.url }}" alt="Thumbnail for {{ video.title }}">
-                                    </div>                                                        
-                                    <div class="profile-item-body col-sm-12 col-lg-9">
-                                        <h4 class="mt-0">{{ liked_video.video.title }}</h5>
-                                        <p><strong>{{ liked_video.video.uploaded_by }} | {{ liked_video.video.date_posted }}</strong></p>
+                        <div class="profile-item">
+                            <div class="row">
+                                <div class="profile-image col-sm-12 col-lg-3">
+                                    <img class="list-thumb" src="{{ liked_video.video.thumbnail.url }}"
+                                        alt="Thumbnail for {{ video.title }}">
+                                </div>
+                                <div class="profile-item-body col-sm-12 col-lg-9">
+                                    <h4 class="mt-0">{{ liked_video.video.title }}</h5>
+                                        <p><strong>{{ liked_video.video.uploaded_by }} |
+                                                {{ liked_video.video.date_posted }}</strong></p>
                                         <p>{{ liked_video.video.description }}</p>
-                                    </div>
                                 </div>
                             </div>
-                        </a>
+                        </div>
+                    </a>
                     {% endfor %}
                     {% endif %}
                 </div>
-    
+
                 <div class="d-none" id="audio-results">
                     <h4>Uploaded Audios</h4>
                     {% if audios.count == 0 %}
                     <p class="profile-body">This user has not uploaded any audios.</p>
                     {% else %}
                     {% for audio in audios %}
-                
+
                     <a href="{% url 'audio' audio.id %}" class="profile-list-item">
                         <div class="profile-item">
                             <div class="row">
@@ -162,11 +166,11 @@
                             </div>
                         </div>
                     </a>
-                
+
                     {% endfor %}
                     {% endif %}
                     <hr>
-    
+
                     <h4>Liked Audios</h4>
                     {% if audio_likes.count == 0 %}
                     <p class="profile-body">This user has not liked any audios.</p>
@@ -186,15 +190,15 @@
                             </div>
                         </div>
                     </a>
-    
+
                     {% endfor %}
                     {% endif %}
                 </div>
 
 
 
+            </div>
         </div>
-    </div>
 </section>
 
 {% endblock %}

@@ -6,15 +6,16 @@
 
 <section class="container-fluid main-bg">
 
-<div class="jumbotron text-center">
-    <h1 class="jumbotron-header">Upgrade your membership, {{ username }}</h1>
-    <hr class="my-4">
-    <p class="lead">There are so many benefits to upgrading your MythMakers membership for just <strong>£5 a month</strong>.</p>
-    <p class="lead">Read just a few of them below.</p>
-    <hr class="my-4">
-    <p class="lead">Already decided?</p>
-    <a class="btn btn-outline-success btn-lg" href="{% url 'upgrade' %}" role="button">Upgrade Now</a>
-</div>
+    <div class="jumbotron text-center">
+        <h1 class="jumbotron-header">Upgrade your membership, {{ username }}</h1>
+        <hr class="my-4">
+        <p class="lead">There are so many benefits to upgrading your MythMakers membership for just <strong>£5 a
+                month</strong>.</p>
+        <p class="lead">Read just a few of them below.</p>
+        <hr class="my-4">
+        <p class="lead">Already decided?</p>
+        <a class="btn btn-outline-success btn-lg" href="{% url 'upgrade' %}" role="button">Upgrade Now</a>
+    </div>
 
 </section>
 
@@ -22,29 +23,30 @@
     <div class="row">
         <div class="col-xs-12 offset-md-1 col-md-10 benefits-col">
             <h1>Become a true MythMaker</h1>
-            <p>MythMakers would be nothing without the storytelling community, but only premium members are able to upload stories in <strong>audio</strong> and <strong>
-                video</strong> format.</p>
+            <p>MythMakers would be nothing without the storytelling community, but only premium members are able to
+                upload stories in <strong>audio</strong> and <strong>
+                    video</strong> format.</p>
             <p>Upgrading your membership means you could be creating awesome stories like the ones below.</p>
         </div>
         <div class="col-xs-12 offset-md-1 col-md-3 benefits-col">
             <a href="{% url 'story' story.id %}" class="story-list-item">
-            <h4>{{ story.title }}</h4>
-            <img src="{{ story.story_thumbnail.url }}" class="list-thumb">
-            <p>{{ story.author }} | {{ story.date_posted }}</p>
+                <h4>{{ story.title }}</h4>
+                <img src="{{ story.story_thumbnail.url }}" class="list-thumb">
+                <p>{{ story.author }} | {{ story.date_posted }}</p>
             </a>
         </div>
         <div class="col-xs-12 col-md-3 benefits-col">
             <a href="{% url 'video' video.id %}" class="story-list-item">
-            <h4>{{ video.title }}</h4>
-            <img src="{{ video.thumbnail.url }}" class="list-thumb">
-            <p>{{ video.uploaded_by }} | {{ video.date_posted }}</p>
+                <h4>{{ video.title }}</h4>
+                <img src="{{ video.thumbnail.url }}" class="list-thumb">
+                <p>{{ video.uploaded_by }} | {{ video.date_posted }}</p>
             </a>
         </div>
         <div class="col-xs-12 col-md-3 benefits-col">
             <a href="{% url 'audio' audio.id %}" class="story-list-item">
-            <h4>{{ audio.title }}</h4>
-            <img src="{{ audio.audio_thumbnail.url }}" class="list-thumb">
-            <p>{{ audio.creator }} | {{ audio.date_posted }}</p>
+                <h4>{{ audio.title }}</h4>
+                <img src="{{ audio.audio_thumbnail.url }}" class="list-thumb">
+                <p>{{ audio.creator }} | {{ audio.date_posted }}</p>
             </a>
         </div>
     </div>
@@ -53,17 +55,22 @@
         <div class="col-xs-12 offset-md-1 col-md-10 benefits-col">
             <h1>Hear from Premium MythMakers</h1>
             <blockquote class="blockquote">
-                <p class="mb-0">MythMakers is my favourite community site, everyone is so supportive of new creative works and it's great to be a part of it.</p>
-                <footer class="blockquote-footer">Pantheon, <cite title="Source Title">Premium MythMaker since September</cite></footer>
+                <p class="mb-0">MythMakers is my favourite community site, everyone is so supportive of new creative
+                    works and it's great to be a part of it.</p>
+                <footer class="blockquote-footer">Pantheon, <cite title="Source Title">Premium MythMaker since
+                        September</cite></footer>
             </blockquote>
             <hr>
             <blockquote class="blockquote">
-                <p class="mb-0">I was desperately searching for a creative outlet, and being able to tell my stories in the formats that they deserve is amazing.</p>
-                <footer class="blockquote-footer">Conduit, <cite title="Source Title">Premium MythMaker since October</cite></footer>
+                <p class="mb-0">I was desperately searching for a creative outlet, and being able to tell my stories in
+                    the formats that they deserve is amazing.</p>
+                <footer class="blockquote-footer">Conduit, <cite title="Source Title">Premium MythMaker since
+                        October</cite></footer>
             </blockquote>
             <hr>
             <blockquote class="blockquote">
-                <p class="mb-0">I believe MythMakers is the most supportive and productive community on the internet, and I wake up excited to see what new stories are being told.</p>
+                <p class="mb-0">I believe MythMakers is the most supportive and productive community on the internet,
+                    and I wake up excited to see what new stories are being told.</p>
                 <footer class="blockquote-footer">Phil, <cite title="Source Title">Founder of MythMakers</cite></footer>
             </blockquote>
         </div>
@@ -72,7 +79,8 @@
     <div class="row">
         <div class="col-xs-12 offset-md-1 col-md-10 benefits-col">
             <h1>Sound good?</h1>
-            <p>Upgrade now for all these benefits, plus you can be the first to know about new MythMaker Premium features.</p>
+            <p>Upgrade now for all these benefits, plus you can be the first to know about new MythMaker Premium
+                features.</p>
             <a class="btn btn-outline-success btn-lg" href="{% url 'upgrade' %}" role="button">Upgrade Now</a>
         </div>
     </div>

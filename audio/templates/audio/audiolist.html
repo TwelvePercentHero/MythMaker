@@ -9,71 +9,74 @@
 
     <div class="story-page">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-sm-12 col-xl-2 count-div">
-            <h2 class="count-heading">Showing {{ audio_count }} audios</h4>
-        </div>
+            <div class="col-sm-12 col-xl-2 count-div">
+                <h2 class="count-heading">Showing {{ audio_count }} audios</h4>
+            </div>
 
-        <div class="col-sm-12 col-xl-8 story-list">        
-            {% for audio in audiolist %}
-            <a href="{% url 'audio' audio.id %}" class="story-list-item">
-                <div class="story-item">
-                    <div class="row">
-                        <div class="story-image col-sm-12 col-lg-3">
-                            <img class="list-thumb" src="{{ audio.audio_thumbnail.url }}">
-                        </div>
-                        <div class="story-item-body col-sm-12 col-lg-9">
-                            <h4 class="mt-0">{{ audio.title }}</h4>
+            <div class="col-sm-12 col-xl-8 story-list">
+                {% for audio in audiolist %}
+                <a href="{% url 'audio' audio.id %}" class="story-list-item">
+                    <div class="story-item">
+                        <div class="row">
+                            <div class="story-image col-sm-12 col-lg-3">
+                                <img class="list-thumb" src="{{ audio.audio_thumbnail.url }}">
+                            </div>
+                            <div class="story-item-body col-sm-12 col-lg-9">
+                                <h4 class="mt-0">{{ audio.title }}</h4>
                                 <p class="user-info">{{ audio.creator }} | {{ audio.date_posted }}</p>
-                                <p class="community-info"><i class="fas fa-heart"></i> {{ audio.audio_likes }} | <i class="fas fa-comments"></i> {{ audio.audio_comment_count }}</p>
+                                <p class="community-info"><i class="fas fa-heart"></i> {{ audio.audio_likes }} | <i
+                                        class="fas fa-comments"></i> {{ audio.audio_comment_count }}</p>
                                 <p>{{ audio.description }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            {% endfor %}
+                </a>
+                {% endfor %}
 
-            <div class="pagination-div">
-                {% if audiolist.has_other_pages %}
+                <div class="pagination-div">
+                    {% if audiolist.has_other_pages %}
                     <ul class="pagination">
-                    {% if audiolist.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page={{ audiolist.previous_page_number }}">&laquo;</a></li>
-                    {% else %}
-                        <li></li>
-                    {% endif %}
-                    {% for s in audiolist.paginator.page_range %}
-                        {% if audiolist.number == s %}
-                            <li class="page-item"><a class="page-link" href="#">{{ s }}</a></li>
+                        {% if audiolist.has_previous %}
+                        <li class="page-item"><a class="page-link"
+                                href="?page={{ audiolist.previous_page_number }}">&laquo;</a></li>
                         {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ s }}">{{ s }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if audiolist.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ audiolist.next_page_number }}">&raquo;</a></li>
-                    {% else %}
                         <li></li>
-                    {% endif %}
+                        {% endif %}
+                        {% for s in audiolist.paginator.page_range %}
+                        {% if audiolist.number == s %}
+                        <li class="page-item"><a class="page-link" href="#">{{ s }}</a></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ s }}">{{ s }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                        {% if audiolist.has_next %}
+                        <li class="page-item"><a class="page-link"
+                                href="?page={{ audiolist.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                        <li></li>
+                        {% endif %}
                     </ul>
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
-        </div>
 
-        <div class="col-sm-12 col-xl-2 upload-div">
-            {% if mythmaker_membership.membership_id == 2 %}
+            <div class="col-sm-12 col-xl-2 upload-div">
+                {% if mythmaker_membership.membership_id == 2 %}
                 <a href="{% url 'uploadaudio' %}" class="btn btn-outline-success">Upload</a>
-            {% elif mythmaker_membership.membership_id == 1 %}
+                {% elif mythmaker_membership.membership_id == 1 %}
                 <h4>Upgrade</h4>
                 <p>Upgrade to Premium to upload your own audio.</p>
                 <a class="btn btn-outline-success" href="{% url 'benefits' %}" role="button">Upgrade</a>
-            {% elif mythmaker_membership is None %}
+                {% elif mythmaker_membership is None %}
                 <h4>Register</h4>
                 <p>Register to save videos to your favourites</p>
                 <a class="btn btn-outline-success" href="{% url 'register' %}" role="button">Register</a>
-            {% endif %}
-        </div>
+                {% endif %}
+            </div>
 
-    </div>
+        </div>
 
     </div>
 
