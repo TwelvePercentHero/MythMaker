@@ -353,7 +353,7 @@ audio {
     margin-top: 20px;
 }
 
-.title-div h1, .more-title {
+.title-div h1, h2, .more-title {
     color: #EAC67A;
 }
 

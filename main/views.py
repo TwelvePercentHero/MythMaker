@@ -41,3 +41,6 @@ def searchresults(request):
         'mythmakers' : mythmakers
         }
     return render(request, 'main/searchresults.html', context)
+
+def privacy(request):
+    return render(request, 'main/privacy.html')

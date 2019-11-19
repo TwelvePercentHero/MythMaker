@@ -1,10 +1,10 @@
-from django.test import TestCase, Client
+from django.test import TestCase, Client, RequestFactory
 from .forms import MythMakerForm, UpdateProfile
 from django.contrib.auth.models import User
 from .models import MythMaker, Membership
 
 class TestMythMakerForm(TestCase):
-    def test_mythmaker_registration_form_is_valid(self):
+    def test_registration_form_is_valid(self):
         form = MythMakerForm(
             {
             'username' : 'TestUser',
@@ -14,6 +14,39 @@ class TestMythMakerForm(TestCase):
             }
         )
         self.assertTrue(form.is_valid())
+
+    def test_registration_form_empty(self):
+        form = MythMakerForm(
+            {
+                'username' : '',
+                'email' : '',
+                'password1' : '',
+                'password2' : ''
+            }
+        )
+        self.assertFalse(form.is_valid())
+
+    def test_registration_without_username(self):
+        form = MythMakerForm(
+            {
+                'username' : '',
+                'email' : 'test@test.com',
+                'password1' : 'password1',
+                'password2' : 'password1'
+            }
+        )
+        self.assertFalse(form.is_valid())
+
+    def test_registration_without_email(self):
+        form = MythMakerForm(
+            {
+                'username' : 'TestUser',
+                'email' : '',
+                'password1' : 'password1',
+                'password2' : 'password1'
+            }
+        )
+        self.assertFalse(form.is_valid())
 
     def test_invalid_password_entry(self):
         form = MythMakerForm(
@@ -30,9 +63,10 @@ class TestMythMakerForm(TestCase):
 
 '''class TestUpdateProfileForm(TestCase):
     def setUp(self):
-        test_user = User.objects.create_user(
+        self.factory = RequestFactory()
+        self.user = User.objects.create_user(
             username = 'TestUser',
-            email = 'mythmakerinchief@gmail.com',
+            email = 'test@test.com',
             password = 'testpassword'
         )
         test_membership = Membership.objects.create(

@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Your Privacy | MythMakers{% endblock %}
+
+{% block content %}
+
+<section class="container-fluid solid-bg">
+
+    <div class="row">
+        <div class="col-md-12 header-container">
+            <img class="img-fluid profile-header" src="{% static 'images/default-header.png' %}"
+                alt="About MythMakers image">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 offset-md-1 col-md-8 title-div">
+            <h1>Your Privacy</h1>
+            <p><strong>Here at MythMakers your privacy and the security of your data is extremely important to us. We
+                    want you to feel safe and secure storing your information with us.</strong></p>
+
+            <h2>Your Personal Details</h2>
+            <p>We know how annoying it is to suddenly get a barrage of spam emails and marketing messages just because
+                you put your email address into a new website.</p>
+            <p>That's why we'll never share your personal information with anyone else, for any reason.</p>
+            <p>So next time you find an unusual offer or a slew of strange emails clogging up your inbox, you can rest
+                easy in the knowledge that it's not because of your MythMakers membership!</p>
+
+            <h2>Your Billing Info</h2>
+            <p>Keeping your billing information secure is a top priority for us, and if you are generous enough to
+                support us as a Premium MythMaker, keeping your details safe is the least we can do.</p>
+            <p>All transactions processed on behalf of MythMakers are handled by <a href="https://stripe.com/gb"
+                    target="_blank">Stripe</a>, a powerful and secure online payments platform.</p>
+            <p>We hope it goes without saying, but we'll never, EVER share your billing information with anyone else.
+            </p>
+
+            <h2>Your Copyright</h2>
+            <p>MythMakers does not hold any copyright on the stories you submit to the site. We are merely a place for
+                you to host your stories and share them with others.</p>
+            <p>You will retain full copyright on all stories uploaded to MythMakers, and we do not use any of your work for profit.</p>
+            <p>MythMakers does not host ads, we are reliant on Premium MythMaker subscriptions to keep the lights on.</p>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

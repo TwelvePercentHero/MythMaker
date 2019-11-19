@@ -109,12 +109,13 @@
   <footer>
     <div class="row">
       <div class="col-xs-12 offset-md-1 col-md-10 footer-div">
-        <i class="fab fa-facebook-square fa-2x"></i> <i class="fab fa-twitter-square fa-2x"></i> <i
-          class="fab fa-instagram fa-2x"></i> <i class="fas fa-envelope-square fa-2x"></i>
+        <a class="footer-links" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a> 
+        <a class="footer-links" href="https://www.twitter.com/" target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a> 
+        <a class="footer-links" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a> 
+        <a class="footer-links" href="mailto:mythmakerinchief@gmail.com"><i class="fas fa-envelope-square fa-2x"></i></a>
         <ul>
-          <li>Terms of Use</li>
-          <li>Privacy</li>
-          <li>Contact Us</li>
+          <li><a class="footer-links" href="{% url 'privacy' %}">Privacy</a></li>
+          <li><a class="footer-links" href="mailto:mythmakerinchief@gmail.com">Contact Us</a></li>
           <li><a class="footer-links" href="{% url 'about' %}">About</a></li>
         </ul>
         <p>Images courtesy of Pexels</p>
