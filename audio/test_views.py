@@ -1,7 +1,7 @@
 from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from .models import Audio
-from accounts.models import Membership
+from accounts.models import Membership, MythMakerMembership
 from audio.views import audio, audiolist
 
 class TestAudioListView(TestCase):
@@ -16,6 +16,10 @@ class TestAudioListView(TestCase):
         test_membership = Membership.objects.create(
             membership_type = 'FR'
         )
+        test_mythmaker_membership = MythMakerMembership.objects.create(
+            user = self.user,
+            membership = test_membership
+        )
         audio = Audio.objects.create(
             title = 'Test Audio',
             description = 'This is a Test Description for the Test Audio',
@@ -25,13 +29,11 @@ class TestAudioListView(TestCase):
             creator = self.user
         )
 
-    '''def test_audiolist(self):
+    def test_audiolist(self):
         request = self.factory.get('/audiolist/')
         request.user = self.user
         response = audiolist(request)
-
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'audio/audiolist.html)'''
 
     def test_audio(self):
         audio = Audio.objects.get(title = 'Test Audio')
