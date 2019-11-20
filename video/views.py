@@ -40,7 +40,8 @@ def video(request, video_id):
                 'comments_count' : comments_count,
                 'creator' : creator,
                 'more_videos' : more_videos,
-                'form' : form}
+                'form' : form
+                }
             return render(request, 'video/video.html', context)
     context = {
         'user' : user,

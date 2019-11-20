@@ -171,6 +171,8 @@ User Functions: An easily-accessible menu of options for existing users to login
 
 I created a suite of automated tests using Django’s built-in testing framework to ensure that the views, forms and models in each app were functioning correctly. I experienced some difficulties with this process as the use of an extended user auth model in the accounts app made creating the test user each time the test database was created a much more complex process.
 
+With assistance from Haley Schafer at **Code Institute** I was able to fix an issue I was experiencing with some of my automated tests. This fix resulted in the tests being quite long and not particularly efficient, but functional. Given time I would look at refactoring these tests to make the automated tests more efficient in terms of both speed and the amount of code written.
+
 As such, many of my tests were written after the code itself was completed so the project does not follow a true test-first development practice, however manual tests were completed for each stage of development in an effort to supplement the automated tests. A list of manual test scripts can be found in the testing folder.
 
 Stripe was also extensively manually tested to ensure that relevant errors were thrown when an invalid card number was entered. As a result of this testing a generic error page was included to provide further information on next steps whenever a card error was encountered.
