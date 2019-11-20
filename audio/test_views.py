@@ -13,7 +13,8 @@ class TestAudioListView(TestCase):
             password = 'testpassword'
         )
         membership = Membership.objects.create(
-            membership_type = 'FR'
+            membership_type = 'FR',
+            id = '1'
         )
         page = self.client.get('/audiolist/')
         self.assertEqual(page.status_code, 200)
@@ -26,7 +27,8 @@ class TestAudioListView(TestCase):
             password = 'testpassword'
         )
         membership = Membership.objects.create(
-            membership_type = 'FR'
+            membership_type = 'FR',
+            id = '1'
         )
         audio = Audio.objects.create(
             title = 'Test Audio',
