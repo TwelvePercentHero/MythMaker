@@ -108,6 +108,98 @@ label {
     display: inline;
 }
 
+/* --- Forms --- */
+
+.upgrade-jumbo p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#login-jumbo {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.profile-form {
+    color: #fff;
+}
+
+.profile-form a {
+    color: #EAC67A;
+}
+
+.profile-form a:hover {
+    color: #EDB234;
+    text-decoration: none;
+}
+
+.edit-field {
+    width: 100%;
+}
+
+.upload-field {
+    color: #fff;
+}
+
+/* --- Buttons --- */
+
+.btn-outline-success {
+    color: #EAC67A;
+    border-color: #EAC67A;
+}
+
+.btn-outline-success:hover {
+    color: #FFF;
+    background-color: #EAC67A;
+    border-color: #FFF;
+}
+
+.edit-btn {
+    background-color: #18121E;
+    margin-bottom: 10px;
+}
+
+.edit-btn:hover {
+    background-color: #291f33
+}
+
+.submit-payment {
+    margin-top: 20px;
+}
+
+.deselected {
+    background-color: #EAC67A;
+    color: #18121E;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
+.selected {
+    background-color: #18121E;
+    color: #EAC67A;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
+.deselected:hover, .selected:hover {
+    background-color: #EDB234;
+}
+
+.fas {
+    color:#EAC67A;
+  }
+
+/* --- Messages --- */
+
+.messages {
+    width: 100%;
+    text-align: center;
+}
+
+.alert {
+    margin-bottom: 0px;
+}
+
 /* --- Home Page --- */
 
 .main-bg {
@@ -158,288 +250,11 @@ label {
     margin-bottom: 5px;
 }
 
-/* --- About Page --- */
-
-.side-div {
-    padding-top: 10px;
-    color: #fff;
-}
-
-/* --- List Pages --- */
-
-.story-page, .search-page {
-    height: 100%;
-    vertical-align: top;
-    width: 100%;
-}
-
-.story-item {
-    margin-bottom: 20px;
-}
-
-.page-link {
-    background-color: #18121E;
-    color: #EAC67A;
-}
-
-.page-link:hover {
-    background-color: #EAC67A;
-    color: #18121E;
-}
-
-.count-div {
-    height: 100%;
-    padding-top: 80px;
-    text-align: center;
-}
-
-.count-heading {
-    color: #EAC67A;
-    font-size: 20px;
-    padding-left: 10px;
-}
-
-.filter-div {
-    height: 100%;
-    padding-top: 80px;
-}
-
-.user-info {
-    margin-bottom: 5px;
-}
-
-.community-info {
-    font-size: 12px;
-    margin-bottom: 5px;
-}
-
-.story-list {
-    height: 100%;
-    padding-top: 80px;
-    padding-right: 40px;
-}
-
-.story-list-item {
-    color: #fff;
-}
-
-.story-list-item:hover {
-    text-decoration: none;
-    color: #d7d9db;
-}
-
-.pagination-div {
-    vertical-align: bottom;
-}
-
-.search-results {
-    padding-top: 20px;
-}
-
-.search-heading {
-    color: #EAC67A;
-}
-
-.no-results {
-    color: #fff;
-    padding-top: 10px;
-}
-
-/* --- Video List --- */
-
-.story-title {
-    color: #EAC67A;
-}
-
-.video-list, .search-list {
-    height: 100%;
-    padding-top: 80px;
-}
-
-.video-list-item {
-    color: #fff;
-}
-
-.video-list-item:hover {
-    text-decoration: none;
-    color: #d7d9db;
-}
-
-.list-thumb {
-    width: 240px;
-    height: 135px;
-}
-
-.media {
-    margin-bottom: 30px;
-}
-
-.media-body {
-    margin-left: 20px;
-}
-
-.upload-div {
-    height: 100%;
-    padding-top: 80px;
-}
-
-.upload-div p {
-    color: #fff;
-    font-size: 14px;
-}
-
-
-/* --- Video Page --- */
-
-video {
-    width: 100%;
-    height: auto;
-    margin-bottom: 0px;
-}
-
-.video-div {
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-}
-
-.vid-info {
-    color: #fff;
-}
-
-.vid-info a {
-    color: #EAC67A;
-}
-
-.vid-info a:hover {
-    color: #EDB234;
-    text-decoration: none;
-}
-
-.video-like {
-    text-align: right;
-    color: #EAC67A;
-}
-
-/* --- Video Upload --- */
-
-.upload {
-    width: 600px;
-}
-
-.upload-label {
-    font-weight: bold;
-}
-
-.form-group p {
-    padding-top: 10px;
-    color: #18121E;
-}
-
-/* --- Audio Page --- */
-
-.audio-div {
-    text-align: center;
-    padding-top: 30px;
-}
-
-audio {
-    width: 100%;
-}
-
-/* --- Story Page --- */
-
-.title-div {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.title-div h1, h2, .more-title {
-    color: #EAC67A;
-}
-
-.title-div p {
-    color: #fff;
-}
-
-.title-div a {
-    color: #EAC67A;
-}
-
-.title-div a:hover {
-    color: #EDB234;
-    text-decoration: none;
-}
-
-.like-div {
-    padding-top: 30px;
-    color: #EAC67A;
-}
-
-.story-div {
-    padding-bottom: 20px;
-    color: #fff;
-}
-
-.delete-div {
-    text-align: right;
-    padding-bottom: 20px;
-}
-
-.modal-content {
-    background-color: rgb(152, 75, 67);
-}
-
-/* --- Upload Story Page --- */
-
-.upload-story {
-    width: 800px;
-}
-
 /* --- Registration Page --- */
 
 .errorlist {
     list-style: none;
     font-weight: bold;
-}
-
-/* --- User List Page --- */
-
-.user-page {
-    height: 100%;
-    width: 100%;
-    vertical-align: top;
-}
-
-.user-list {
-    padding-top: 80px;
-    min-width: 600px;
-}
-
-.user-thumb {
-    max-height: 300px;
-    max-width: 300px;
-}
-
-.user-body {
-    max-width: 300px;
-    background-color: #18121E;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-.register-div {
-    height: 100%;
-    padding-top: 80px;
-    color: #fff;
-}
-
-.user-list-item {
-    color: #fff;
-}
-
-.user-list-item:hover {
-    text-decoration: none;
-    color: #d7d9db;
 }
 
 /* --- Profile Page --- */
@@ -542,6 +357,270 @@ audio {
     font-size: 18px;
 }
 
+/* --- List Pages --- */
+
+.story-page, .search-page {
+    height: 100%;
+    vertical-align: top;
+    width: 100%;
+}
+
+.story-item {
+    margin-bottom: 20px;
+}
+
+.page-link {
+    background-color: #18121E;
+    color: #EAC67A;
+}
+
+.page-link:hover {
+    background-color: #EAC67A;
+    color: #18121E;
+}
+
+.count-div {
+    height: 100%;
+    padding-top: 80px;
+    text-align: center;
+}
+
+.count-heading {
+    color: #EAC67A;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.filter-div {
+    height: 100%;
+    padding-top: 80px;
+}
+
+.user-info {
+    margin-bottom: 5px;
+}
+
+.community-info {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.story-list {
+    height: 100%;
+    padding-top: 80px;
+    padding-right: 40px;
+}
+
+.story-list-item {
+    color: #fff;
+}
+
+.story-list-item:hover {
+    text-decoration: none;
+    color: #d7d9db;
+}
+
+.pagination-div {
+    vertical-align: bottom;
+}
+
+.search-results {
+    padding-top: 20px;
+}
+
+.search-heading {
+    color: #EAC67A;
+}
+
+.no-results {
+    color: #fff;
+    padding-top: 10px;
+}
+
+.story-title {
+    color: #EAC67A;
+}
+
+.video-list, .search-list {
+    height: 100%;
+    padding-top: 80px;
+}
+
+.video-list-item {
+    color: #fff;
+}
+
+.video-list-item:hover {
+    text-decoration: none;
+    color: #d7d9db;
+}
+
+.list-thumb {
+    width: 240px;
+    height: 135px;
+}
+
+.media {
+    margin-bottom: 30px;
+}
+
+.media-body {
+    margin-left: 20px;
+}
+
+.upload-div {
+    height: 100%;
+    padding-top: 80px;
+}
+
+.upload-div p {
+    color: #fff;
+    font-size: 14px;
+}
+
+.user-page {
+    height: 100%;
+    width: 100%;
+    vertical-align: top;
+}
+
+.user-list {
+    padding-top: 80px;
+    min-width: 600px;
+}
+
+.user-thumb {
+    max-height: 300px;
+    max-width: 300px;
+}
+
+.user-body {
+    max-width: 300px;
+    background-color: #18121E;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.register-div {
+    height: 100%;
+    padding-top: 80px;
+    color: #fff;
+}
+
+.user-list-item {
+    color: #fff;
+}
+
+.user-list-item:hover {
+    text-decoration: none;
+    color: #d7d9db;
+}
+
+/* --- Story Pages --- */
+
+.side-div {
+    padding-top: 10px;
+    color: #fff;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0px;
+}
+
+.video-div {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.vid-info {
+    color: #fff;
+}
+
+.vid-info a {
+    color: #EAC67A;
+}
+
+.vid-info a:hover {
+    color: #EDB234;
+    text-decoration: none;
+}
+
+.video-like {
+    text-align: right;
+    color: #EAC67A;
+}
+
+.audio-div {
+    text-align: center;
+    padding-top: 30px;
+}
+
+audio {
+    width: 100%;
+}
+
+.title-div {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.title-div h1, h2, .more-title {
+    color: #EAC67A;
+}
+
+.title-div p {
+    color: #fff;
+}
+
+.title-div a {
+    color: #EAC67A;
+}
+
+.title-div a:hover {
+    color: #EDB234;
+    text-decoration: none;
+}
+
+.like-div {
+    padding-top: 30px;
+    color: #EAC67A;
+}
+
+.story-div {
+    padding-bottom: 20px;
+    color: #fff;
+}
+
+.delete-div {
+    text-align: right;
+    padding-bottom: 20px;
+}
+
+.modal-content {
+    background-color: rgb(152, 75, 67);
+}
+
+/* --- Upload Pages --- */
+
+.upload {
+    width: 600px;
+}
+
+.upload-label {
+    font-weight: bold;
+}
+
+.form-group p {
+    padding-top: 10px;
+    color: #18121E;
+}
+
+.upload-story {
+    width: 800px;
+}
+
 /* --- Benefits Page --- */
 
 .benefits-col {
@@ -577,98 +656,6 @@ audio {
 #card-element {
     width: 100%;
     margin-bottom: 20px;
-}
-
-/* --- Forms --- */
-
-.upgrade-jumbo p {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-#login-jumbo {
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.profile-form {
-    color: #fff;
-}
-
-.profile-form a {
-    color: #EAC67A;
-}
-
-.profile-form a:hover {
-    color: #EDB234;
-    text-decoration: none;
-}
-
-.edit-field {
-    width: 100%;
-}
-
-.upload-field {
-    color: #fff;
-}
-
-/* --- Buttons --- */
-
-.btn-outline-success {
-    color: #EAC67A;
-    border-color: #EAC67A;
-}
-
-.btn-outline-success:hover {
-    color: #FFF;
-    background-color: #EAC67A;
-    border-color: #FFF;
-}
-
-.edit-btn {
-    background-color: #18121E;
-    margin-bottom: 10px;
-}
-
-.edit-btn:hover {
-    background-color: #291f33
-}
-
-.submit-payment {
-    margin-top: 20px;
-}
-
-.deselected {
-    background-color: #EAC67A;
-    color: #18121E;
-    font-weight: bold;
-    border-radius: 0px;
-}
-
-.selected {
-    background-color: #18121E;
-    color: #EAC67A;
-    font-weight: bold;
-    border-radius: 0px;
-}
-
-.deselected:hover, .selected:hover {
-    background-color: #EDB234;
-}
-
-.fas {
-    color:#EAC67A;
-  }
-
-/* --- Messages --- */
-
-.messages {
-    width: 100%;
-    text-align: center;
-}
-
-.alert {
-    margin-bottom: 0px;
 }
 
 /* --- Comments --- */
