@@ -29,7 +29,7 @@
             {% for story in latest_stories %}
             <div class="col-xs-12 col-md-2 latest-stories">
                 <a href="{% url 'story' story.id %}" class="story-list-item">
-                    <img src="{{ story.story_thumbnail.url }}" class="list-thumb" alt="{{ story.title }} thumbnail">
+                    <img src="{{ story.story_thumbnail.url }}" class="list-thumb" alt="Thumbnail for {{ story.title }}">
                     <h5 class="latest-title">{{ story.title }}</h5>
                     <p class="latest-text">{{ story.author }}</p>
                     <p class="latest-text">{{ story.date_posted }}</p>
@@ -50,7 +50,7 @@
             {% for video in latest_videos %}
             <div class="col-xs-12 col-md-2 latest-stories">
                 <a href="{% url 'video' video.id %}" class="video-list-item">
-                    <img src="{{ video.thumbnail.url }}" class="list-thumb" alt="{{ video.title }} thumbnail">
+                    <img src="{{ video.thumbnail.url }}" class="list-thumb" alt="Thumbnail for {{ video.title }}">
                     <h5 class="latest-title">{{ video.title }}</h5>
                     <p class="latest-text">{{ video.uploaded_by }}</p>
                     <p class="latest-text">{{ video.date_posted }}</p>
@@ -71,7 +71,7 @@
             {% for audio in latest_audio %}
             <div class="col-xs-12 col-md-2 latest-stories">
                 <a href="{% url 'audio' audio.id %}" class="audio-list-item">
-                    <img src="{{ audio.audio_thumbnail.url }}" class="list-thumb" alt="{{ audio.title }} thumbnail">
+                    <img src="{{ audio.audio_thumbnail.url }}" class="list-thumb" alt="Thumbnail for {{ audio.title }}">
                     <h5 class="latest-title">{{ audio.title }}</h5>
                     <p class="latest-text">{{ audio.creator }}</p>
                     <p class="latest-text">{{ audio.date_posted }}</p>
