@@ -22,7 +22,7 @@
             {% if more.title != video.title %}
             <a class="story-list-item" href="{% url 'video' more.id %}">
                 <div class="more-item">
-                    <img class="list-thumb" src="{{ more.thumbnail.url }}">
+                    <img class="list-thumb" src="{{ more.thumbnail.url }}" alt="Thumbnail for {{ more.title }}">
                     <div class="item-body">
                         <p class="more-title">{{ more.title }}</p>
                     </div>
