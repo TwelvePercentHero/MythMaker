@@ -60,22 +60,3 @@ class TestMythMakerForm(TestCase):
         self.assertEqual(
             form.errors['password2'], [u"The two password fields didn't match."]
         )
-
-'''class TestUpdateProfileForm(TestCase):
-    def setUp(self):
-        self.factory = RequestFactory()
-        self.user = User.objects.create_user(
-            username = 'TestUser',
-            email = 'test@test.com',
-            password = 'testpassword'
-        )
-        test_membership = Membership.objects.create(
-            membership_type = 'FR'
-        )
-        
-    def test_update_tagline(self):
-        c = Client()
-        c.login(username = 'TestUser', password = 'testpassword')
-        form = UpdateProfile({'tagline' : 'This is a test tagline'})
-        form.save()
-        self.assertTrue(form.is_valid())'''
