@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12 header-container">
             {% if mythmaker_user.mythmaker.profile_header == '' %}
-            <img class="img fluid profile-header" src="{% static 'images/default-header.png' %}">
+            <img class="img fluid profile-header" src="{% static 'images/default-header.png' %}" alt="MythMakers header image">
             {% else %}
             <img class="img-fluid profile-header" src="{{ mythmaker_user.mythmaker.profile_header.url }}">
             {% endif %}
@@ -21,9 +21,9 @@
     <div class="row">
         <div class="col-xs-12 offset-md-1 col-md-2 user-details">
             {% if mythmaker_user.mythmaker.profile_image == '' %}
-            <img class="img-fluid" src="{% static 'images/default-profile.png' %}">
+            <img class="img-fluid" src="{% static 'images/default-profile.png' %}" alt="MythMakers header image" alt="Header Image for {{ user.username }}">
             {% else %}
-            <img class="img-fluid" src="{{ mythmaker_user.mythmaker.profile_image.url }}">
+            <img class="img-fluid" src="{{ mythmaker_user.mythmaker.profile_image.url }}" alt="Header Image for {{ user.username }}">
             {% endif %}
             <h3>{{ mythmaker_user.username }}</h3>
             <p class="member-type">{{ mythmaker_membership.membership.get_membership_type_display }} Member</p>
@@ -55,7 +55,7 @@
                         <div class="profile-item">
                             <div class="row">
                                 <div class="profile-image col-sm-12 col-lg-3">
-                                    <img class="list-thumb" src="{{ story.story_thumbnail.url }}">
+                                    <img class="list-thumb" src="{{ story.story_thumbnail.url }}" alt="Thumbnail for {{ story.title }}">
                                 </div>
                                 <div class="profile-item-body col-sm-12 col-lg-9">
                                     <h4 class="mt-0">{{ story.title }}</h4>
@@ -78,7 +78,7 @@
                         <div class="profile-item">
                             <div class="row">
                                 <div class="profile-image col-sm-12 col-lg-3">
-                                    <img class="list-thumb" src="{{ liked_story.story.story_thumbnail.url }}">
+                                    <img class="list-thumb" src="{{ liked_story.story.story_thumbnail.url }}" alt="Thumbnail for {{ liked_story.story.title }}">
                                 </div>
                                 <div class="profile-item-body col-sm-12 col-lg-9">
                                     <h4 class="mt-0">{{ liked_story.story.title }}</h4>
@@ -130,7 +130,7 @@
                             <div class="row">
                                 <div class="profile-image col-sm-12 col-lg-3">
                                     <img class="list-thumb" src="{{ liked_video.video.thumbnail.url }}"
-                                        alt="Thumbnail for {{ video.title }}">
+                                        alt="Thumbnail for {{ liked_video.video.title }}">
                                 </div>
                                 <div class="profile-item-body col-sm-12 col-lg-9">
                                     <h4 class="mt-0">{{ liked_video.video.title }}</h5>
@@ -156,7 +156,7 @@
                         <div class="profile-item">
                             <div class="row">
                                 <div class="profile-image col-sm-12 col-lg-3">
-                                    <img class="list-thumb" src="{{ audio.audio_thumbnail.url }}">
+                                    <img class="list-thumb" src="{{ audio.audio_thumbnail.url }}" alt="Thumbnail for {{ audio.title }}">
                                 </div>
                                 <div class="profile-item-body col-sm-12 col-lg-9">
                                     <h4 class="mt-0">{{ audio.title }}</h4>
@@ -180,7 +180,7 @@
                         <div class="profile-item">
                             <div class="row">
                                 <div class="profile-image col-sm-12 col-lg-3">
-                                    <img class="list-thumb" src="{{ liked_audio.audio.audio_thumbnail.url }}">
+                                    <img class="list-thumb" src="{{ liked_audio.audio.audio_thumbnail.url }}" alt="Thumbnail for {{ liked_audio.audio.title }}">
                                 </div>
                                 <div class="profile-item-body col-sm-12 col-lg-9">
                                     <h4 class="mt-0">{{ liked_audio.audio.title }}</h4>

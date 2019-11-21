@@ -19,9 +19,9 @@
           <a href="{% url 'publicprofile' user.id %}" class="col-sm-12 col-lg-6 col-xl-4 user-list-item">
             <div class="user-image">
               {% if user.mythmaker.profile_image == '' %}
-              <img src="{% static 'images/default-profile.png' %}" class="img-fluid user-thumb">
+              <img src="{% static 'images/default-profile.png' %}" class="img-fluid user-thumb" alt="MythMakers profile image">
               {% else %}
-              <img src="{{ user.mythmaker.profile_image.url }}" class="img-fluid user-thumb">
+              <img src="{{ user.mythmaker.profile_image.url }}" class="img-fluid user-thumb" alt="Profile image for {{user.username }}">
               {% endif %}
             </div>
             <div class="user-body">
