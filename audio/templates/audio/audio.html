@@ -8,7 +8,7 @@
 <section class="container-fluid solid-bg">
     <div class="row">
         <div class="col-md-12 header-container">
-            <img class="img-fluid profile-header" src="{{ audio.cover_image.url }}">
+            <img class="img-fluid profile-header" src="{{ audio.cover_image.url }}" alt="Cover image for {{ audio.title }}">
         </div>
     </div>
 
@@ -51,7 +51,7 @@
             {% if more.title != audio.title %}
             <a class="story-list-item" href="{% url 'audio' more.id %}">
                 <div class="more-item">
-                    <img class="list-thumb" src="{{ more.audio_thumbnail.url }}">
+                    <img class="list-thumb" src="{{ more.audio_thumbnail.url }}" alt="Thumbnail for {{ more.title }}">
                     <div class="item-body">
                         <p class="more-title">{{ more.title }}</p>
                     </div>
