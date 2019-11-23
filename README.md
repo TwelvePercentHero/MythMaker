@@ -183,7 +183,55 @@ I also used the W3 Validation Services for both HTML and CSS, JSLint to validate
 
 ## Deployment
 
-I deployed the app by.
+### Local Deployment
+
+To run this project locally on your own system, you will need the following installed:
+
+- An IDE such as Microsoft Visual Studio Code
+- Python3 to run the application
+- PIP to install all app requirements
+- GIT for version control
+- MongoDB for database management
+
+In order to proceed with local deployment:
+
+- Clone this GitHub repository by clicking the **Clone or download** button and downloading the project as a zip file.
+- Navigate to the correct file location after unpacking the files.
+- Create virtual environment for the Python interpreter using the terminal command:
+
+`python -m venv env`
+
+- Activate the virtual environment with the terminal command:
+
+`env\scripts\activate`
+
+- If required, upgrade pip with the command:
+
+`python -m pip install --upgrade pip`
+
+- Install all required modules with the command:
+
+`pip -r requirements.txt`
+
+- In your **settings.json** file add a **SECRET_KEY** and **MONGO_URI** variable to link to your own database. Make sure to name your database `binge_watch` with the following collections (an example of the full data model can be found in the [data model](https://github.com/TwelvePercentHero/bingewatch/blob/master/static/docs/data-model.pdf) included in this repsitory):
+  - archived_media
+  - archived_recipes
+  - categories
+  - genres
+  - likes
+  - media
+  - origin
+  - recipe_types
+  - recipes
+  - temp_media
+  - temp_recipes
+  - users
+
+- You can now run the application with the terminal command:
+
+`python -m flask run`
+
+- You can then visit the website at `http://127.0.0.1:5000`
 
 ## Credits
 

@@ -719,6 +719,9 @@ audio {
     .main-bg {
         height: 100%;
     }
+    .latest-col, .latest-stories {
+        text-align: center;
+    }
     .story-item, .upload-div {
         text-align: center;
     }

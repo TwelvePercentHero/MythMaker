@@ -19,15 +19,15 @@
 
 <section class="dark-section">
     <div class="row">
-        <div class="col-xs-12 offset-md-1 col-md-10 latest-col">
+        <div class="col-sm-12 offset-xl-1 col-xl-10 latest-col">
             <h4>Latest Stories</h4>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-xs-12 offset-md-1 col-md-10">
+        <div class="col-sm-12 offset-xl-1 col-xl-10">
             {% for story in latest_stories %}
-            <div class="col-xs-12 col-md-2 latest-stories">
+            <div class="col-sm-12 col-xl-2 latest-stories">
                 <a href="{% url 'story' story.id %}" class="story-list-item">
                     <img src="{{ story.story_thumbnail.url }}" class="list-thumb" alt="Thumbnail for {{ story.title }}">
                     <h5 class="latest-title">{{ story.title }}</h5>
@@ -40,15 +40,15 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 offset-md-1 col-md-10 latest-col">
+        <div class="col-sm-12 offset-xl-1 col-xl-10 latest-col">
             <h4>Latest Video</h4>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-xs-12 offset-md-1 col-md-10">
+        <div class="col-sm-12 offset-xl-1 col-xl-10">
             {% for video in latest_videos %}
-            <div class="col-xs-12 col-md-2 latest-stories">
+            <div class="col-sm-12 col-xl-2 latest-stories">
                 <a href="{% url 'video' video.id %}" class="video-list-item">
                     <img src="{{ video.thumbnail.url }}" class="list-thumb" alt="Thumbnail for {{ video.title }}">
                     <h5 class="latest-title">{{ video.title }}</h5>
@@ -61,15 +61,15 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 offset-md-1 col-md-10 latest-col">
+        <div class="col-sm-12 offset-xl-1 col-xl-10 latest-col">
             <h4>Latest Audio</h4>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-xs-12 offset-md-1 col-md-10">
+        <div class="col-sm-12 offset-xl-1 col-xl-10">
             {% for audio in latest_audio %}
-            <div class="col-xs-12 col-md-2 latest-stories">
+            <div class="col-sm-12 col-xl-2 latest-stories">
                 <a href="{% url 'audio' audio.id %}" class="audio-list-item">
                     <img src="{{ audio.audio_thumbnail.url }}" class="list-thumb" alt="Thumbnail for {{ audio.title }}">
                     <h5 class="latest-title">{{ audio.title }}</h5>
