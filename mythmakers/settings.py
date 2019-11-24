@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'stories',
     'audio',
     'community',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -156,10 +157,25 @@ TINYMCE_DEFAULT_CONFIG = {
     'width' : '100%',
     }
 
+AWS_S3_OBJECT_PARAMETERS = {
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'CacheControl' : 'max-age=94608000',
+}
+
+AWS_STORAGE_BUCKET_NAME = 'mythmakers-media'
+AWS_S3_REGION_NAME = 'eu-west-1'
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+
+AWS_S3_CUSTOMER_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Uploaded files
 MEDIA_URL = '/media/'
@@ -181,3 +197,4 @@ EMAIL_PORT = 587
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 SUBSCRIPTION_PRICE = 500
+
