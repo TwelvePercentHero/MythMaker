@@ -11,7 +11,7 @@ matrix:
         - IP='0.0.0.0'
         - PORT='5000'
         - MYTHMAKER_SECRET_KEY='whatever'
-        - STRIPE_PUBLISHABLE_KEY='pk_test_WSMHaOkBZMUYsHyaNDDEsLGD00wJHHzet3'
+        - stripe.api_key='pk_test_WSMHaOkBZMUYsHyaNDDEsLGD00wJHHzet3'
 install:
   - pip install -r requirements.txt
 script: 
