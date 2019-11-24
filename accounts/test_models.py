@@ -1,6 +1,9 @@
 from django.test import TestCase
 from .models import MythMaker, Membership, MythMakerMembership
 
+import stripe
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
 class TestMembershipModel(TestCase):
 
     def test_title_is_a_string(self):
