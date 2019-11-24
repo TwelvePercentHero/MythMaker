@@ -229,9 +229,9 @@ In order to proceed with local deployment:
 
 - You can now run the application with the terminal command:
 
-`python -m flask run`
+`python manage.py runserver`
 
-- You can then visit the website at `http://127.0.0.1:5000`
+- You can then visit the website at `http://127.0.0.1:8000`
 
 ## Credits
 
