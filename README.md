@@ -237,7 +237,7 @@ In order to proceed with local deployment:
 
 ### Content
 
-There was some content.
+There was some content. It was great.
 
 ### Media
 
