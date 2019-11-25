@@ -78,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mythmakers.wsgi.application'
+WSGI_APPLICATION = 'main.wsgi.application'
 
 
 # Database
