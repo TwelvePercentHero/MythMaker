@@ -84,6 +84,17 @@ WSGI_APPLICATION = 'mythmakers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mythmakersDB',
+        'USER' : 'postgres',
+        'PASSWORD' : os.environ.get('MYTHMAKER_DB_PASS'),
+        'HOST' : 'localhost',
+        'PORT' : '5432',
+    }
+}'''
+
 if "DATABASE_URL" in os.environ:
     DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL')) }
 else:
