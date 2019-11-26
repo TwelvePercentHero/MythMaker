@@ -200,6 +200,3 @@ EMAIL_PORT = 587
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 SUBSCRIPTION_PRICE = 500
-
-
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
