@@ -233,6 +233,10 @@ In order to proceed with local deployment:
 
 - You can then visit the website at `http://127.0.0.1:8000`
 
+### Heroku Deployment
+
+In order to deploy to Heroku there are a number of steps you need to follow.
+
 ## Credits
 
 ### Content
