@@ -184,11 +184,21 @@ def benefits(request):
     username = request.user.username
     user_membership = get_user_membership(request)
     all_stories = Story.objects.all()
-    story = random.choice(all_stories)
+    if all_stories.count() > 0:
+        story = random.choice(all_stories)
+    else:
+        story = None
+
     all_videos = Video.objects.all()
-    video = random.choice(all_videos)
+    if all_videos.count() > 0:
+        video = random.choice(all_videos)
+    else:
+        video = None
     all_audio = Audio.objects.all()
-    audio = random.choice(all_audio)
+    if all_audio.count() > 0:
+        audio = random.choice(all_audio)
+    else:
+        audio = None
     context = {'username' : username, 'user_membership' : user_membership, 'story' : story, 'video' : video, 'audio' : audio}
     return render(request, 'registration/benefits.html', context)
 

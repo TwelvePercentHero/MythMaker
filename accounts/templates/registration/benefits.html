@@ -29,25 +29,37 @@
             <p>Upgrading your membership means you could be creating awesome stories like the ones below.</p>
         </div>
         <div class="col-xs-12 offset-md-1 col-md-3 benefits-col">
+            {% if story is None %}
+            <h4>No stories found</h4>
+            {% else %}
             <a href="{% url 'story' story.id %}" class="story-list-item">
                 <h4>{{ story.title }}</h4>
                 <img src="{{ story.story_thumbnail.url }}" class="list-thumb" alt="Thumbnail for {{ story.title }}">
                 <p>{{ story.author }} | {{ story.date_posted }}</p>
             </a>
+            {% endif %}
         </div>
         <div class="col-xs-12 col-md-3 benefits-col">
+            {% if video is None %}
+            <h4>No videos found</h4>
+            {% else %}
             <a href="{% url 'video' video.id %}" class="story-list-item">
                 <h4>{{ video.title }}</h4>
                 <img src="{{ video.thumbnail.url }}" class="list-thumb"alt="Thumbnail for {{ video.title }}">
                 <p>{{ video.uploaded_by }} | {{ video.date_posted }}</p>
             </a>
+            {% endif %}
         </div>
         <div class="col-xs-12 col-md-3 benefits-col">
+            {% if audio is None %}
+            <h4>No audio found</h4>
+            {% else %}
             <a href="{% url 'audio' audio.id %}" class="story-list-item">
                 <h4>{{ audio.title }}</h4>
                 <img src="{{ audio.audio_thumbnail.url }}" class="list-thumb"alt="Thumbnail for {{ audio.title }}">
                 <p>{{ audio.creator }} | {{ audio.date_posted }}</p>
             </a>
+            {% endif %}
         </div>
     </div>
 
