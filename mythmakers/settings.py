@@ -84,17 +84,6 @@ WSGI_APPLICATION = 'mythmakers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mythmakersDB',
-        'USER' : 'postgres',
-        'PASSWORD' : os.environ.get('MYTHMAKER_DB_PASS'),
-        'HOST' : 'localhost',
-        'PORT' : '5432',
-    }
-}'''
-
 if "DATABASE_URL" in os.environ:
     DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL')) }
 else:
@@ -169,13 +158,16 @@ AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 
 AWS_S3_CUSTOMER_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 # Uploaded files
 MEDIA_URL = '/media/'
@@ -198,3 +190,5 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 SUBSCRIPTION_PRICE = 500
 
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
