@@ -217,18 +217,20 @@ In order to proceed with local deployment:
 
 - In your **settings.json** file add the following environment variables. If you are using an IDE other than VSCode, create an `env.py` file and include them there instead:
 
-`"terminal.integrated.env.windows" : {`
-        `"MYTHMAKER_SECRET_KEY": "<enter secret key here>",`
-        `"MYTHMAKER_DB_PASS": "<enter password here>",`
-        `"MYTHMAKER_EMAIL_ADDRESS": "<enter email address here>",`
-        `"MYTHMAKER_EMAIL_PASS": "<enter email password here>",`
-        `"STRIPE_PUBLISHABLE_KEY": "<enter Stripe publishable key here>",`
-        `"STRIPE_SECRET_KEY": "<enter Stripe secret key here>",`
-        `"AWS_ACCESS_KEY_ID":  "<enter AWS access key here>",`
-        `"AWS_SECRET_ACCESS_KEY": "<enter AWS secret key here>",`
-        `"DEVELOPMENT": "1",`
-        `"DATABASE_URL": "<enter database URL here>"`
-    `}`
+```python
+"terminal.integrated.env.windows" : {
+        "MYTHMAKER_SECRET_KEY": "<enter secret key here>",
+        "MYTHMAKER_DB_PASS": "<enter password here>",
+        "MYTHMAKER_EMAIL_ADDRESS": "<enter email address here>",
+        "MYTHMAKER_EMAIL_PASS": "<enter email password here>",
+        "STRIPE_PUBLISHABLE_KEY": "<enter Stripe publishable key here>",
+        "STRIPE_SECRET_KEY": "<enter Stripe secret key here>",
+        "AWS_ACCESS_KEY_ID":  "<enter AWS access key here>",
+        "AWS_SECRET_ACCESS_KEY": "<enter AWS secret key here>",
+        "DEVELOPMENT": "1",
+        "DATABASE_URL": "<enter database URL here>"
+    }
+```
 
 - Migrate the admin panel models to create your database template with the terminal command:
 
@@ -285,10 +287,12 @@ In order to deploy to Heroku there are a number of steps you need to follow.
 
 - In order to successfully access the **Membership** model included within the database, you will also need to create two Membership objects in the `python shell` using the following commands:
 
-`python manage.py shell`
-`>>> from accounts.models import Membership`
-`>>> Membership.objects.create(membership_type='FR', stripe_plan_id='plan_FxgrMPiOJc3zlj')`
-`>>> Membership.objects.create(membership_type='PR', stripe_plan_id='plan_Fxgr7BZfN3p3YR')`
+```python
+python manage.py shell
+>>> from accounts.models import Membership
+>>> Membership.objects.create(membership_type='FR', stripe_plan_id='plan_FxgrMPiOJc3zlj')
+>>> Membership.objects.create(membership_type='PR', stripe_plan_id='plan_Fxgr7BZfN3p3YR')
+```
 
 - This will then allow you to use the terminal command `python manage.py createsuperuser` to create your admin user without throwing any errors.
 
