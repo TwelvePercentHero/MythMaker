@@ -25,7 +25,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('MYTHMAKER_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if 'DEVELOPMENT' in os.environ:
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1",
                     "mythmakers.herokuapp.com"]
@@ -192,7 +195,7 @@ LOGOUT_REDIRECT_URL = '/'
 # Email Configuration
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mythmakerinchief@gmail.com'
+EMAIL_HOST_USER = os.environ.get('MYTHMAKER_EMAIL_ADDRESS')
 EMAIL_HOST_PASSWORD = os.environ.get('MYTHMAKER_EMAIL_PASS')
 EMAIL_PORT = 587
 

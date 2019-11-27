@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/TwelvePercentHero/MythMaker.svg?branch=master)](https://travis-ci.org/TwelvePercentHero/MythMaker)
 
+App hosted at: [https://mythmakers.herokuapp.com/](https://mythmakers.herokuapp.com/)
+
 MythMakers is an online storytelling community designed to help creative people tell interesting stories in a variety of online-accessible media including written prose, videos and audio. They can also like and comment on different stories to add them to their own personal feed of media, and edit their own profile to create a personalised space on the site. There is also a paid subscription option, for a charge of £5 per month the user is able to upgrade, allowing them to upload video and audio stories as well as written stories, which are available for upload by all users.
 
 ## UX
@@ -213,21 +215,30 @@ In order to proceed with local deployment:
 
 `pip -r requirements.txt`
 
-- In your **settings.json** file add a **SECRET_KEY** and **MONGO_URI** variable to link to your own database. Make sure to name your database `binge_watch` with the following collections (an example of the full data model can be found in the [data model](https://github.com/TwelvePercentHero/bingewatch/blob/master/static/docs/data-model.pdf) included in this repsitory):
-  - archived_media
-  - archived_recipes
-  - categories
-  - genres
-  - likes
-  - media
-  - origin
-  - recipe_types
-  - recipes
-  - temp_media
-  - temp_recipes
-  - users
+- In your **settings.json** file add the following environment variables. If you are using an IDE other than VSCode, create an `env.py` file and include them there instead:
 
-- You can now run the application with the terminal command:
+`"terminal.integrated.env.windows" : {`
+        `"MYTHMAKER_SECRET_KEY": "<enter secret key here>",`
+        `"MYTHMAKER_DB_PASS": "<enter password here>",`
+        `"MYTHMAKER_EMAIL_ADDRESS": "<enter email address here>",`
+        `"MYTHMAKER_EMAIL_PASS": "<enter email password here>",`
+        `"STRIPE_PUBLISHABLE_KEY": "<enter Stripe publishable key here>",`
+        `"STRIPE_SECRET_KEY": "<enter Stripe secret key here>",`
+        `"AWS_ACCESS_KEY_ID":  "<enter AWS access key here>",`
+        `"AWS_SECRET_ACCESS_KEY": "<enter AWS secret key here>",`
+        `"DEVELOPMENT": "1",`
+        `"DATABASE_URL": "<enter database URL here>"`
+    `}`
+
+- Migrate the admin panel models to create your database template with the terminal command:
+
+`python manage.py migrate`
+
+- Create an admin 'superuser' to access the Django admin panel, following the steps to add your admin username and password:
+
+`python manage.py createsuperuser`
+
+- You can now run the application locally with the terminal command:
 
 `python manage.py runserver`
 
@@ -237,11 +248,107 @@ In order to proceed with local deployment:
 
 In order to deploy to Heroku there are a number of steps you need to follow.
 
+- Create a `requirements.txt` file using the terminal command `pip freeze > requirements.txt`.
+
+- Create a `Procfile` with the terminal command `echo web: gunicorn mythmakers.wsgi:application`.
+
+- `git add` and `git commit` the new requirements and Procfile, and push the updated project files to GitHub.
+
+- Create a new app on the **Heroku** website by clicking the 'New' button, name it and set whichever region is relevant for your development location.
+
+- From the Heroku dashboard of your new application, click on the **Deploy** tab, then scroll down to **Deployment Method** and select **GitHub**.
+
+- Link Heroku to the GitHub repository you have cloned the original files into.
+
+- In the Heroku **Resources** tab, search for **Heroku Postgres**. Select the free 'Hobby' level, and create a new remote database that you can link to in both the `settings.json` file and your Heroku Config Vars (outlined in the next step).
+
+- In the **Settings** tab of the Heroku dashboard, click on **Reveal Config Vars**.
+
+- Set the following config vars:
+  - AWS_ACCESS_KEY_ID
+  - AWS_SECRET_ACCESS_KEY
+  - DATABASE_URL
+  - MYTHMAKER_DB_PASS
+  - MYTHMAKER_EMAIL_PASS
+  - MYTHMAKER_SECRET_KEY
+  - STRIPE_PUBLISHABLE_KEY
+  - STRIPE_SECRET_KEY
+  - MYTHMAKER_EMAIL_ADDRESS
+
+- Migrate your database models using the terminal command:
+
+`python manage.py makemigrations`
+
+- Followed by the terminal command:
+
+`python manage.py migrate`
+
+- In order to successfully access the **Membership** model included within the database, you will also need to create two Membership objects in the `python shell` using the following commands:
+
+`python manage.py shell`
+`>>> from accounts.models import Membership`
+`>>> Membership.objects.create(membership_type='FR', stripe_plan_id='plan_FxgrMPiOJc3zlj')`
+`>>> Membership.objects.create(membership_type='PR', stripe_plan_id='plan_Fxgr7BZfN3p3YR')`
+
+- This will then allow you to use the terminal command `python manage.py createsuperuser` to create your admin user without throwing any errors.
+
+- Sign up for a free **Amazon AWS** account in order to host your static and media files.
+
+- From the **S3 buckets** section you'll need to create a new unique bucket using the following configuration:
+
+**Permissions > CORS configuration:**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+<CORSRule>
+    <AllowedOrigin>*</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>HEAD</AllowedMethod>
+    <MaxAgeSeconds>3000</MaxAgeSeconds>
+    <AllowedHeader>Authorization</AllowedHeader>
+</CORSRule>
+</CORSConfiguration>
+```
+
+**Permissions > Bucket Policy:**
+
+```xml
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::<x>/*"
+        }
+    ]
+}
+```
+
+**Note:** The `<x>` should be replaced with your **AWS bucket arn** details, ensuring that you retain the `/*` at the end.
+
+- Next, navigate to the **IAM** section of AWS, create a **New Group** including your existing S3 bucket details, a **New Policy** and a **New User**. It's usually helpful to use a common naming convention for all three of these for ease of use.
+
+- Attach the New Policy and New User to the Group you just created.
+
+- In your terminal, you can now push the static files to AWS using the following comman:
+
+`python manage.py collectstatic`
+
+- Sign up for a free **Stripe** account, navigate to the **Developers** section and click on **API Keys**. This should auto-generate the following keys which can be added to both your `settings.json` file and your Heroku Config Vars:
+  - Publishable Key
+  - Secret Key
+
+Once you have completed these steps the site should be ready for remote deployment.
+
 ## Credits
 
 ### Content
 
-There was some content. It was great.
+Aside from the written content included in the **Media** section below, all written elements of the site are made up of original content.
 
 ### Media
 
@@ -252,3 +359,15 @@ Test objects in the Video app were found on [Pexels.com](https://www.pexels.com/
 Test content in the Audio app was sourced from [LibriVox.org](https://librivox.org), a catalogue of public domain audiobooks and recordings.
 
 ### Acknowledgements
+
+I used [this guidance from Farhadur Reja Fahim on Medium](https://medium.com/@frfahim/django-registration-with-confirmation-email-bb5da011e4ef) to build the user registration views including an authentication email.
+
+Guidance was used from this [StackOverflow question](https://stackoverflow.com/questions/3005080/how-to-send-html-email-with-django-with-dynamic-content-in-it) to allow Django to send HTML emails rather than plain-text.
+
+I also used this [HTML Email Template tutorial](https://webdesign.tutsplus.com/articles/build-an-html-email-template-from-scratch--webdesign-12770) by **Nicole Merlin at EnvatoTuts+** to build the templates for the authentication and password reset emails.
+
+This question from [StackOverflow](https://stackoverflow.com/questions/48075739/unit-testing-a-django-form-with-a-imagefield-without-external-file) was invaluable in helping me test the ImageFields in the various media upload forms used on the site.
+
+I also used various pieces of guidance and tutorials from [PrettyPrinted](https://prettyprinted.com/) in the initial stages of development.
+
+I'd also like to thank the tutors at **Code Institute** for their assistance in fixing some of my broken tests, particularly **Haley** who got me over the finish line on that one!
