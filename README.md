@@ -1,10 +1,28 @@
 # MythMakers - Full Stack Frameworks Milestone Project
 
+![alt text](static/images/readme-header.png "Image of Responsive Design")
+
 [![Build Status](https://travis-ci.org/TwelvePercentHero/MythMaker.svg?branch=master)](https://travis-ci.org/TwelvePercentHero/MythMaker)
 
 App hosted at: [https://mythmakers.herokuapp.com/](https://mythmakers.herokuapp.com/)
 
 MythMakers is an online storytelling community designed to help creative people tell interesting stories in a variety of online-accessible media including written prose, videos and audio. They can also like and comment on different stories to add them to their own personal feed of media, and edit their own profile to create a personalised space on the site. There is also a paid subscription option, for a charge of £5 per month the user is able to upgrade, allowing them to upload video and audio stories as well as written stories, which are available for upload by all users.
+
+## Contents
+
+- [UX](#ux)
+- [Technologies](#technologies)
+- [Features](#features)
+  - [Existing Features](#existing-features)
+  - [Future Development](#future-development)
+- [Testing](#testing)
+- [Deployment](#deployment)
+  - [Local Deployment](#local-deployment)
+  - [Heroku Deployment](#heroku-deployment)
+- [Credits](#credits)
+  - [Content](#content)
+  - [Media](#media)
+  - [Acknowledgements](#acknowledgements)
 
 ## UX
 
