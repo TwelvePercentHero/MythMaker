@@ -156,6 +156,7 @@ MESSAGE_TAGS = {
 
 TINYMCE_DEFAULT_CONFIG = {
     'theme' : 'simple',
+    'relative_urls' : False,
     'width' : '100%',
     }
 
