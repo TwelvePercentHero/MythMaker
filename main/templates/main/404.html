@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Sorry... | MythMakers{% endblock %}
+
+{% block content %}
+
+<section class="container-fluid main-bg">
+
+    <div class="jumbotron text-center">
+        <h1 class="jumbotron-header">Sorry...</h1>
+        <hr>
+        <p class="jumbotron-text">That page wasn't found.</p>
+        <p class="jumbotron-text">It may have been deleted or republished elsewhere.</p>
+        <a href="{% url 'index' %}" class="btn btn-outline-success btn-lg">Home</a>
+
+    </div>
+
+</section>
+
+{% endblock %}

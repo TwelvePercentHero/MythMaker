@@ -29,6 +29,7 @@ def audio(request, audio_id):
                 form.save()
                 audio.audio_comment_count += 1
                 audio.save()
+                messages.success(request, 'Your comment was successfully published!')
                 return redirect(reverse('audio', kwargs = {'audio_id' : audio_id}))
         else:
             form = CommentUpload()
